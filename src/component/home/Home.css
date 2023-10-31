@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* .clearfix::after{
+    content:"";
+    clear:both;
+    display:table;
+} */
+
+html {
+    background-color: rgb(6, 6, 100);
+}
+/* CSS for the entire page */
+.fitnet {
+    /* height: 100%; */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    background-color: rgb(6, 6, 100);
+}
+
+.header_title {
+    color: white;
+    padding: 1em;
+    margin-left: 50%;
+}
+
+.header_login {
+    color: white;
+    padding: 1em;
+    margin-right: 2em;
+    text-decoration: none;
+}
+
+.content {
+    display: flex;
+    flex-grow: 1;
+}
+
+/* Title for feed */
+.main {
+    width: 85%;
+    height: 100%;
+    padding: 20px; /* Add some padding for better aesthetics */
+    border: 2px solid black;
+    background-color: white;
+}
+
+.main .main_feed_title {
+    padding: 10px;
+    margin: 1em 80% 0 1em;
+    text-align: left;
+}
+
+.main .main_feed {
+    border: 2px solid black;
+    height: 80%;
+    width: 45%;
+    margin: 2em 0 1em 1em;
+}
+
+/* Link column on left side of screen */
+.link_column {
+    background-color: rgb(6, 6, 100);
+    height: 90vh;
+    width: 15%;
+    text-align: center;
+}
+
+.link_column a {
+    text-decoration: none;
+    color: white;
+}
+
+.link_column ul {
+    list-style-type: none;
+}
+
+.link_column ul li {
+    padding: 1.5em;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    padding: 2em;
+    height: 100%;
+    background-color: rgb(6, 6, 100);
+    text-align: center;
+}
+
+.footer p {
+    color: white;
+}

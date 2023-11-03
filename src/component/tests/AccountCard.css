@@ -1,0 +1,20 @@
+.profile-card {
+    border-bottom: 2px solid black;
+    display: flex;
+    align-items: center;
+}
+
+.first-name {
+    margin: 0 5px;
+    font-weight: bold;
+}
+
+.last-name {
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.info-item {
+    margin-right: 15px;
+
+}

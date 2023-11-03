@@ -1,0 +1,29 @@
+/* Link column on left side of screen */
+.link_column {
+    background-color: rgb(6, 6, 100);
+    height: 90vh;
+    width: 15%;
+    position: relative;
+    /* display: flex; */
+}
+
+.link_column ul {
+    list-style: none;
+    text-align: center;
+}
+
+.link_column ul li {
+    padding: 1.5em;
+    flex: 1;
+}
+
+.link_column ul li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    width: 100%;
+}
+
+.link_column ul li:hover {
+    background-color: rgb(40, 40, 100);
+}

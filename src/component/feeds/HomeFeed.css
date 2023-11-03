@@ -1,0 +1,16 @@
+.profile-feed {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+}
+
+.profile-card:last-child {
+    border-right: none;
+}

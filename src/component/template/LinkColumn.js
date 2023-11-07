@@ -6,29 +6,22 @@ function LinkColumn () {
     return(
         <div className='link_column'>
                 <ul>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/AccountScreen">Profile</Link>
-                    </li>
-                    <li>
-                        <Link to="/Calendar">Calendar</Link>
-                    </li>
-                    <li>
-                        <Link to="/Messages">Messages</Link>
-                    </li>
-                    <li>
-                        <Link to="/About">About Us</Link>
-                    </li>
-                    <li>
-                        <Link to="/Settings">Settings</Link>
-                    </li>
+                    
+                        <Link to="/"><li>Home</li></Link>
+                    
+                    {/* I dont know if i should keep this considering no account is actually picked when using this link */}
+                    {/* <Link to="/AccountScreen"><li>Profile</li></Link> */}
+                    
+                        <Link to="/Calendar"><li>Calendar</li></Link>
+                    
+                        <Link to="/Messages"><li>Messages</li></Link>
+                    
+                        <Link to="/About"><li>About Us</li></Link>
+
+                        <Link to="/Settings"><li>Settings</li></Link>
 
                     {/* Will work on this Link*/}
-                    {/* <li>
-                        <Link to="/Login">Login</Link>
-                    </li> */}
+                        <Link to="/Login"><li>Login</li></Link>
                 </ul>
         </div>
     ) 

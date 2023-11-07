@@ -63,7 +63,7 @@ html {
 /* Title for the trainer feed */
 .main .main_feed_title {
     padding: 10px;
-    margin: 0 50% 0 1.75em;
+    margin: 0 24% 0 1em;
     text-align: center;
 }
 
@@ -75,12 +75,26 @@ html {
 .main .main_feed {
     border: 2px solid black;
     height: 100%;
-    width: 50%;
+    width: 75%;
+    float: left;
     margin: 1em 0 1em 1em;
     flex-wrap: nowrap;
     overflow-x: auto;
     max-height: 600px; /* Set a maximum height */
     overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+.main .main_feed_btn {
+    border: 2px solid black;
+    width: 150px;
+    height: 50px;
+    float: left;
+    margin: 16em 0 0 6em;
+    text-align: center;
+}
+
+.main .main_feed_btn a{
+    font-style: none;
 }
 
 /* Footer */

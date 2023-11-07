@@ -12,12 +12,13 @@
     text-align: center;
 }
 
+/* This is the whole boc itself */
 .link_column ul li {
     padding: 1.5em;
     flex: 1;
 }
 
-.link_column ul li a {
+.link_column ul a{
     text-decoration: none;
     color: white;
     display: block;

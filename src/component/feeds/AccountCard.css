@@ -4,17 +4,32 @@
     align-items: center;
 }
 
+.profile-card img {
+    float: left;
+}
+
+.profile-card p {
+    padding-top: 2.5em;
+    float: left;
+}
+
 .first-name {
     margin: 0 5px;
     font-weight: bold;
+    font-size: 125%;
 }
 
 .last-name {
     margin-right: 20px;
     font-weight: bold;
+    font-size: 125%;
 }
 
 .info-item {
     margin-right: 15px;
+    font-size: 125%;
+}
 
+.selected {
+    background-color: rgb(150, 150, 200);
 }

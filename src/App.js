@@ -11,7 +11,7 @@ import {
 
 import Home from './client/home/Home.js';
 import AccountScreen from './client/account/AccountScreen.js';
-import Calendar from './client/calendar/calendar.js';
+import Calendar from './client/calendar/Calendar.js';
 import Message from './client/message/Message.js';
 import Preferences from './client/perferences/Preference.js';
 import About from './client/about/about.js';

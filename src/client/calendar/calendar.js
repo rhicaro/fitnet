@@ -1,7 +1,8 @@
 import React from 'react';
-import LinkColumn from './../template/LinkColumn';
+import LinkColumn from '../template/LinkColumn';
 import { Link, link } from 'react-router-dom';
-import './calendar.css';
+import './Calendar.css';
+import CalendarComponent from './CalendarComponent';
 
 function Calendar() {
     return (
@@ -15,7 +16,7 @@ function Calendar() {
             <LinkColumn />
 
             <div className='main'>
-                <p>This will be where the calendar will live</p>
+                <CalendarComponent />
             </div>
         </div>
 

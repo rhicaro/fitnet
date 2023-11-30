@@ -9,14 +9,14 @@ import {
     Navigate,
 } from "react-router-dom";
 
-import Home from './client/home/Home.js';
-import AccountScreen from './client/account/AccountScreen.js';
-import Calendar from './client/calendar/Calendar.js';
-import Message from './client/message/Message.js';
-import Preferences from './client/perferences/Preference.js';
-import About from './client/about/about.js';
-import Settings from './client/settings/settings.js';
-import Login from './client/authentication/Login.js';
+import Home from './pages/home/Home.js';
+import AccountScreen from './pages/account/AccountScreen.js';
+import Calendar from './pages/calendar/Calendar.js';
+import Message from './pages/message/Message.js';
+import Preferences from './pages/perferences/Preference.js';
+import About from './pages/about/about.js';
+import Settings from './pages/settings/Settings.js';
+import Login from './pages/authentication/Login.js';
 
 
 function App(){

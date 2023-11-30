@@ -1,10 +1,10 @@
 import React from 'react';
-import LinkColumn from '../template/LinkColumn';
+import LinkColumn from '../../template/LinkColumn';
 import { Link, link } from 'react-router-dom';
-import './settings.css';
+import './about.css';
 /* JS File is mainly to copy over to new web pages. Will Delete later */
 
-function settings() {
+function about() {
     return (
         <div className='fitnet'>
         <div className='header'>
@@ -16,7 +16,7 @@ function settings() {
             <LinkColumn />
 
             <div className='main'>
-                <p>This will be where the settings will live</p>
+                <p>This is where the about us will live</p>
             </div>
         </div>
 
@@ -27,4 +27,4 @@ function settings() {
     )
 }
 
-export default settings;
+export default about;

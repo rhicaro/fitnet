@@ -1,10 +1,10 @@
 import React from 'react';
-import LinkColumn from '../template/LinkColumn';
-import { Link } from 'react-router-dom';
-import './Message.css';
-/* JS File is mainly to copy over to new web pages. Will Delete later */
+import LinkColumn from '../../template/LinkColumn';
+import { Link, link } from 'react-router-dom';
+import './Calendar.css';
+import CalendarComponent from '../../components/CalendarComponent';
 
-function Message() {
+function Calendar() {
     return (
         <div className='fitnet'>
         <div className='header'>
@@ -16,7 +16,7 @@ function Message() {
             <LinkColumn />
 
             <div className='main'>
-                <p>This will be where the instant messaging will live</p>
+                <CalendarComponent />
             </div>
         </div>
 
@@ -27,4 +27,4 @@ function Message() {
     )
 }
 
-export default Message;
+export default Calendar;

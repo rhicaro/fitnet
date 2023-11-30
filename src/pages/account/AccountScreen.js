@@ -1,10 +1,9 @@
 import React from 'react';
-import LinkColumn from '../template/LinkColumn';
-import { Link, link } from 'react-router-dom';
-import './Calendar.css';
-import CalendarComponent from './CalendarComponent';
+import './AccountScreen.css';
+import LinkColumn from '../../template/LinkColumn';
+import { Link } from 'react-router-dom';
 
-function Calendar() {
+function AccountScreen() {
     return (
         <div className='fitnet'>
         <div className='header'>
@@ -16,7 +15,7 @@ function Calendar() {
             <LinkColumn />
 
             <div className='main'>
-                <CalendarComponent />
+                <p>This will be the Account Screen Site of the web</p>
             </div>
         </div>
 
@@ -27,4 +26,4 @@ function Calendar() {
     )
 }
 
-export default Calendar;
+export default AccountScreen;

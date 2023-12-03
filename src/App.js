@@ -1,5 +1,3 @@
-// This is for the proof of concept first where I am trying to make a scrollable media feed of pictures and videos that the user can add on to or delete
-
 import React, { useState, useRef } from 'react';
 
 import {
@@ -9,14 +7,14 @@ import {
     Navigate,
 } from "react-router-dom";
 
-import Home from './pages/home/Home.js';
-import AccountScreen from './pages/account/AccountScreen.js';
-import Calendar from './pages/calendar/Calendar.js';
-import Message from './pages/message/Message.js';
-import Preferences from './pages/perferences/Preference.js';
-import About from './pages/about/about.js';
-import Settings from './pages/settings/Settings.js';
-import Login from './pages/authentication/Login.js';
+import Home from './pages/Home.js';
+import AccountScreen from './pages/AccountScreen.js';
+import Calendar from './pages/Calendar.js';
+import Message from './pages/Message.js';
+import Preferences from './pages/Preference.js';
+import About from './pages/About.js';
+import Settings from './pages/Settings.js';
+import Login from './pages/Login.js';
 
 
 function App(){

@@ -1,10 +1,10 @@
 import React from 'react';
-import LinkColumn from '../../template/LinkColumn';
+import LinkColumn from '../template/LinkColumn';
 import { Link, link } from 'react-router-dom';
-import './Calendar.css';
-import CalendarComponent from '../../components/CalendarComponent';
+import '../styles/Settings.css';
+/* JS File is mainly to copy over to new web pages. Will Delete later */
 
-function Calendar() {
+function settings() {
     return (
         <div className='fitnet'>
         <div className='header'>
@@ -16,7 +16,7 @@ function Calendar() {
             <LinkColumn />
 
             <div className='main'>
-                <CalendarComponent />
+                <p>This will be where the settings will live</p>
             </div>
         </div>
 
@@ -27,4 +27,4 @@ function Calendar() {
     )
 }
 
-export default Calendar;
+export default settings;

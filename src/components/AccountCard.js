@@ -1,6 +1,6 @@
 // AccountCard.js
 import React from 'react';
-import './AccountCard.css';
+import '../styles/AccountCard.css';
 
 function AccountCard({ account, handleClick, isSelected }) {
     const { firstName, lastName, location, activity, sex, imgUrl, price} = account;

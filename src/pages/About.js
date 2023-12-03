@@ -1,9 +1,10 @@
 import React from 'react';
-import './AccountScreen.css';
-import LinkColumn from '../../template/LinkColumn';
-import { Link } from 'react-router-dom';
+import LinkColumn from '../template/LinkColumn';
+import { Link, link } from 'react-router-dom';
+import '../styles/About.css';
+/* JS File is mainly to copy over to new web pages. Will Delete later */
 
-function AccountScreen() {
+function about() {
     return (
         <div className='fitnet'>
         <div className='header'>
@@ -15,7 +16,7 @@ function AccountScreen() {
             <LinkColumn />
 
             <div className='main'>
-                <p>This will be the Account Screen Site of the web</p>
+                <p>This is where the about us will live</p>
             </div>
         </div>
 
@@ -26,4 +27,4 @@ function AccountScreen() {
     )
 }
 
-export default AccountScreen;
+export default about;

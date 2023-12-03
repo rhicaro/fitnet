@@ -1,10 +1,10 @@
 import React from 'react';
-import LinkColumn from '../../template/LinkColumn';
-import { Link, link } from 'react-router-dom';
-import './Settings.css';
+import LinkColumn from '../template/LinkColumn';
+import { Link } from 'react-router-dom';
+import '../styles/Message.css';
 /* JS File is mainly to copy over to new web pages. Will Delete later */
 
-function settings() {
+function Message() {
     return (
         <div className='fitnet'>
         <div className='header'>
@@ -16,7 +16,7 @@ function settings() {
             <LinkColumn />
 
             <div className='main'>
-                <p>This will be where the settings will live</p>
+                <p>This will be where the instant messaging will live</p>
             </div>
         </div>
 
@@ -27,4 +27,4 @@ function settings() {
     )
 }
 
-export default settings;
+export default Message;

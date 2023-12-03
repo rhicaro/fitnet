@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './Home.css';
+import '../styles/Home.css';
 import { Link, link } from 'react-router-dom';
-import LinkColumn from '../../template/LinkColumn';
+import LinkColumn from '../template/LinkColumn';
 
 //This is for the prototype
-import HomeFeed from '../../components/HomeFeed';
+import HomeFeed from '../components/HomeFeed';
 
 
 function Home() {

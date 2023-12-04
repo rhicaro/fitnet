@@ -52,12 +52,20 @@ html {
 }
 
 /* This is the main body */
-.main {
+.content .main {
     width: 85%;
     height: 100%;
     padding: 20px; /* Add some padding for better aesthetics */
     border: 2px solid black;
     background-color: white;
+}
+
+.content .main .calendar-main {
+    width: 100%;
+    height: 180px;
+    border: 2px solid black;
+    background-color: white;
+    margin-top: 20px;
 }
 
 /* Link column on left side of screen */

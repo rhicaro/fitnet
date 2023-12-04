@@ -54,12 +54,18 @@ html {
 }
 
 /* This is the main body */
-.main {
+.content .main {
     width: 85%;
     height: 100%;
     padding: 20px; /* Add some padding for better aesthetics */
     border: 2px solid black;
     background-color: white;
+}
+
+.content .main .message-main {
+    border: 2px solid black;
+    width: 100%;
+    height: 100%;
 }
 
 /* Link column on left side of screen */

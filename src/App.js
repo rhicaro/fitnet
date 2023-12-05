@@ -15,6 +15,7 @@ import Preferences from './pages/Preference.js';
 import About from './pages/About.js';
 import Settings from './pages/Settings.js';
 import Login from './pages/Login.js';
+import SignUp from './pages/SignUp.js';
 
 
 function App(){
@@ -58,13 +59,18 @@ function App(){
                         path="/Settings"
                         element={<Settings />}
                     />
-{/* 
+
                     <Route 
                         exact
                         path="/Login"
                         element={<Login />}
-                    /> */}
+                    />
 
+                    <Route
+                        exact
+                        path="/SignUp"
+                        element={<SignUp />}
+                    />
 
                     <Route
                         path="*"

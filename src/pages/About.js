@@ -2,7 +2,6 @@ import React from 'react';
 import LinkColumn from '../template/LinkColumn';
 import { Link, link } from 'react-router-dom';
 import '../styles/About.css';
-/* JS File is mainly to copy over to new web pages. Will Delete later */
 
 function about() {
     return (
@@ -17,7 +16,7 @@ function about() {
 
             <div className='main'>
                 <div className='about-main'>
-                    <img src=''></img>
+                    <img src='/images/pfp/garp.png' className='aboutpfp'/>
                     <h2>About Raphael Hicaro</h2>
                     <p>
                         Welcome to FitNet, where fitness meets personalized guidance! I'm Raphael Hicaro, a dedicated senior computer science student with a passion for both technology and fitness. My journey into the world of health and wellness began as a novice in the gym, clueless about where to start and uncertain about investing in a suitable trainer.

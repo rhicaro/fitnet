@@ -6,7 +6,6 @@ import LinkColumn from '../template/LinkColumn';
 //This is for the prototype
 import HomeFeed from '../components/HomeFeed';
 
-
 function Home() {
     const [selectedAccount, setSelectedAccount] = useState(null);
 

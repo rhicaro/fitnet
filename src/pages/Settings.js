@@ -16,7 +16,7 @@ function settings() {
             <LinkColumn />
 
             <div className='main'>
-                <p>This will be where the settings will live</p>
+                <p>Work in Progress</p>
             </div>
         </div>
 

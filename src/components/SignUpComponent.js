@@ -89,7 +89,7 @@ const RegisterScreen = ({ switchToLogin }) => {
         <button type='submit' className='login-btn'>
             
                 <span className="switch-link" onClick={switchToLogin}>
-                    <Link to="/Login">Login</Link>
+                    <Link to="/Login">Return</Link>
                 </span>
         </button>
     </div>

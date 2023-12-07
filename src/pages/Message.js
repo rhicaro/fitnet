@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import '../styles/Message.css';
 import MessagComponent from '../components/MessageComponent';
 
+//This is the message page || Still in the works
+
 function Message() {
     return (
         <div className='fitnet'>

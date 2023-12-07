@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "../styles/CalendarComponent.css";
 
+//This is a component for the React Calendar
+
 function CalendarComponent({ onDateChange }) {
   const [date, setDate] = useState(new Date());
 

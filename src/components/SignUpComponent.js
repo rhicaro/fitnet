@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, link } from 'react-router-dom';
 
+//This is the sign up component that is shown on the register page
+
 const RegisterScreen = ({ switchToLogin }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');

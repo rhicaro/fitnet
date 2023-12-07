@@ -3,6 +3,8 @@ import '../styles/AccountScreen.css';
 import LinkColumn from '../template/LinkColumn';
 import { Link } from 'react-router-dom';
 
+//This is the account screen page || Still in the works
+
 function AccountScreen() {
     return (
         <div className='fitnet'>

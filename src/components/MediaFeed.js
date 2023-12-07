@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 
+//This is the media feed that will display pictures or videos
+
 function MediaFeed(props) {
   const [mediaList, setMediaList] = useState([]);
   const fileInputRef = useRef(null);

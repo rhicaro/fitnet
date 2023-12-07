@@ -4,6 +4,8 @@ import { Link, link } from 'react-router-dom';
 import '../styles/SignUp.css';
 import SignUpComponent from '../components/SignUpComponent';
 
+//This is the sign up page
+
 function SignUp() {
     return (
         <div className='fitnet'>

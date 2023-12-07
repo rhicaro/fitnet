@@ -2,7 +2,8 @@ import React from 'react';
 import LinkColumn from '../template/LinkColumn';
 import { Link, link } from 'react-router-dom';
 import '../styles/Settings.css';
-/* JS File is mainly to copy over to new web pages. Will Delete later */
+
+//This is the settings page || Still in the works
 
 function settings() {
     return (

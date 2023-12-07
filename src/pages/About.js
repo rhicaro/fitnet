@@ -3,6 +3,8 @@ import LinkColumn from '../template/LinkColumn';
 import { Link, link } from 'react-router-dom';
 import '../styles/About.css';
 
+//This is the about page
+
 function about() {
     return (
         <div className='fitnet'>

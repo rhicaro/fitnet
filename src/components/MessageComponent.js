@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import "../styles/MessageComponent.css";
 
+//This is the messaging component for the messages page
+
 const MessageComponent = () => {
   const [contacts, setContacts] = useState([
     { id: 1, name: "John Doe" },

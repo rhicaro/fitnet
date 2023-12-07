@@ -4,6 +4,8 @@ import { Link, link } from 'react-router-dom';
 import '../styles/Login.css';
 import LoginComponent from '../components/LoginComponent';
 
+//This is the login page
+
 function Login() {
     return (
         <div className='fitnet'>

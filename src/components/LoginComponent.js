@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, link } from 'react-router-dom';
 
+//This is the login component of the login page
+
 const LoginScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

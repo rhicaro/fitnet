@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "../styles/SelectedDate.css"; // Import your custom styles
 
+//This is the selected date component right under the calendar component to create and delete appointments
+
 function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment }) {
   const [appointments, setAppointments] = useState([]);
   const [appointment, setAppointment] = useState("");

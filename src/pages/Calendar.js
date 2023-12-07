@@ -5,6 +5,8 @@ import '../styles/Calendar.css';
 import CalendarComponent from '../components/CalendarComponent';
 import SelectedDate from '../components/SelectedDate';
 
+//This is the calendar page
+
 function Calendar() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [appointments, setAppointments] = useState([]);

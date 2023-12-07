@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## FitNet
+
+FitNet is a social media fitness website that seeks to connect clients and trainers alike without any hassle.
+
 ## Available Scripts
 
 In the project directory, you can run:

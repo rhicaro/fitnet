@@ -17,6 +17,8 @@ import Settings from './pages/Settings.js';
 import Login from './pages/Login.js';
 import SignUp from './pages/SignUp.js';
 
+import accounts from './components/Data';
+
 
 function App(){
 
@@ -32,8 +34,8 @@ function App(){
 
                     <Route 
                         exact
-                        path="/AccountScreen"
-                        element={<AccountScreen />}
+                        path="/AccountScreen/:firstName"
+                        element={<AccountScreen accounts={accounts} />}
                     />
 
                     <Route 

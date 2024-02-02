@@ -60,6 +60,120 @@ html {
     background-color: white;
 }
 
+.account_head {
+    height: 250px;
+    background-color: lightgray;
+}
+
+.account_head .account_img {
+    margin: 25px 0 0 40.5%;
+    border: 2px solid black;
+}
+
+.account_body {
+    margin-top: 10px;
+    height: 100vh;
+}
+
+.account_body .section1 {
+    height: 20%;
+}
+
+.account_body .section1 .account_rates {
+    float: left;
+    background-color: lightgrey;
+    text-align: center;
+    width: 25%;
+    height: 100%;
+}
+
+.account_body .section1 .account_rates h1 {
+    padding-top: 10%;
+    font-size: 150%
+}
+
+.account_body .account_rates p {
+    padding-top: 10px;
+    font-size: 150%;
+}
+
+.account_body .section1 .account_info_title {
+    float: left;
+    height: 100%;
+    width: 15%;
+    margin-left: 10px;
+    background-color: lightgrey;
+}
+
+.account_body .section1 .account_info_title h1 {
+    padding: 30% 0 0 20%;
+    font-size: 150%;
+}
+
+.account_body .section1 .account_info_basic {
+    float: left;
+    background-color: lightgrey;
+    height: 100%;
+    width: 15%;
+}
+
+.account_body .section1 .account_info_basic ul {
+    list-style-type: none;
+    padding-top: 25px;
+}
+
+.account_body .section1 .account_info_basic ul li {
+    padding-top: 5px;
+}
+
+.account_body .section1 .account_info_bio {
+    float: left;
+    background-color: lightgray;
+    height: 100%;
+    width: 44.2%;
+}
+
+.account_body .section1 .account_info_bio p {
+    padding-top: 30px;
+}
+
+.account_body .section2 {
+    margin-top: 10px;
+    height: 80%;
+    width: auto;
+}
+
+.account_body .section2 .account_days {
+    float: left;
+    text-align: center;
+    width: 25%;
+    height: 100%;
+    background-color: lightgrey;
+}
+
+.account_body .section2 .account_days h1 {
+    padding-top: 10%;
+    font-size: 150%;
+}
+
+.account_body .section2 .account_days ul {
+    list-style-type: none;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.account_body .section2 .account_days li {
+    padding: 5px 0;
+}
+
+.account_body .section2 .account_media_feed {
+    float:left;
+    margin-left: 10px;
+    height: 100%;
+    width: 74.23%;
+    background-color: lightgray;
+}
+
 /* Link column on left side of screen */
 .link_column {
     background-color: rgb(6, 6, 100);

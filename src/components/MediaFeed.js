@@ -1,7 +1,5 @@
 import React, { useState, useRef } from 'react';
 
-//This is the media feed that will display pictures or videos
-
 function MediaFeed(props) {
   const [mediaList, setMediaList] = useState([]);
   const fileInputRef = useRef(null);
@@ -32,7 +30,11 @@ function MediaFeed(props) {
         {mediaList.map((media, index) => (
           <div key={index} className="media-item">
             {media.type.startsWith('image') ? (
-              <img src={media.url} alt={`Media ${index}`} />
+              <img
+                src={media.url}
+                alt={`Media ${index}`}
+                style={{ width: '700px', height: '350px' }} // Set your desired width and height
+              />
             ) : (
               <video controls>
                 <source src={media.url} type={media.type} />
@@ -45,9 +47,10 @@ function MediaFeed(props) {
       </div>
     </div>
   );
-};
+}
 
 export default MediaFeed;
+
 
 //=================================================================
 

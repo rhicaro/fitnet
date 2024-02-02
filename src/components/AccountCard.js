@@ -5,7 +5,7 @@ import '../styles/AccountCard.css';
 //This is a component for the account card seen on the home page
 
 function AccountCard({ account, handleClick, isSelected }) {
-    const { firstName, lastName, location, activity, sex, imgUrl, price} = account;
+    const { firstName, lastName, location, activity, sex, imgUrl, price, bio} = account;
 
     return (
         <div className={`profile-card ${isSelected ? 'selected' : ''}`} onClick={handleClick}>

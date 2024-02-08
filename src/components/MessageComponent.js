@@ -2,19 +2,25 @@
 import React, { useState } from "react";
 import "../styles/MessageComponent.css";
 
-//This is the messaging component for the messages page
+// This is the messaging component for the messages page
 
 const MessageComponent = () => {
   const [contacts, setContacts] = useState([
     { id: 1, name: "John Doe" },
-    { id: 2, name: "Jane Doe" },
-    // Add more contacts as needed
+    { id: 2, name: "Janet Dobs" },
+    { id: 3, name: "Jake Shwartz" },
+    { id: 4, name: "Greg Dougg" },
+    { id: 5, name: "Joel Mills" },
   ]);
 
   const [selectedContact, setSelectedContact] = useState(null);
   const [messages, setMessages] = useState([]);
 
   const handleContactClick = (contact) => {
+    // Clear messages when a new contact is selected
+    setMessages([]);
+
+    // Set the selected contact
     setSelectedContact(contact);
   };
 
@@ -27,47 +33,54 @@ const MessageComponent = () => {
 
   return (
     <div className="messaging-container">
-      <div className="contacts-list">
-        <h3>Contacts:</h3>
-        <ul>
-          {contacts.map((contact) => (
-            <li key={contact.id} onClick={() => handleContactClick(contact)}>
-              {contact.name}
-            </li>
-          ))}
-        </ul>
-      </div>
 
-      <div className="messages-container">
-        <div className="message-list">
-          <h3>Messages:</h3>
-          <div className="message-list-content">
-            {selectedContact ? (
-              messages.map((message, index) => (
-                <div
-                  key={index}
-                  className={message.sent ? "sent-message" : "received-message"}
-                >
-                  {message.text}
-                </div>
-              ))
-            ) : (
-              <p>Select a contact to start a conversation</p>
-            )}
-          </div>
+      <div className="message-body">
+
+        <div className="current-contact">
+          {selectedContact ? <h2>{selectedContact.name}</h2> : null}
         </div>
 
-        <div className="input-container">
-          <input
-            type="text"
-            placeholder="Type your message..."
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                handleSendMessage(e.target.value);
-                e.target.value = "";
-              }
-            }}
-          />
+        <div className="contacts-list">
+          <h3>Contacts:</h3>
+          <ul>
+            {contacts.map((contact) => (
+              <li key={contact.id} onClick={() => handleContactClick(contact)}>
+                {contact.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="messages">
+          <div className="message-list">
+            <div className="message-list-content">
+              {selectedContact ? (
+                messages.map((message, index) => (
+                  <div
+                    key={index}
+                    className={message.sent ? "sent-message" : "received-message"}
+                  >
+                    {message.text}
+                  </div>
+                ))
+              ) : (
+                <p>Select a contact to start a conversation</p>
+              )}
+            </div>
+          </div>
+
+          <div className="input-container">
+            <input
+              type="text"
+              placeholder="Type your message..."
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  handleSendMessage(e.target.value);
+                  e.target.value = "";
+                }
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>

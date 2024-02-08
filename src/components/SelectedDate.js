@@ -29,33 +29,35 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment }) {
 
   return (
     <div className="selected-date-container">
-      <div className="appointment-input">
-        <input
-          type="text"
-          placeholder="Enter appointment"
-          value={appointment}
-          onChange={(e) => setAppointment(e.target.value)}
-        />
-        <button onClick={handleAddAppointment} className="add-button">
-          Add Appointment
-        </button>
-      </div>
+      <div className="appointment-body">
+        <div className="appointment-input">
+          <input
+            type="text"
+            placeholder="Enter appointment"
+            value={appointment}
+            onChange={(e) => setAppointment(e.target.value)}
+          />
+          <button onClick={handleAddAppointment} className="add-button">
+            Add Appointment
+          </button>
+        </div>
 
-      <div className="appointment-list">
-        <h3>Appointments:</h3>
-        <ul>
-          {appointments.map((appointment, index) => (
-            <li key={index}>
-              <button
-                onClick={() => handleDeleteAppointment(index)}
-                className="delete-button"
-              >
-                Delete
-              </button>
-              {appointment}
-            </li>
-          ))}
-        </ul>
+        <div className="appointment-list">
+          <h3>Appointments:</h3>
+          <ul>
+            {appointments.map((appointment, index) => (
+              <li key={index}>
+                <button
+                  onClick={() => handleDeleteAppointment(index)}
+                  className="delete-button"
+                >
+                  Delete
+                </button>
+                {appointment}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

@@ -69,6 +69,7 @@ function AccountScreen({ accounts }) {
                                     </ul>
                                 </div>
                                 <div className='account_media_feed'>
+                                    {/* Should Update The media feed */}
                                     <MediaFeed />
                                 </div>
                             </div>                 

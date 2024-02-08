@@ -1,0 +1,31 @@
+.login-container {
+    text-align: center;
+    margin-top: 17.5%;
+}
+
+.username {
+    width: 30%;
+    margin-top: 1em;
+
+}
+
+.password {
+    width: 30%;
+    margin: 1em 0 0 2.5px;
+}
+
+.btns {
+    margin-top: 10px;
+}
+
+.login_btn {
+    width: 100px;
+    height: 25px;
+    margin-right: 25px;
+}
+
+.signup_btn {
+    width: 100px;
+    height: 25px;
+    margin-left: 40px;
+}

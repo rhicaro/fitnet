@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, link } from 'react-router-dom';
-
+import '../styles/LoginComponent.css';
 //This is the login component of the login page
 
 const LoginScreen = () => {
@@ -18,32 +18,41 @@ const LoginScreen = () => {
     <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
-        <div className="input-group">
+
+        <div className="username_input">
           <label htmlFor="username">Username:</label>
           <input
             type="text"
-            id="username"
+            className="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
-        <div className="input-group">
+
+        <div className="password_input">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
-            id="password"
+            className="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        <button type="submit" className="login-btn">
-            Login
-        </button>
-        <button type="submit" className='signup-btn'>
-            <Link to="/SignUp">Register here</Link>
-        </button>
+
+        <div className='btns'>
+          <button type="submit" className="login_btn">
+              Login
+          </button>
+
+          <Link to="/SignUp">
+            <button type="submit" className='signup_btn'>
+                Sign Up
+            </button>
+          </Link>
+        </div>
+
       </form>
     </div>
   );

@@ -1,6 +1,7 @@
 // MessagingComponent.js
 import React, { useState } from "react";
 import "../styles/MessageComponent.css";
+import { CenturyView } from "react-calendar";
 
 // This is the messaging component for the messages page
 
@@ -36,10 +37,6 @@ const MessageComponent = () => {
 
       <div className="message-body">
 
-        <div className="current-contact">
-          {selectedContact ? <h2>{selectedContact.name}</h2> : null}
-        </div>
-
         <div className="contacts-list">
           <h3>Contacts:</h3>
           <ul>
@@ -52,6 +49,11 @@ const MessageComponent = () => {
         </div>
 
         <div className="messages">
+
+          <div className="current-contact">
+            {selectedContact ? <h2>{selectedContact.name}</h2> : null}
+          </div>
+
           <div className="message-list">
             <div className="message-list-content">
               {selectedContact ? (
@@ -64,7 +66,7 @@ const MessageComponent = () => {
                   </div>
                 ))
               ) : (
-                <p>Select a contact to start a conversation</p>
+                <p className="select-contact">Select a contact to start a conversation</p>
               )}
             </div>
           </div>
@@ -81,6 +83,7 @@ const MessageComponent = () => {
               }}
             />
           </div>
+
         </div>
       </div>
     </div>

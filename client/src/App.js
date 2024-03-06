@@ -21,7 +21,6 @@ import accounts from './components/Data';
 
 
 function App(){
-
     return (
         <div className="fitnet">
             <Router>

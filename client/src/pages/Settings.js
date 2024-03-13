@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LinkColumn from '../template/LinkColumn';
 import { Link, link } from 'react-router-dom';
 import '../styles/Settings.css';
+import UserList from '../components/UserList';
 
-//This is the settings page || Still in the works
+function Settings() {
+    const [selectedAccount, setSelectedAccount] = useState(null);
 
-function settings() {
     return (
         <div className='fitnet'>
         <div className='header'>
@@ -18,6 +19,13 @@ function settings() {
 
             <div className='main'>
                 <p>Work in Progress</p>
+                {/* Need to include is selected */}
+                <UserList />
+                {/* <HomeFeed 
+                    accounts={accounts}
+                    selectedAccount={selectedAccount} 
+                    setSelectedAccount={setSelectedAccount}
+                /> */}
             </div>
         </div>
 
@@ -28,4 +36,4 @@ function settings() {
     )
 }
 
-export default settings;
+export default Settings;

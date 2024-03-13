@@ -1,13 +1,7 @@
 const express = require('express');
-const mysql = require('mysql2'); // Use mysql2 instead of mysql
-const cors = require('cors');
+const mysql = require('mysql2');
+const router = express.Router();
 
-const app = express();
-const port = 5001;
-
-app.use(cors());
-
-// Replace with your own MySQL connection details
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -23,8 +17,7 @@ db.connect((err) => {
   }
 });
 
-//user Route
-app.get('/api/userdemographics', (req, res) => {
+router.get('/api/userdemographics', (req, res) => {
   const query = 'SELECT * FROM user_demographics';
   db.query(query, (err, results) => {
     if (err) {
@@ -37,6 +30,4 @@ app.get('/api/userdemographics', (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+module.exports = router;

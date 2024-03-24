@@ -3,6 +3,7 @@ import '../styles/AccountScreen.css';
 import LinkColumn from '../template/LinkColumn';
 import { Link, useParams } from 'react-router-dom';
 import MediaFeed from '../components/MediaFeed';
+import userpfp from '../assets/unknown.png';
 
 function AccountScreen({ accounts }) {
     const { firstName } = useParams();
@@ -25,14 +26,14 @@ function AccountScreen({ accounts }) {
 
                 <div className='main'>
                         <div className='account_head'>
-                            <img src={selectedAccount.imgUrl} width={200} height={200} className='account_img' alt={selectedAccount.firstName}></img>
+                            <img src={userpfp} width={200} height={200} className='account_img' alt={selectedAccount.firstName}></img>
                         </div>
 
                         <div className='account_body'>
                             <div className='section1'>
                                 <div className='account_rates'>
                                     <h1>Rate</h1>
-                                    <p>${selectedAccount.price}/hr</p>
+                                    <p>${selectedAccount.user_price}/hr</p>
                                 </div>
 
                                 <div className='account_info_title'>
@@ -41,16 +42,16 @@ function AccountScreen({ accounts }) {
 
                                 <div className='account_info_basic'>
                                     <ul>
-                                        <li>Name: {selectedAccount.firstName} {selectedAccount.lastName}</li>
-                                        <li>Location: {selectedAccount.location}</li>
-                                        <li>Activity: {selectedAccount.activity}</li>
-                                        <li>Sex: {selectedAccount.sex}</li>
+                                        <li>Name: {selectedAccount.first_name} {selectedAccount.last_name}</li>
+                                        <li>Location: {selectedAccount.user_location}</li>
+                                        <li>Activity: {selectedAccount.user_activity}</li>
+                                        <li>Sex: {selectedAccount.user_sex}</li>
                                     </ul>
                                 </div>
 
                                 <div className='account_info_bio'>
                                     <p>
-                                        {selectedAccount.bio}
+                                        {selectedAccount.user_bio}
                                     </p>
                                 </div>
                             </div>

@@ -2,7 +2,7 @@
 import React from 'react';
 import AccountCard2 from './AccountCard2';
 
-function HomeFeed({ accounts, selectedAccount, setSelectedAccount }) {
+function HomeFeed2({ accounts, selectedAccount, setSelectedAccount }) {
     const handleCardClick = (account) => {
       setSelectedAccount(account);
     }
@@ -21,5 +21,5 @@ function HomeFeed({ accounts, selectedAccount, setSelectedAccount }) {
     );
   }
   
-  export default HomeFeed;
+  export default HomeFeed2;
   

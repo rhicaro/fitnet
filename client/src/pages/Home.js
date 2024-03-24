@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Home.css';
 import { Link, link } from 'react-router-dom';
 import LinkColumn from '../template/LinkColumn';
-import HomeFeed from '../components/HomeFeed';
-import accounts from '../components/Data';
-
-//This is the home page
+import axios from 'axios';
+import HomeFeed2 from '../components/HomeFeed2';
+import userpfp from '../assets/unknown.png'
 
 function Home() {
     const [selectedAccount, setSelectedAccount] = useState(null);
+    const [userDemographics, setUserDemographics] = useState([]);
+
+    useEffect(() => {
+        // Fetch user demographics from the server when the component mounts
+        axios.get('http://localhost:5001/api/userdemographics')
+        .then(response => {
+            const triainerAccounts = response.data.filter(account => account.user_status === "Trainer");
+            setUserDemographics(triainerAccounts);
+            console.log(userDemographics);
+        })
+        .catch(error => {
+            console.error('Error fetching user demographics:', error);
+        });
+        }, []);
 
     return (
         <div className='fitnet'>
@@ -28,8 +41,8 @@ function Home() {
                     
                     <div className='main_feed'>
                         {/* This is where the trainer feed will live */}
-                        <HomeFeed 
-                            accounts={accounts}
+                        <HomeFeed2 
+                            accounts={userDemographics}
                             selectedAccount={selectedAccount} 
                             setSelectedAccount={setSelectedAccount}
                         />
@@ -38,12 +51,12 @@ function Home() {
                     <div className='account_selected'>
                         {selectedAccount && (
                             <>
-                                <img src={selectedAccount.imgUrl} width={250} height={250} className='account_img'></img>
-                                <h3 className='account_info_name'>Name: {selectedAccount.firstName} {selectedAccount.lastName}</h3>
-                                <h3 className='account_info'>Location: {selectedAccount.location}</h3>
-                                <h3 className='account_info'>Activity: {selectedAccount.activity}</h3>
-                                <h3 className='account_info'>Sex: {selectedAccount.sex}</h3>
-                                <h3 className='account_info'>Price: ${selectedAccount.price}</h3>
+                                <img src={userpfp} width={250} height={250} className='account_img'></img>
+                                <h3 className='account_info_name'>Name: {selectedAccount.first_name} {selectedAccount.lastName}</h3>
+                                <h3 className='account_info'>Location: {selectedAccount.user_location}</h3>
+                                <h3 className='account_info'>Activity: {selectedAccount.user_activity}</h3>
+                                <h3 className='account_info'>Sex: {selectedAccount.user_sex}</h3>
+                                <h3 className='account_info'>Price: ${selectedAccount.user_price}</h3>
                             </>
                         )}
                     </div>

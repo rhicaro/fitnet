@@ -21,6 +21,9 @@ import SignUp from './pages/SignUp.js';
 
 
 function App(){
+
+    const userDemographics = [];
+
     return (
         <div className="fitnet">
             <Router>
@@ -31,9 +34,8 @@ function App(){
                         element={<Home/>}
                     />
 
-                    {/* Modify the AccountScreen route to accept parameters */}
                     <Route 
-                        path="/AccountScreen/:first_name" 
+                        path="/AccountScreen/:first_name/:last_name" 
                         element={<AccountScreen />} 
                     />
 

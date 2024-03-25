@@ -24,7 +24,21 @@ router.get('/api/userdemographics', (req, res) => {
       console.error('Error querying MySQL:', err);
       res.status(500).send('Internal Server Error');
     } else {
-      console.log('User Demographics from the Database:', results);
+      console.log('User accounts from the Database:', results);
+      res.json(results);
+    }
+  });
+});
+
+router.get('/api/userdemographics/:first_name/:last_name', (req, res) => {
+  const { first_name, last_name } = req.params;
+  const query = 'SELECT * FROM user_demographics WHERE first_name = ? AND last_name = ?';
+  db.query(query, [first_name, last_name], (err, results) => {
+    if (err) {
+      console.error('Error querying MySQL:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      console.log(first_name, last_name, 'account from the database', results);
       res.json(results);
     }
   });

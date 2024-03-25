@@ -11,17 +11,18 @@ function Home() {
     const [userDemographics, setUserDemographics] = useState([]);
 
     useEffect(() => {
-        // Fetch user demographics from the server when the component mounts
+        // Fetch user accounts from the database to be displayed on the home screen
         axios.get('http://localhost:5001/api/userdemographics')
         .then(response => {
             const triainerAccounts = response.data.filter(account => account.user_status === "Trainer");
             setUserDemographics(triainerAccounts);
-            console.log(userDemographics);
         })
         .catch(error => {
             console.error('Error fetching user demographics:', error);
         });
         }, []);
+
+        console.log("The user demographics from the DB", userDemographics);
 
     return (
         <div className='fitnet'>
@@ -63,9 +64,10 @@ function Home() {
 
                         {/* <Link to="/AccountScreen"><div className='main_feed_btn'>Visit Account</div></Link> */}
                         {selectedAccount && (
-                            <Link to={`/AccountScreen/${selectedAccount.firstName}`} className='main_feed_btn'>
-                                Visit Account
-                            </Link>
+                        <Link to={`/AccountScreen/${selectedAccount.first_name}/${selectedAccount.last_name}`} className='main_feed_btn'>
+                            Visit Account
+                        </Link>
+                        
                         )}
 
                 </div>

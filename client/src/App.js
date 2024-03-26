@@ -37,6 +37,7 @@ function App(){
                     <Route 
                         path="/AccountScreen/:first_name/:last_name" 
                         element={<AccountScreen />} 
+                        accounts={userDemographics}
                     />
 
                     <Route 

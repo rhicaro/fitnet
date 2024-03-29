@@ -4,13 +4,15 @@ import '../styles/SignUpComponent.css';
 
 //This is the sign up component that is shown on the register page
 
-const RegisterScreen = ({ switchToLogin }) => {
+const SignUpComponent = ({ switchToLogin }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [mainActivity, setMainActivity] = useState('');
+  const [gender, setGender] = useState('');
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const RegisterScreen = ({ switchToLogin }) => {
 
   return (
     <div className="register-container">
-      <h2>Register</h2>
+      <h2>Client Sign Up</h2>
       <form onSubmit={handleRegister}>
         <div className='inputs'>
           <div className="input-group">
@@ -84,6 +86,25 @@ const RegisterScreen = ({ switchToLogin }) => {
               required
             />
           </div>
+          <div className="input-group">
+            <label htmlFor="activity">Main Activity:</label>
+            <input
+              type="activity"
+              id="mainActivity"
+              value={mainActivity}
+              onChange={(e) => setMainActivity(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="gender">Gender:</label>
+            <select id="gender" value={gender} onChange={(e) => setGender(e.target.value)} required>
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
         </div>
 
         <button type="submit" className="register-btn">
@@ -91,19 +112,34 @@ const RegisterScreen = ({ switchToLogin }) => {
         </button>
       </form>
 
+      <div className='switch-btns'>
         <div className='return'>
           <p>Already have an account?</p>
 
           <Link to="/Login">
             <button type='submit' className='return-btn'>
-                    <span className="switch-link" onClick={switchToLogin}>
-                        Return
-                    </span>
+                <span className="switch-link" onClick={switchToLogin}>
+                    Return
+                </span>
             </button>
           </Link>
         </div>
+
+        <div className='signup2'>
+          <p>Want to sign up as a Trainer?</p>
+
+          <Link to="/SignUp2">
+            <button type='submit' className='return-btn'>
+              <span className='switch-link'>
+                Trainer Sign Up
+              </span>
+            </button>
+          </Link>
+        </div>
+      </div>
+
     </div>
   );
 };
 
-export default RegisterScreen;
+export default SignUpComponent;

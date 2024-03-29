@@ -16,6 +16,7 @@ import About from './pages/About.js';
 import Settings from './pages/Settings.js';
 import Login from './pages/Login.js';
 import SignUp from './pages/SignUp.js';
+import SignUp2 from './pages/SignUp2.js';
 
 // import accounts from './components/Data';
 
@@ -74,6 +75,12 @@ function App(){
                         exact
                         path="/SignUp"
                         element={<SignUp />}
+                    />
+
+                    <Route 
+                        exact
+                        path="/SignUp2"
+                        element={<SignUp2 />}
                     />
 
                     <Route

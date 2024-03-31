@@ -11,6 +11,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [mainActivity, setMainActivity] = useState('');
   const [gender, setGender] = useState('');
+  const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
   const [monday, setMonday] = useState('');
   const [tuesday, setTuesday] = useState('');
@@ -23,7 +24,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
   const handleRegister = (e) => {
     e.preventDefault();
     console.log('Registering Trainer with:', { firstName, lastName, username, password, email, phoneNumber, 
-        mainActivity, gender, price, monday, tuesday, wednesday ,thursday, friday, saturday, sunday});
+        mainActivity, gender, location, price, monday, tuesday, wednesday ,thursday, friday, saturday, sunday});
   };
 
   return (
@@ -113,7 +114,19 @@ const SignUpComponent2 = ({ switchToLogin }) => {
                         <option value="other">Other</option>
                         </select>
                     </div>
+
+                    <div className="input-group">
+                        <label htmlFor="location">Location:</label>
+                        <input
+                        type="location"
+                        id="location"
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        required
+                        />
+                    </div>
                 </div>
+                
             <div className='inputs2'>
                 <div className="input-group">
                     <label htmlFor="price">Price:</label>

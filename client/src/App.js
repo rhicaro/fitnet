@@ -11,7 +11,7 @@ import Home from './pages/Home.js';
 import AccountScreen from './pages/AccountScreen.js';
 import Calendar from './pages/Calendar.js';
 import Message from './pages/Message.js';
-import Preferences from './pages/Preference.js';
+// import Preferences from './pages/Preference.js';
 import About from './pages/About.js';
 import Settings from './pages/Settings.js';
 import Login from './pages/Login.js';

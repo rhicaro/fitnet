@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link, link } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/SignUpComponent.css';
-
-//This is the sign up component that is shown on the register page
 
 const SignUpComponent = ({ switchToLogin }) => {
   const [firstName, setFirstName] = useState('');
@@ -13,12 +12,48 @@ const SignUpComponent = ({ switchToLogin }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [mainActivity, setMainActivity] = useState('');
   const [gender, setGender] = useState('');
+  const [location, setLocation] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleRegister = (e) => {
+  const generateUserId = () => {
+    return Math.floor(100000 + Math.random() * 900000);
+  };
+
+  const handleRegister = async (e) => {
     e.preventDefault();
-    // Add your registration logic here
-    console.log('Registering with:', { firstName, lastName, username, password, email, phoneNumber });
-    // You would typically send a request to your server for registration
+    const userData = {
+      user_id: generateUserId(),
+      first_name: firstName,
+      last_name: lastName,
+      user_username: username,
+      user_password: password,
+      user_email: email,
+      user_phone: phoneNumber,
+      user_activity: mainActivity,
+      user_sex: gender,
+      user_location: location,
+      user_status: "Client",
+      user_price: 0,
+      user_bio: "None",
+      monday: "None",
+      tuesday: "None",
+      wednesday: "None",
+      thursday: "None",
+      friday: "None",
+      saturday: "None",
+      sunday: "None"
+    };
+
+    try {
+      const response = await axios.post('http://localhost:5001/api/register', userData); // Updated endpoint to match server route
+
+      // Handle successful registration
+      console.log('Registration successful');
+      // You can add further actions here, like redirecting the user to another page
+    } catch (error) {
+      console.error('Error registering user:', error);
+      setErrorMessage('Error registering user. Please try again.');
+    }
   };
 
   return (
@@ -104,6 +139,16 @@ const SignUpComponent = ({ switchToLogin }) => {
               <option value="female">Female</option>
               <option value="other">Other</option>
             </select>
+          </div>
+          <div className="input-group">
+            <label htmlFor="location">Location:</label>
+            <input
+              type="location"
+              id="location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              required
+            />
           </div>
         </div>
 

@@ -19,13 +19,6 @@ function Settings() {
 
             <div className='main'>
                 <p>Work in Progress</p>
-                {/* Need to include is selected */}
-                <UserList />
-                {/* <HomeFeed 
-                    accounts={accounts}
-                    selectedAccount={selectedAccount} 
-                    setSelectedAccount={setSelectedAccount}
-                /> */}
             </div>
         </div>
 

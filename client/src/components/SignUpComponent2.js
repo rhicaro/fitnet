@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/SignUpComponent2.css';
 
 const SignUpComponent2 = ({ switchToLogin }) => {
@@ -13,19 +14,52 @@ const SignUpComponent2 = ({ switchToLogin }) => {
   const [gender, setGender] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
-  const [monday, setMonday] = useState('');
-  const [tuesday, setTuesday] = useState('');
-  const [wednesday, setWednesday] = useState('');
-  const [thursday, setThursday] = useState('');
-  const [friday, setFriday] = useState('');
-  const [saturday, setSaturday] = useState('');
-  const [sunday, setSunday] = useState('');
+  const [mondayTime, setMonday] = useState('');
+  const [tuesdayTime, setTuesday] = useState('');
+  const [wednesdayTime, setWednesday] = useState('');
+  const [thursdayTime, setThursday] = useState('');
+  const [fridayTime, setFriday] = useState('');
+  const [saturdayTime, setSaturday] = useState('');
+  const [sundayTime, setSunday] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    console.log('Registering Trainer with:', { firstName, lastName, username, password, email, phoneNumber, 
-        mainActivity, gender, location, price, monday, tuesday, wednesday ,thursday, friday, saturday, sunday});
-  };
+    const generateUserId = () => {
+        return Math.floor(100000 + Math.random() * 900000);
+    };
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        const userData = {
+            user_id: generateUserId(),
+            first_name: firstName,
+            last_name: lastName,
+            user_username: username,
+            user_password: password,
+            user_email: email,
+            user_phone: phoneNumber,
+            user_activity: mainActivity,
+            user_sex: gender,
+            user_location: location,
+            user_status: "Trainer",
+            user_price: price,
+            user_bio: "None",
+            monday: mondayTime,
+            tuesday: tuesdayTime,
+            wednesday: wednesdayTime,
+            thursday: thursdayTime,
+            friday: fridayTime,
+            saturday: saturdayTime,
+            sunday: sundayTime
+        };
+    try {
+        const response = await axios.post('http://localhost:5001/api/userdemographics/register', userData);
+        console.log('Registration successful');
+        console.log(response);
+        } catch (error) {
+        console.error('Error registering user:', error);
+        setErrorMessage('Error registering user. Please try again.');
+        }
+    };
 
   return (
     <div className="register-container">
@@ -143,7 +177,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
                     <input
                     type="text"
                     id="monday"
-                    value={monday}
+                    value={mondayTime}
                     onChange={(e) => setMonday(e.target.value)}
                     placeholder="HH:MM - HH:MM AM/PM"
                     required
@@ -154,7 +188,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
                     <input
                     type="text"
                     id="tuesday"
-                    value={tuesday}
+                    value={tuesdayTime}
                     onChange={(e) => setTuesday(e.target.value)}
                     placeholder="HH:MM - HH:MM AM/PM"
                     required
@@ -165,7 +199,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
                     <input
                     type="text"
                     id="wednesday"
-                    value={wednesday}
+                    value={wednesdayTime}
                     onChange={(e) => setWednesday(e.target.value)}
                     placeholder="HH:MM - HH:MM AM/PM"
                     required
@@ -176,7 +210,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
                     <input
                     type="text"
                     id="thursday"
-                    value={thursday}
+                    value={thursdayTime}
                     onChange={(e) => setThursday(e.target.value)}
                     placeholder="HH:MM - HH:MM AM/PM"
                     required
@@ -187,7 +221,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
                     <input
                     type="text"
                     id="friday"
-                    value={friday}
+                    value={fridayTime}
                     onChange={(e) => setFriday(e.target.value)}
                     placeholder="HH:MM - HH:MM AM/PM"
                     required
@@ -198,7 +232,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
                     <input
                     type="text"
                     id="saturday"
-                    value={saturday}
+                    value={saturdayTime}
                     onChange={(e) => setSaturday(e.target.value)}
                     placeholder="HH:MM - HH:MM AM/PM"
                     required
@@ -209,7 +243,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
                     <input
                     type="text"
                     id="sunday"
-                    value={sunday}
+                    value={sundayTime}
                     onChange={(e) => setSunday(e.target.value)}
                     placeholder="HH:MM - HH:MM AM/PM"
                     required

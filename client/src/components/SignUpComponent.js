@@ -44,12 +44,13 @@ const SignUpComponent = ({ switchToLogin }) => {
       sunday: "None"
     };
 
-    try {
-      const response = await axios.post('http://localhost:5001/api/register', userData); // Updated endpoint to match server route
+    console.log(userData);
 
-      // Handle successful registration
+    try {
+      const response = await axios.post('http://localhost:5001/api/userdemographics/register', userData); // Updated endpoint to match server route
+
       console.log('Registration successful');
-      // You can add further actions here, like redirecting the user to another page
+      console.log(response);
     } catch (error) {
       console.error('Error registering user:', error);
       setErrorMessage('Error registering user. Please try again.');

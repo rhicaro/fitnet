@@ -20,6 +20,44 @@ const SignUpComponent = ({ switchToLogin }) => {
     return Math.floor(100000 + Math.random() * 900000);
   };
 
+  const handleFirstNameChange = (e) => {
+    const value = e.target.value;
+    if (/^[A-Za-z]+$/.test(value) || value === '') {
+      setFirstName(value);
+    }
+  };
+
+  const handleLastNameChange = (e) => {
+    const value = e.target.value;
+    if (/^[A-Za-z]+$/.test(value) || value === '') {
+      setLastName(value);
+    }
+  };
+
+  const handlePhoneNumberChange = (e) => {
+    const value = e.target.value;
+    // Validate phone number: only allow numeric characters and restrict length to 10 digits
+    if (/^\d{0,10}$/.test(value) || value === '') {
+      setPhoneNumber(value);
+    }
+  };
+
+  const handleMainActivityChange = (e) => {
+    const value = e.target.value;
+    // Validate phone number: only allow numeric characters and restrict length to 10 digits
+    if (/^[A-Za-z]+$/.test(value) || value === '') {
+      setMainActivity(value);
+    }
+  };
+
+  const handleLocationChange = (e) => {
+    const value = e.target.value;
+    // Validate phone number: only allow numeric characters and restrict length to 10 digits
+    if (/^[A-Za-z, ]+$/.test(value) || value === '') {
+      setLocation(value);
+    }
+  };
+
   const handleRegister = async (e) => {
     e.preventDefault();
     const userData = {
@@ -68,13 +106,13 @@ const SignUpComponent = ({ switchToLogin }) => {
       <h2>Client Sign Up</h2>
       <form onSubmit={handleRegister}>
         <div className='inputs'>
-          <div className="input-group">
+        <div className="input-group">
             <label htmlFor="firstName">First Name:</label>
             <input
               type="text"
               id="firstName"
               value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              onChange={handleFirstNameChange}
               required
             />
           </div>
@@ -84,7 +122,7 @@ const SignUpComponent = ({ switchToLogin }) => {
               type="text"
               id="lastName"
               value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              onChange={handleLastNameChange}
               required
             />
           </div>
@@ -115,6 +153,7 @@ const SignUpComponent = ({ switchToLogin }) => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder='example@gmail.com'
               required
             />
           </div>
@@ -124,7 +163,7 @@ const SignUpComponent = ({ switchToLogin }) => {
               type="tel"
               id="phoneNumber"
               value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              onChange={handlePhoneNumberChange}
               required
             />
           </div>
@@ -134,7 +173,8 @@ const SignUpComponent = ({ switchToLogin }) => {
               type="activity"
               id="mainActivity"
               value={mainActivity}
-              onChange={(e) => setMainActivity(e.target.value)}
+              onChange={handleMainActivityChange}
+              placeholder="Basketball"
               required
             />
           </div>
@@ -153,7 +193,8 @@ const SignUpComponent = ({ switchToLogin }) => {
               type="location"
               id="location"
               value={location}
-              onChange={(e) => setLocation(e.target.value)}
+              onChange={handleLocationChange}
+              placeholder="City, State"
               required
             />
           </div>

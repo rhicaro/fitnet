@@ -14,7 +14,6 @@ const SignUpComponent = ({ switchToLogin }) => {
   const [gender, setGender] = useState('');
   const [location, setLocation] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const history = useHistory(); // Initialize useHistory hook
 
   const generateUserId = () => {
     return Math.floor(100000 + Math.random() * 900000);

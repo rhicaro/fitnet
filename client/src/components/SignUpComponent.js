@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // Updated import
 import axios from 'axios';
 import '../styles/SignUpComponent.css';
 
@@ -14,6 +14,7 @@ const SignUpComponent = ({ switchToLogin }) => {
   const [gender, setGender] = useState('');
   const [location, setLocation] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const history = useHistory(); // Initialize useHistory hook
 
   const generateUserId = () => {
     return Math.floor(100000 + Math.random() * 900000);
@@ -48,7 +49,6 @@ const SignUpComponent = ({ switchToLogin }) => {
 
     try {
       const response = await axios.post('http://localhost:5001/api/userdemographics/register', userData); // Updated endpoint to match server route
-
       console.log('Registration successful');
       console.log(response);
     } catch (error) {

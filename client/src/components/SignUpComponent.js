@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Updated import
+import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/SignUpComponent.css';
 
@@ -14,6 +14,7 @@ const SignUpComponent = ({ switchToLogin }) => {
   const [gender, setGender] = useState('');
   const [location, setLocation] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const generateUserId = () => {
     return Math.floor(100000 + Math.random() * 900000);
@@ -47,14 +48,20 @@ const SignUpComponent = ({ switchToLogin }) => {
     console.log(userData);
 
     try {
-      const response = await axios.post('http://localhost:5001/api/userdemographics/register', userData); // Updated endpoint to match server route
+      const response = await axios.post('http://localhost:5001/api/userdemographics/register', userData);
       console.log('Registration successful');
       console.log(response);
+      setRegistrationSuccess(true);
+
     } catch (error) {
       console.error('Error registering user:', error);
       setErrorMessage('Error registering user. Please try again.');
     }
   };
+
+  if (registrationSuccess) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="register-container">

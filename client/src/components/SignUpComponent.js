@@ -36,7 +36,6 @@ const SignUpComponent = ({ switchToLogin }) => {
 
   const handlePhoneNumberChange = (e) => {
     const value = e.target.value;
-    // Validate phone number: only allow numeric characters and restrict length to 10 digits
     if (/^\d{0,10}$/.test(value) || value === '') {
       setPhoneNumber(value);
     }
@@ -44,7 +43,6 @@ const SignUpComponent = ({ switchToLogin }) => {
 
   const handleMainActivityChange = (e) => {
     const value = e.target.value;
-    // Validate phone number: only allow numeric characters and restrict length to 10 digits
     if (/^[A-Za-z]+$/.test(value) || value === '') {
       setMainActivity(value);
     }
@@ -52,7 +50,6 @@ const SignUpComponent = ({ switchToLogin }) => {
 
   const handleLocationChange = (e) => {
     const value = e.target.value;
-    // Validate phone number: only allow numeric characters and restrict length to 10 digits
     if (/^[A-Za-z, ]+$/.test(value) || value === '') {
       setLocation(value);
     }

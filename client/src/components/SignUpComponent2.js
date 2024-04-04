@@ -259,6 +259,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
                         id="mainActivity"
                         value={mainActivity}
                         onChange={handleMainActivityChange}
+                        placeholder='Basketball'
                         required
                         />
                     </div>
@@ -280,6 +281,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
                         id="location"
                         value={location}
                         onChange={handleLocationChange}
+                        placeholder='Boston, MA'
                         required
                         />
                     </div>
@@ -296,19 +298,6 @@ const SignUpComponent2 = ({ switchToLogin }) => {
                         required
                         />
                     </div>
-
-                        {/* <div className="input-group">
-                            <label htmlFor="monday">Monday:</label>
-                            <input
-                            type="text"
-                            id="monday"
-                            value={mondayTime}
-                            onChange={handleMondayChange}
-                            placeholder="HH:MM - HH:MM AM/PM"
-                            required
-                            />
-                        </div> */}
-
 
                     <div className="input-group">
                         <label htmlFor="monday">Monday:</label>

@@ -45,6 +45,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
 
   const [errorMessage, setErrorMessage] = useState('');
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [userExists, setUserExists] = useState(false);
 
     const generateUserId = () => {
         return Math.floor(100000 + Math.random() * 900000);
@@ -92,38 +93,87 @@ const SignUpComponent2 = ({ switchToLogin }) => {
         }
     };
 
-    const handleRegister = async (e) => {
-        e.preventDefault();
-        const userData = {
-            user_id: generateUserId(),
-            first_name: firstName,
-            last_name: lastName,
-            user_username: username,
-            user_password: password,
-            user_email: email,
-            user_phone: phoneNumber,
-            user_activity: mainActivity,
-            user_sex: gender,
-            user_location: location,
-            user_status: "Trainer",
-            user_price: price,
-            user_bio: "None",
-            monday: `${mondayHour}:00 - ${mondayHour2}:00 ${mondayPeriod}`,
-            tuesday: `${tuesdayHour}:00 - ${tuesdayHour2}:00 ${tuesdayPeriod}`,
-            wednesday: `${wednesdayHour}:00 - ${wednesdayHour2}:00 ${wednesdayPeriod}`,
-            thursday: `${thursdayHour}:00 - ${thursdayHour2}:00 ${thursdayPeriod}`,
-            friday: `${fridayHour}:00 - ${fridayHour2}:00 ${fridayPeriod}`,
-            saturday: `${saturdayHour}:00 - ${saturdayHour2}:00 ${saturdayPeriod}`,
-            sunday: `${sundayHour}:00 - ${sundayHour2}:00 ${sundayPeriod}`,
-        };
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
 
+    // const handleRegister = async (e) => {
+    //     e.preventDefault();
+    //     const userData = {
+    //         user_id: generateUserId(),
+    //         first_name: firstName,
+    //         last_name: lastName,
+    //         user_username: username,
+    //         user_password: password,
+    //         user_email: email,
+    //         user_phone: phoneNumber,
+    //         user_activity: mainActivity,
+    //         user_sex: gender,
+    //         user_location: location,
+    //         user_status: "Trainer",
+    //         user_price: price,
+    //         user_bio: "None",
+    //         monday: `${mondayHour}:00 - ${mondayHour2}:00 ${mondayPeriod}`,
+    //         tuesday: `${tuesdayHour}:00 - ${tuesdayHour2}:00 ${tuesdayPeriod}`,
+    //         wednesday: `${wednesdayHour}:00 - ${wednesdayHour2}:00 ${wednesdayPeriod}`,
+    //         thursday: `${thursdayHour}:00 - ${thursdayHour2}:00 ${thursdayPeriod}`,
+    //         friday: `${fridayHour}:00 - ${fridayHour2}:00 ${fridayPeriod}`,
+    //         saturday: `${saturdayHour}:00 - ${saturdayHour2}:00 ${saturdayPeriod}`,
+    //         sunday: `${sundayHour}:00 - ${sundayHour2}:00 ${sundayPeriod}`,
+    //     };
+
+    // try {
+    //     const response = await axios.post('http://localhost:5001/api/userdemographics/register', userData);
+    //     console.log('Registration successful');
+    //     console.log(response);
+    //     setRegistrationSuccess(true);
+
+    //     } catch (error) {
+    //         console.error('Error registering user:', error);
+    //         setErrorMessage('Error registering user. Please try again.');
+    //     }
+    // };
+
+    // if (registrationSuccess) {
+    //     return <Navigate to="/" />;
+    //   }
+
+    const handleRegister = async (e) => {
+    e.preventDefault();
     try {
+        const response = await axios.get(`http://localhost:5001/api/userdemographics/${firstName}/${lastName}`);
+        if (response.data.length > 0) {
+        alert('An account with the same first name and last name already exists.');
+        setUserExists(true);
+        } else {
+            const userData = {
+                user_id: generateUserId(),
+                first_name: firstName,
+                last_name: lastName,
+                user_username: username,
+                user_password: password,
+                user_email: email,
+                user_phone: phoneNumber,
+                user_activity: mainActivity,
+                user_sex: gender,
+                user_location: location,
+                user_status: "Trainer",
+                user_price: price,
+                user_bio: "None",
+                monday: `${mondayHour}:00 - ${mondayHour2}:00 ${mondayPeriod}`,
+                tuesday: `${tuesdayHour}:00 - ${tuesdayHour2}:00 ${tuesdayPeriod}`,
+                wednesday: `${wednesdayHour}:00 - ${wednesdayHour2}:00 ${wednesdayPeriod}`,
+                thursday: `${thursdayHour}:00 - ${thursdayHour2}:00 ${thursdayPeriod}`,
+                friday: `${fridayHour}:00 - ${fridayHour2}:00 ${fridayPeriod}`,
+                saturday: `${saturdayHour}:00 - ${saturdayHour2}:00 ${saturdayPeriod}`,
+                sunday: `${sundayHour}:00 - ${sundayHour2}:00 ${sundayPeriod}`,
+            };
         const response = await axios.post('http://localhost:5001/api/userdemographics/register', userData);
         console.log('Registration successful');
         console.log(response);
         setRegistrationSuccess(true);
-
-        } catch (error) {
+        }
+    } catch (error) {
             console.error('Error registering user:', error);
             setErrorMessage('Error registering user. Please try again.');
         }
@@ -131,7 +181,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
 
     if (registrationSuccess) {
         return <Navigate to="/" />;
-      }
+    }
 
     return (
         <div className="register-container">
@@ -186,7 +236,9 @@ const SignUpComponent2 = ({ switchToLogin }) => {
                         type="email"
                         id="email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={handleEmailChange}
+                        placeholder='example@gmail.com'
+                        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                         required
                         />
                     </div>

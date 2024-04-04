@@ -15,6 +15,7 @@ const SignUpComponent = ({ switchToLogin }) => {
   const [location, setLocation] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [userExists, setUserExists] = useState(false);
 
   const generateUserId = () => {
     return Math.floor(100000 + Math.random() * 900000);
@@ -55,39 +56,45 @@ const SignUpComponent = ({ switchToLogin }) => {
     }
   };
 
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
   const handleRegister = async (e) => {
     e.preventDefault();
-    const userData = {
-      user_id: generateUserId(),
-      first_name: firstName,
-      last_name: lastName,
-      user_username: username,
-      user_password: password,
-      user_email: email,
-      user_phone: phoneNumber,
-      user_activity: mainActivity,
-      user_sex: gender,
-      user_location: location,
-      user_status: "Client",
-      user_price: 0,
-      user_bio: "None",
-      monday: "None",
-      tuesday: "None",
-      wednesday: "None",
-      thursday: "None",
-      friday: "None",
-      saturday: "None",
-      sunday: "None"
-    };
-
-    console.log(userData);
-
     try {
-      const response = await axios.post('http://localhost:5001/api/userdemographics/register', userData);
-      console.log('Registration successful');
-      console.log(response);
-      setRegistrationSuccess(true);
-
+      const response = await axios.get(`http://localhost:5001/api/userdemographics/${firstName}/${lastName}`);
+      if (response.data.length > 0) {
+        alert('An account with the same first name and last name already exists.');
+        setUserExists(true);
+      } else {
+        const userData = {
+          user_id: generateUserId(),
+          first_name: firstName,
+          last_name: lastName,
+          user_username: username,
+          user_password: password,
+          user_email: email,
+          user_phone: phoneNumber,
+          user_activity: mainActivity,
+          user_sex: gender,
+          user_location: location,
+          user_status: "Client",
+          user_price: 0,
+          user_bio: "None",
+          monday: "None",
+          tuesday: "None",
+          wednesday: "None",
+          thursday: "None",
+          friday: "None",
+          saturday: "None",
+          sunday: "None"
+        };
+        const response = await axios.post('http://localhost:5001/api/userdemographics/register', userData);
+        console.log('Registration successful');
+        console.log(response);
+        setRegistrationSuccess(true);
+      }
     } catch (error) {
       console.error('Error registering user:', error);
       setErrorMessage('Error registering user. Please try again.');
@@ -143,17 +150,20 @@ const SignUpComponent = ({ switchToLogin }) => {
               required
             />
           </div>
+
           <div className="input-group">
             <label htmlFor="email">Email:</label>
             <input
               type="email"
               id="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmailChange}
               placeholder='example@gmail.com'
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
               required
             />
           </div>
+
           <div className="input-group">
             <label htmlFor="phoneNumber">Phone Number:</label>
             <input

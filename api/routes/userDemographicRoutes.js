@@ -68,4 +68,32 @@ router.post('/api/userdemographics/register', (req, res) => {
   });
 });
 
+// router.get('/api/userdemographics/checkUsername/:username', (req, res) => {
+//   const { username } = req.params;
+//   const query = 'SELECT COUNT(*) AS count FROM user_demographics WHERE user_username = ?';
+//   db.query(query, [username], (err, results) => {
+//     if (err) {
+//       console.error('Error querying MySQL:', err);
+//       res.status(500).send('Internal Server Error');
+//     } else {
+//       const count = results[0].count;
+//       const exists = count > 0;
+//       res.json({ exists });
+//     }
+//   });
+// });
+
+router.get('/api/userdemographics/:username', (req, res) => {
+  const { username } = req.params;
+  const query = 'SELECT * FROM user_demographics WHERE user_username = ?';
+  db.query(query, [username], (err, results) => {
+    if (err) {
+      console.error('Error querying MySQL:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.json(results);
+    }
+  });
+});
+
 module.exports = router;

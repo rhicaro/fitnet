@@ -64,7 +64,8 @@ const SignUpComponent = ({ switchToLogin }) => {
     e.preventDefault();
     try {
       const response = await axios.get(`http://localhost:5001/api/userdemographics/${firstName}/${lastName}`);
-      if (response.data.length > 0) {
+      const response2 = await axios.get(`http://localhost:5001/api/userdemographics/${username}`);
+      if (response.data.length > 0 || response2.data.length > 0) {
         alert('An account with the same first name and last name already exists.');
         setUserExists(true);
       } else {

@@ -9,9 +9,7 @@ const LoginScreen = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Add your authentication logic here
     console.log('Logging in with:', { username, password });
-    // You would typically send a request to your server for authentication
   };
 
   return (

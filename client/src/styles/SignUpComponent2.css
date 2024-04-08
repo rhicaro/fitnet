@@ -1,3 +1,8 @@
+.time-select {
+    display: inline-flex;
+    align-items: center;
+}
+
 .register-container {
     text-align: center;
     margin-top: 2.5%;

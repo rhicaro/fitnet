@@ -3,6 +3,7 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const router = express.Router();
 
+
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -68,21 +69,6 @@ router.post('/api/userdemographics/register', (req, res) => {
   });
 });
 
-// router.get('/api/userdemographics/checkUsername/:username', (req, res) => {
-//   const { username } = req.params;
-//   const query = 'SELECT COUNT(*) AS count FROM user_demographics WHERE user_username = ?';
-//   db.query(query, [username], (err, results) => {
-//     if (err) {
-//       console.error('Error querying MySQL:', err);
-//       res.status(500).send('Internal Server Error');
-//     } else {
-//       const count = results[0].count;
-//       const exists = count > 0;
-//       res.json({ exists });
-//     }
-//   });
-// });
-
 router.get('/api/userdemographics/:username', (req, res) => {
   const { username } = req.params;
   const query = 'SELECT * FROM user_demographics WHERE user_username = ?';
@@ -95,5 +81,33 @@ router.get('/api/userdemographics/:username', (req, res) => {
     }
   });
 });
+
+router.post('/api/userdemographics/login/:username', (req, res) => {
+  const { username } = req.params;
+  const { user_password } = req.body;
+  const query = 'SELECT * FROM user_demographics WHERE user_username = ?';
+  
+  db.query(query, [username], (err, results) => {
+    if (err) {
+      console.error('Error querying MySQL:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      if (results.length === 0) {
+        res.status(404).send('User not found');
+      } else {
+        const user = results[0];
+        if (user.user_password === user_password) {
+          // Passwords match, login successful
+          res.status(200).json({ message: 'Login successful', user });
+        } else {
+          // Passwords don't match
+          res.status(401).send('Incorrect password');
+        }
+      }
+    }
+  });
+});
+
+
 
 module.exports = router;

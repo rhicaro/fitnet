@@ -1,22 +1,36 @@
 import React, { useState } from 'react';
-import { Link, link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import axios from 'axios'; // corrected import statement
 import '../styles/LoginComponent.css';
-//This is the login component of the login page
 
 const LoginScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loginSuccess, setLoginSucces] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Logging in with:', { username, password });
+    try {
+      const response = await axios.post('http://localhost:5001/api/userdemographics/login/' + username, {
+        user_password: password
+      });
+      console.log('Logged in successfully:', response.data);
+      setLoginSucces(true);
+  
+    } catch (error) {
+      console.error('Login failed:', error.response ? error.response.data : error.message);
+      alert('Username or password is incorrect. Please try again.');
+    }
   };
+
+  if (loginSuccess) {
+    return <Navigate to='/' />
+  }
 
   return (
     <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
-
         <div className="username_input">
           <label htmlFor="username">Username:</label>
           <input
@@ -45,12 +59,11 @@ const LoginScreen = () => {
           </button>
 
           <Link to="/SignUp">
-            <button type="submit" className='signup_btn'>
+            <button type="button" className='signup_btn'>
                 Sign Up
             </button>
           </Link>
         </div>
-
       </form>
     </div>
   );

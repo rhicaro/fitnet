@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LinkColumn from '../template/LinkColumn';
 import { Link, link } from 'react-router-dom';
 import '../styles/Login.css';
 import LoginComponent from '../components/LoginComponent';
 
-//This is the login page
-
-function Login() {
+function Login({updateAccountInfo}) {
     return (
         <div className='fitnet'>
         <div className='header'>
@@ -18,7 +16,7 @@ function Login() {
 
             <div className='main'>
                 <div className='login-main'>
-                    <LoginComponent />
+                    <LoginComponent updateAccountInfo = {updateAccountInfo} />
                 </div>
             </div>
         </div>

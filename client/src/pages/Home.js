@@ -6,7 +6,7 @@ import axios from 'axios';
 import HomeFeed2 from '../components/HomeFeed2';
 import userpfp from '../assets/unknown.png'
 
-function Home() {
+function Home({accountPresent, currentAccount, accountFirstName, accountLastName, accountType }) {
     const [selectedAccount, setSelectedAccount] = useState(null);
     const [userDemographics, setUserDemographics] = useState([]);
 
@@ -22,12 +22,11 @@ function Home() {
         });
         }, []);
 
-        console.log("The user demographics from the DB", userDemographics);
-
     return (
         <div className='fitnet'>
             <div className='header'>
                 <Link to="/" className='header_title'>FitNet</Link>
+                
                 <Link to="/Login" className='header_login'>Login / Register</Link>
             </div>
 
@@ -41,7 +40,6 @@ function Home() {
                     </div>
                     
                     <div className='main_feed'>
-                        {/* This is where the trainer feed will live */}
                         <HomeFeed2 
                             accounts={userDemographics}
                             selectedAccount={selectedAccount} 
@@ -62,7 +60,6 @@ function Home() {
                         )}
                     </div>
 
-                        {/* <Link to="/AccountScreen"><div className='main_feed_btn'>Visit Account</div></Link> */}
                         {selectedAccount && (
                         <Link to={`/AccountScreen/${selectedAccount.first_name}/${selectedAccount.last_name}`} className='main_feed_btn'>
                             Visit Account

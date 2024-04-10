@@ -3,7 +3,7 @@ import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios'; // corrected import statement
 import '../styles/LoginComponent.css';
 
-const LoginScreen = () => {
+const LoginComponent = ({ updateAccountInfo }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginSuccess, setLoginSucces] = useState(false);
@@ -15,7 +15,9 @@ const LoginScreen = () => {
         user_password: password
       });
       console.log('Logged in successfully:', response.data);
+      console.log('First name: ', response.data.user.first_name);
       setLoginSucces(true);
+      updateAccountInfo(username, true, response.data.user.first_name, response.data.user.last_name, response.data.user.user_status);
   
     } catch (error) {
       console.error('Login failed:', error.response ? error.response.data : error.message);
@@ -69,4 +71,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default LoginComponent;

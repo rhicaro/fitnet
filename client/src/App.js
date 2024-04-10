@@ -18,12 +18,21 @@ import Login from './pages/Login.js';
 import SignUp from './pages/SignUp.js';
 import SignUp2 from './pages/SignUp2.js';
 
-// import accounts from './components/Data';
-
-
 function App(){
-
+    const [currentAccount, setCurrentAccount] = useState('');
+    const [accountFirstName, setAccountFirstName] = useState('');
+    const [accountLastName, setAccountLastName] = useState('');
+    const [accountType, setAccountType] = useState('');
+    const [accountPresent, setAccountPresent] = useState(false);
     const userDemographics = [];
+
+    const updateAccountInfo = (account, present, first, last, type) => {
+        setCurrentAccount(account);
+        setAccountPresent(present);
+        setAccountFirstName(first);
+        setAccountLastName(last);
+        setAccountType(type);
+    };
 
     return (
         <div className="fitnet">
@@ -32,7 +41,8 @@ function App(){
                     <Route
                         exact
                         path="/"
-                        element={<Home/>}
+                        element={<Home currentAccount={currentAccount} accountPresent={accountPresent} 
+                        accountFirstName={accountFirstName} accountLastName={accountLastName} accountType={accountType}/>}
                     />
 
                     <Route 
@@ -44,9 +54,9 @@ function App(){
                     <Route 
                         exact
                         path="/Calendar"
-                        element={<Calendar />}
+                        element={<Calendar accountPresent={accountPresent} currentAccount={currentAccount} />}
                     />
-
+                    {/* idk if I will keep might be too much */}
                     <Route 
                         exact
                         path="/Messages"
@@ -68,7 +78,8 @@ function App(){
                     <Route 
                         exact
                         path="/Login"
-                        element={<Login />}
+                        // element={<Login accountPresent={accountPresent} currentAccount={currentAccount} />}
+                        element = {<Login updateAccountInfo={updateAccountInfo} />}
                     />
 
                     <Route

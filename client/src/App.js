@@ -41,21 +41,34 @@ function App(){
                     <Route
                         exact
                         path="/"
-                        element={<Home updateAccountInfo={updateAccountInfo} currentAccount={currentAccount} accountPresent={accountPresent} 
-                        accountFirstName={accountFirstName} accountLastName={accountLastName} accountType={accountType}/>}
+                        element={<Home 
+                        updateAccountInfo={updateAccountInfo} 
+                        accountPresent={accountPresent} 
+                        accountFirstName={accountFirstName} 
+                        accountLastName={accountLastName} 
+                        accountType={accountType}/>}
                     />
 
                     <Route 
                         path="/AccountScreen/:first_name/:last_name" 
-                        element={<AccountScreen accountPresent={accountPresent} accountFirstName={accountFirstName} 
-                        accountLastName={accountLastName} accountType={accountType}/>} 
-                        accounts={userDemographics}
+                        element={<AccountScreen 
+                            updateAccountInfo={updateAccountInfo} 
+                            accountPresent={accountPresent} 
+                            accountFirstName={accountFirstName} 
+                            accountLastName={accountLastName} 
+                            accountType={accountType}/>} 
+                            accounts={userDemographics}
                     />
 
                     <Route 
                         exact
                         path="/Calendar"
-                        element={<Calendar accountPresent={accountPresent} currentAccount={currentAccount} />}
+                        element={<Calendar 
+                            updateAccountInfo={updateAccountInfo} 
+                            accountPresent={accountPresent} 
+                            accountFirstName={accountFirstName} 
+                            accountLastName={accountLastName} 
+                            accountType={accountType}/>}
                     />
                     {/* idk if I will keep might be too much */}
                     <Route 
@@ -67,7 +80,13 @@ function App(){
                     <Route 
                         exact
                         path="/About"
-                        element={<About />}
+                        element={<About 
+                            updateAccountInfo={updateAccountInfo} 
+                            accountPresent={accountPresent} 
+                            accountFirstName={accountFirstName} 
+                            accountLastName={accountLastName} 
+                            accountType={accountType}
+                        />}
                     />
 
                     <Route 

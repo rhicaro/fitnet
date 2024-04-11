@@ -9,7 +9,7 @@ import userpfp from '../assets/unknown.png'
 // import Modal from 'react-modal';
 import { Button } from 'react-bootstrap';
 
-function Home({updateAccountInfo , accountPresent, currentAccount, accountFirstName, accountLastName, accountType }) {
+function Home({updateAccountInfo, accountPresent, accountFirstName, accountLastName, accountType }) {
     const [selectedAccount, setSelectedAccount] = useState(null);
     const [userDemographics, setUserDemographics] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
@@ -28,7 +28,6 @@ function Home({updateAccountInfo , accountPresent, currentAccount, accountFirstN
 
         const handlePopupClick = () => {
             setShowPopup(prevState => !prevState);
-            console.log('Popup is being shown: ', showPopup);
         }
     
         const handleClosePopup = () => {
@@ -39,6 +38,11 @@ function Home({updateAccountInfo , accountPresent, currentAccount, accountFirstN
             setShowPopup(false);
             updateAccountInfo("", false, "", "", "")
         }
+
+        console.log(`Account present: ${accountPresent}
+        current First: ${accountFirstName}
+        current Last: ${accountLastName}
+        current Type: ${accountType}`);
 
     return (
         <div className='fitnet'>

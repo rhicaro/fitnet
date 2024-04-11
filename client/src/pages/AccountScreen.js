@@ -2,15 +2,17 @@ import React, { useEffect,useState } from 'react';
 import '../styles/AccountScreen.css';
 import LinkColumn from '../template/LinkColumn';
 import { Link, useParams } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import MediaFeed from '../components/MediaFeed';
 import userpfp from '../assets/unknown.png';
 import axios from 'axios';
 
 // Current account information is properly passed over to this page similar to the home page.
-function AccountScreen({accountPresent, accountFirstName, accountLastName, accountType}) {
+function AccountScreen({updateAccountInfo, accountPresent, accountFirstName, accountLastName, accountType}) {
     const [userAccountInfo, setUserAccountInfo] = useState([]);
     const [viewedFirst, setViewedFirst] = useState('');
     const [viewedLast, setViewedLast] = useState('');
+    const [showPopup, setShowPopup] = useState(false);
     const { first_name, last_name } = useParams();
 
     useEffect(() => {
@@ -26,6 +28,21 @@ function AccountScreen({accountPresent, accountFirstName, accountLastName, accou
         });
     }, [first_name, last_name]);
 
+    const handlePopupClick = () => {
+        setShowPopup(prevState => !prevState);
+        console.log('Popup is being shown: ', showPopup);
+    }
+
+    const handleClosePopup = () => {
+        setShowPopup(false);
+    }
+
+    const handleLogoutClick = () => {
+        setShowPopup(false);
+        updateAccountInfo("", false, "", "", "")
+    }
+
+    //Need this
     const handleEdit = () => {
 
     }
@@ -34,7 +51,30 @@ function AccountScreen({accountPresent, accountFirstName, accountLastName, accou
         <div className='fitnet'>
             <div className='header'>
                 <Link to="/" className='header_title'>FitNet</Link>
-                <Link to="/Login" className='header_login'>Login / Register</Link>
+                <div className="options-container" style={{ position: 'relative' }}>
+                    {accountPresent ? (
+                        <button className='options-btn' onClick={handlePopupClick}> More Options </button>
+                    ) : (
+                        <Link to="/Login" className='header_login'>Login / Register</Link>
+                    )}
+                    {showPopup && (
+                        <div className="popup">
+                            {accountType === 'Trainer' ? (
+                                <>
+                                    <Button className='logout-btn' onClick={handleLogoutClick}>Logout</Button>
+                                    <Link 
+                                        to={`/AccountScreen/${accountFirstName}/${accountLastName}`} 
+                                        className='account-btn'>
+                                        <Button className='account-btn' onClick={handleClosePopup}>My Account</Button>
+                                    </Link>
+                                
+                                </>
+                            ) : (
+                                <Button className='logout-btn' onClick={handleLogoutClick}>Logout</Button>
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
     
             <div className='content'>

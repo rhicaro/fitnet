@@ -1,17 +1,56 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { Button } from 'react-bootstrap';
 import LinkColumn from '../template/LinkColumn';
 import { Link, link } from 'react-router-dom';
 import '../styles/About.css';
 
 //This is the about page
 
-function about() {
+function About({updateAccountInfo, accountPresent, accountFirstName, accountLastName, accountType}) {
+    const [showPopup, setShowPopup] = useState(false);
+
+    const handlePopupClick = () => {
+        setShowPopup(prevState => !prevState);
+    }
+
+    const handleClosePopup = () => {
+        setShowPopup(false);
+    }
+
+    const handleLogoutClick = () => {
+        setShowPopup(false);
+        updateAccountInfo("", false, "", "", "")
+    }
+
     return (
         <div className='fitnet'>
         <div className='header'>
-            <Link to="/" className='header_title'>FitNet</Link>
-            <Link to="/Login" className='header_login'>Login / Register</Link>
-        </div>
+                <Link to="/" className='header_title'>FitNet</Link>
+                <div className="options-container" style={{ position: 'relative' }}>
+                    {accountPresent ? (
+                        <button className='options-btn' onClick={handlePopupClick}> More Options </button>
+                    ) : (
+                        <Link to="/Login" className='header_login'>Login / Register</Link>
+                    )}
+                    {showPopup && (
+                        <div className="popup">
+                            {accountType === 'Trainer' ? (
+                                <>
+                                    <Button className='logout-btn' onClick={handleLogoutClick}>Logout</Button>
+                                    <Link 
+                                        to={`/AccountScreen/${accountFirstName}/${accountLastName}`} 
+                                        className='account-btn'>
+                                        <Button className='account-btn' onClick={handleClosePopup}>My Account</Button>
+                                    </Link>
+                                
+                                </>
+                            ) : (
+                                <Button className='logout-btn' onClick={handleLogoutClick}>Logout</Button>
+                            )}
+                        </div>
+                    )}
+                </div>
+            </div>
 
         <div className='content'>
             <LinkColumn />
@@ -39,4 +78,4 @@ function about() {
     )
 }
 
-export default about;
+export default About;

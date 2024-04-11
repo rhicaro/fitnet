@@ -57,8 +57,6 @@ function MediaFeed({accountPresent, viewedAccountFirstName, viewedAccountLastNam
     current Last: ${accountLastName}
     current Type: ${accountType}`)
 
-    // const isSameAccount = viewedAccountFirstName === accountFirstName && viewedAccountLastName === accountLastName;
-
   return (
     <div className="media-feed">
       <div className="upload-section">

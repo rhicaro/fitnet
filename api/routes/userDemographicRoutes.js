@@ -108,6 +108,7 @@ router.post('/api/userdemographics/login/:username', (req, res) => {
   });
 });
 
+//Need this to update information and send back to the database
 router.put('/api/userdemographics/:first_name/:last_name', (req, res) => {
   const { first_name, last_name } = req.params;
   const updatedData = req.body;

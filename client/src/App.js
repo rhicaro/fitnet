@@ -41,7 +41,7 @@ function App(){
                     <Route
                         exact
                         path="/"
-                        element={<Home currentAccount={currentAccount} accountPresent={accountPresent} 
+                        element={<Home updateAccountInfo={updateAccountInfo} currentAccount={currentAccount} accountPresent={accountPresent} 
                         accountFirstName={accountFirstName} accountLastName={accountLastName} accountType={accountType}/>}
                     />
 

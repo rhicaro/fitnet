@@ -72,6 +72,7 @@ html {
 .popup .logout-btn, .account-btn {
     margin: 4px 0; /* Adjust spacing between buttons */
     width: 120px; /* Adjust button width */
+    height: 40px;
 }
 
 .popup .close-btn {

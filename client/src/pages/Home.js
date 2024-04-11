@@ -9,7 +9,7 @@ import userpfp from '../assets/unknown.png'
 // import Modal from 'react-modal';
 import { Button } from 'react-bootstrap';
 
-function Home({accountPresent, currentAccount, accountFirstName, accountLastName, accountType }) {
+function Home({updateAccountInfo ,accountPresent, currentAccount, accountFirstName, accountLastName, accountType }) {
     const [selectedAccount, setSelectedAccount] = useState(null);
     const [userDemographics, setUserDemographics] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
@@ -27,7 +27,7 @@ function Home({accountPresent, currentAccount, accountFirstName, accountLastName
         }, []);
 
         const handlePopupClick = () => {
-            setShowPopup(true);
+            setShowPopup(prevState => !prevState);
             console.log('Popup is being shown: ', showPopup);
         }
     
@@ -36,7 +36,8 @@ function Home({accountPresent, currentAccount, accountFirstName, accountLastName
         }
 
         const handleLogoutClick = () => {
-
+            setShowPopup(false);
+            updateAccountInfo("", false, "", "", "")
         }
 
         const handleGoToOwnAccountClick = () => {
@@ -63,7 +64,6 @@ function Home({accountPresent, currentAccount, accountFirstName, accountLastName
                             ) : (
                                 <Button className='logout-btn' onClick={handleLogoutClick}>Logout</Button>
                             )}
-                            <Button className='close-btn' onClick={handleClosePopup}>Close</Button>
                         </div>
                     )}
                 </div>

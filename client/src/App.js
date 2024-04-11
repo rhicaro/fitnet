@@ -98,20 +98,19 @@ function App(){
                     <Route 
                         exact
                         path="/Login"
-                        // element={<Login accountPresent={accountPresent} currentAccount={currentAccount} />}
-                        element = {<Login updateAccountInfo={updateAccountInfo} />}
+                        element = {<Login />}
                     />
 
                     <Route
                         exact
                         path="/SignUp"
-                        element={<SignUp />}
+                        element={<SignUp updateAccountInfo={updateAccountInfo}/>}
                     />
 
                     <Route 
                         exact
                         path="/SignUp2"
-                        element={<SignUp2 />}
+                        element={<SignUp2 updateAccountInfo={updateAccountInfo}/>}
                     />
 
                     <Route

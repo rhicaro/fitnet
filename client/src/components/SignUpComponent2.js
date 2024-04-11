@@ -3,7 +3,7 @@ import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/SignUpComponent2.css';
 
-const SignUpComponent2 = ({ switchToLogin }) => {
+const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
@@ -15,6 +15,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
 
+//   Need to fix the hours inputs, show up as nothing when clicking checkbox creating the alert
   const [mondayHour, setMondayHour] = useState('');
   const [mondayHour2, setMondayHour2] = useState('');
   const [mondayPeriod, setMondayPeriod] = useState('');
@@ -106,24 +107,17 @@ const SignUpComponent2 = ({ switchToLogin }) => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-        if ((!mondayNone && (!mondayHour || !mondayHour2 || !mondayPeriod)) ||
-        (!tuesdayNone && (!tuesdayHour || !tuesdayHour2 || !tuesdayPeriod)) ||
-        (!wednesdayNone && (!wednesdayHour || !wednesdayHour2 || !wednesdayPeriod)) ||
-        (!thursdayNone && (!thursdayHour || !thursdayHour2 || !thursdayPeriod)) ||
-        (!fridayNone && (!fridayHour || !fridayHour2 || !fridayPeriod)) ||
-        (!saturdayNone && (!saturdayHour || !saturdayHour2 || !saturdayPeriod)) ||
-        (!sundayNone && (!sundayHour || !sundayHour2 || !sundayPeriod))) {
-        alert('Please select all options for time or select "None" for each day.');
-        return;
-    }
 
         try {
             const response = await axios.get(`http://localhost:5001/api/userdemographics/${firstName}/${lastName}`);
             const response2 = await axios.get(`http://localhost:5001/api/userdemographics/${username}`);
-            if (response.data.length > 0 || response2.data.length > 0) {
-            alert('An account with the same first name and last name already exists.');
-            setUserExists(true);
-            } else {
+            if (response.data.length > 0) {
+                alert('An account with the same first name, last name already exists please enter a different one.');
+              } else if (response2.data.length > 0) {
+                alert('An account with the same username already exists please enter a different one');
+              } else if (response.data.length > 0 && response2.data.length > 0){
+                alert('An account with the same first name, last name, and user name already exists please enter a different one.');
+              } else {
                 const userData = {
                     user_id: generateUserId(),
                     first_name: firstName,
@@ -148,7 +142,7 @@ const SignUpComponent2 = ({ switchToLogin }) => {
                 };
             const response = await axios.post('http://localhost:5001/api/userdemographics/register', userData);
             console.log('Registration successful');
-            console.log(response);
+            updateAccountInfo(username, true, firstName, lastName, "Trainer");
             setRegistrationSuccess(true);
             }
         } catch (error) {

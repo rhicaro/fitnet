@@ -6,7 +6,7 @@ import SignUpComponent2 from '../components/SignUpComponent2';
 
 //This is the sign up page
 
-function SignUp2() {
+function SignUp2({updateAccountInfo}) {
     return (
         <div className='fitnet'>
         <div className='header'>
@@ -18,7 +18,7 @@ function SignUp2() {
 
             <div className='main'>
                 <div className='signup-main'>
-                    <SignUpComponent2 />
+                    <SignUpComponent2 updateAccountInfo={updateAccountInfo}/>
                 </div>
             </div>
         </div>

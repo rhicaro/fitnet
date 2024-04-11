@@ -3,7 +3,7 @@ import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/SignUpComponent.css';
 
-const SignUpComponent = ({ switchToLogin }) => {
+const SignUpComponent = ({ switchToLogin, updateAccountInfo }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
@@ -65,9 +65,12 @@ const SignUpComponent = ({ switchToLogin }) => {
     try {
       const response = await axios.get(`http://localhost:5001/api/userdemographics/${firstName}/${lastName}`);
       const response2 = await axios.get(`http://localhost:5001/api/userdemographics/${username}`);
-      if (response.data.length > 0 || response2.data.length > 0) {
-        alert('An account with the same first name and last name already exists.');
-        setUserExists(true);
+      if (response.data.length > 0) {
+        alert('An account with the same first name, last name already exists please enter a different one.');
+      } else if (response2.data.length > 0) {
+        alert('An account with the same username already exists please enter a different one');
+      } else if (response.data.length > 0 && response2.data.length > 0){
+        alert('An account with the same first name, last name, and user name already exists please enter a different one.');
       } else {
         const userData = {
           user_id: generateUserId(),
@@ -93,7 +96,7 @@ const SignUpComponent = ({ switchToLogin }) => {
         };
         const response = await axios.post('http://localhost:5001/api/userdemographics/register', userData);
         console.log('Registration successful');
-        console.log(response);
+        updateAccountInfo(username, true, firstName, lastName, "Client");
         setRegistrationSuccess(true);
       }
     } catch (error) {

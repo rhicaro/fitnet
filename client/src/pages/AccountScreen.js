@@ -6,8 +6,11 @@ import MediaFeed from '../components/MediaFeed';
 import userpfp from '../assets/unknown.png';
 import axios from 'axios';
 
-function AccountScreen() {
+// Current account information is properly passed over to this page similar to the home page.
+function AccountScreen({accountPresent, accountFirstName, accountLastName, accountType}) {
     const [userAccountInfo, setUserAccountInfo] = useState([]);
+    const [viewedFirst, setViewedFirst] = useState('');
+    const [viewedLast, setViewedLast] = useState('');
     const { first_name, last_name } = useParams();
 
     useEffect(() => {
@@ -15,13 +18,17 @@ function AccountScreen() {
         .then(response => {
             console.log("Response Data:", response.data);
             setUserAccountInfo(response.data[0]);
+            setViewedFirst(response.data[0].first_name);
+            setViewedLast(response.data[0].last_name);
         })
         .catch(error => {
             console.error('Error fetching user account:', error);
         });
     }, [first_name, last_name]);
 
-    console.log("User Account Info:", userAccountInfo);
+    const handleEdit = () => {
+
+    }
 
     return (
         <div className='fitnet'>
@@ -81,7 +88,9 @@ function AccountScreen() {
                                 </ul>
                             </div>
                             <div className='account_media_feed'>
-                                <MediaFeed />
+                                <MediaFeed accountPresent={accountPresent} viewedAccountFirstName={viewedFirst} 
+                                viewedAccountLastName={viewedLast} accountType={accountType} 
+                                accountFirstName={accountFirstName} accountLastName={accountLastName}/>
                             </div>
                         </div>                 
                     </div>

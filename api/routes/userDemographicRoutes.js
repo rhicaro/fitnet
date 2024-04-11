@@ -108,6 +108,22 @@ router.post('/api/userdemographics/login/:username', (req, res) => {
   });
 });
 
-
+router.put('/api/userdemographics/:first_name/:last_name', (req, res) => {
+  const { first_name, last_name } = req.params;
+  const updatedData = req.body;
+  
+  // Construct the UPDATE query
+  const query = 'UPDATE user_demographics SET ? WHERE first_name = ? AND last_name = ?';
+  
+  db.query(query, [updatedData, first_name, last_name], (err, result) => {
+    if (err) {
+      console.error('Error updating user information:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      console.log('User information updated successfully');
+      res.status(200).send('User information updated successfully');
+    }
+  });
+});
 
 module.exports = router;

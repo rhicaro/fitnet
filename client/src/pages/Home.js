@@ -9,7 +9,7 @@ import userpfp from '../assets/unknown.png'
 // import Modal from 'react-modal';
 import { Button } from 'react-bootstrap';
 
-function Home({updateAccountInfo ,accountPresent, currentAccount, accountFirstName, accountLastName, accountType }) {
+function Home({updateAccountInfo , accountPresent, currentAccount, accountFirstName, accountLastName, accountType }) {
     const [selectedAccount, setSelectedAccount] = useState(null);
     const [userDemographics, setUserDemographics] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
@@ -40,10 +40,6 @@ function Home({updateAccountInfo ,accountPresent, currentAccount, accountFirstNa
             updateAccountInfo("", false, "", "", "")
         }
 
-        const handleGoToOwnAccountClick = () => {
-
-        }
-
     return (
         <div className='fitnet'>
             <div className='header'>
@@ -59,7 +55,12 @@ function Home({updateAccountInfo ,accountPresent, currentAccount, accountFirstNa
                             {accountType === 'Trainer' ? (
                                 <>
                                     <Button className='logout-btn' onClick={handleLogoutClick}>Logout</Button>
-                                    <Button className='account-btn' onClick={handleGoToOwnAccountClick}>My Account</Button>
+                                    <Link 
+                                        to={`/AccountScreen/${accountFirstName}/${accountLastName}`} 
+                                        className='account-btn'>
+                                        <Button className='account-btn' onClick={handleClosePopup}>My Account</Button>
+                                    </Link>
+                                
                                 </>
                             ) : (
                                 <Button className='logout-btn' onClick={handleLogoutClick}>Logout</Button>

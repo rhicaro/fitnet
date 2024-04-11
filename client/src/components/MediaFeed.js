@@ -1,10 +1,20 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../styles/MediaFeed.css';
 
-function MediaFeed(props) {
+function MediaFeed({accountPresent, viewedAccountFirstName, viewedAccountLastName, accountType, accountFirstName, accountLastName}) {
   const [mediaList, setMediaList] = useState([]);
   const [selectedMedia, setSelectedMedia] = useState(null);
+  const [sameFirst, setSameFirst] = useState(false);
+  const [sameLast, setSameLast] = useState(false);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    // Update sameFirst and sameLast when viewed account names change
+    setSameFirst(viewedAccountFirstName === accountFirstName);
+    console.log('same first: ', sameFirst);
+    setSameLast(viewedAccountLastName === accountLastName);
+    console.log('same last: ', sameLast)
+  });
 
   const handleFileUpload = (e) => {
     const files = e.target.files;
@@ -40,23 +50,36 @@ function MediaFeed(props) {
     setSelectedMedia(selectedMedia === index ? null : index);
   };
 
+  console.log(`Account present: ${accountPresent}
+    viewed First: ${viewedAccountFirstName}
+    viewed Last: ${viewedAccountLastName}
+    current First: ${accountFirstName}
+    current Last: ${accountLastName}
+    current Type: ${accountType}`)
+
+    // const isSameAccount = viewedAccountFirstName === accountFirstName && viewedAccountLastName === accountLastName;
+
   return (
     <div className="media-feed">
       <div className="upload-section">
-        <input
-          type="file"
-          multiple
-          ref={fileInputRef}
-          accept=".jpg, .jpeg, .png, .gif, .mp4"
-          onChange={handleFileUpload}
-        />
-        <button className='add-btn' onClick={handleAddMedia}>
-          Add
-        </button>
+        {accountPresent && accountType === 'Trainer' && sameFirst && sameLast && (
+          <>
+            <input
+              type="file"
+              multiple
+              ref={fileInputRef}
+              accept=".jpg, .jpeg, .png, .gif, .mp4"
+              onChange={handleFileUpload}
+            />
+            <button className='add-btn' onClick={handleAddMedia}>
+              Add
+            </button>
 
-        <button className='delete-btn' onClick={handleRemoveMedia}>
-          Delete
-        </button>
+            <button className='delete-btn' onClick={handleRemoveMedia}>
+              Delete
+            </button>
+          </>
+        )}
       </div>
 
       <div className="media-container">

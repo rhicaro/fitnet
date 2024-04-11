@@ -44,7 +44,7 @@ function AccountScreen({updateAccountInfo, accountPresent, accountFirstName, acc
 
     //Need this
     const handleEdit = () => {
-
+        
     }
 
     return (

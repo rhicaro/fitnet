@@ -98,7 +98,7 @@ function App(){
                     <Route 
                         exact
                         path="/Login"
-                        element = {<Login />}
+                        element = {<Login updateAccountInfo={updateAccountInfo}/>}
                     />
 
                     <Route

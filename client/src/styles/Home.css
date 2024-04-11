@@ -46,6 +46,39 @@ html {
     text-decoration: none;
 }
 
+.options-btn {
+    margin-right: 30px;
+    width: 100px;
+    height: 50px;
+    background-color:rgb(50, 50, 100);
+    color: white;
+}
+
+.popup {
+    background-color: lightgrey;
+    height: 100px;
+    width: 200px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+    top: calc(50% - 50px);
+    right: calc(100% + 10px);
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+.popup .logout-btn, .account-btn {
+    margin: 4px 0; /* Adjust spacing between buttons */
+    width: 120px; /* Adjust button width */
+}
+
+.popup .close-btn {
+    margin-top: 2px;
+    width: 80px;  
+}
+
 .content {
     display: flex;
     flex-grow: 1;

@@ -6,9 +6,13 @@ import axios from 'axios';
 import HomeFeed2 from '../components/HomeFeed2';
 import userpfp from '../assets/unknown.png'
 
+// import Modal from 'react-modal';
+import { Button } from 'react-bootstrap';
+
 function Home({accountPresent, currentAccount, accountFirstName, accountLastName, accountType }) {
     const [selectedAccount, setSelectedAccount] = useState(null);
     const [userDemographics, setUserDemographics] = useState([]);
+    const [showPopup, setShowPopup] = useState(false);
 
     useEffect(() => {
         // Fetch user accounts from the database to be displayed on the home screen
@@ -22,12 +26,47 @@ function Home({accountPresent, currentAccount, accountFirstName, accountLastName
         });
         }, []);
 
+        const handlePopupClick = () => {
+            setShowPopup(true);
+            console.log('Popup is being shown: ', showPopup);
+        }
+    
+        const handleClosePopup = () => {
+            setShowPopup(false);
+        }
+
+        const handleLogoutClick = () => {
+
+        }
+
+        const handleGoToOwnAccountClick = () => {
+
+        }
+
     return (
         <div className='fitnet'>
             <div className='header'>
                 <Link to="/" className='header_title'>FitNet</Link>
-                
-                <Link to="/Login" className='header_login'>Login / Register</Link>
+                <div className="options-container" style={{ position: 'relative' }}>
+                    {accountPresent ? (
+                        <button className='options-btn' onClick={handlePopupClick}> More Options </button>
+                    ) : (
+                        <Link to="/Login" className='header_login'>Login / Register</Link>
+                    )}
+                    {showPopup && (
+                        <div className="popup">
+                            {accountType === 'Trainer' ? (
+                                <>
+                                    <Button className='logout-btn' onClick={handleLogoutClick}>Logout</Button>
+                                    <Button className='account-btn' onClick={handleGoToOwnAccountClick}>My Account</Button>
+                                </>
+                            ) : (
+                                <Button className='logout-btn' onClick={handleLogoutClick}>Logout</Button>
+                            )}
+                            <Button className='close-btn' onClick={handleClosePopup}>Close</Button>
+                        </div>
+                    )}
+                </div>
             </div>
 
             <div className='content'>
@@ -74,7 +113,6 @@ function Home({accountPresent, currentAccount, accountFirstName, accountLastName
                 <p>&copy; 2023 FitNet | FitNet.com</p>
             </div>
         </div>
-
     )
 }
 

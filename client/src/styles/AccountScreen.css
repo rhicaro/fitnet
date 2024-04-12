@@ -61,12 +61,69 @@ html {
 }
 
 .account_head {
+    position: relative; /* Set position to relative */
     height: 250px;
     background-color: lightgray;
 }
 
+.account_head .edit-btn {
+    position: absolute;
+    top: 110px;
+    left: 10px;
+    width: 80px;
+    height: 40px;
+}
+
+/* .account_head .editPopup {
+    position: absolute;
+    left: 100px;
+    top: -25px;
+    width: 500px;
+    height: 300px;
+    background-color: white;
+    border: 4px solid black;
+    border-radius: 4px;
+    columns: 2;
+    z-index: 1;
+} */
+
+.account_head .editPopup {
+    position: absolute;
+    left: 100px;
+    top: -25px;
+    width: 500px;
+    height: 300px;
+    background-color: white;
+    border: 4px solid black;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    columns: 2;
+    padding: 10px; /* Add padding for better aesthetics */
+    z-index: 1;
+}
+
+.account_head .editPopup Button {
+    margin-bottom: 10px; /* Adjust spacing between buttons */
+    width: 90px;
+    height: 50px;
+}
+
+.ratePopup, .schedulePopup, .infoPopup {
+    position: absolute; /* Position the popups relative to the editPopup */
+    top: 7.5px;
+    left: 100px; 
+    margin-left: 10px; /* Adjust spacing */
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 275px;
+    width: 375px;
+}
+
 .account_head .account_img {
-    margin: 25px 0 0 40.5%;
+    position: absolute; /* Set position to absolute */
+    top: 25px; /* Adjust top position to align it with the top of the container */
+    left: calc(50% - 100px); /* Center the image horizontally */
     border: 2px solid black;
 }
 

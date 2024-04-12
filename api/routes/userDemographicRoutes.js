@@ -108,15 +108,38 @@ router.post('/api/userdemographics/login/:username', (req, res) => {
   });
 });
 
-//Need this to update information and send back to the database
+// Update user demographics based on the type of edit
 router.put('/api/userdemographics/:first_name/:last_name', (req, res) => {
   const { first_name, last_name } = req.params;
-  const updatedData = req.body;
+  const { editType, updatedData } = req.body;
+  
+  let updateFields = {};
+  
+  // Determine which fields to update based on the edit type
+  if (editType === 'rate') {
+    updateFields = { user_price: updatedData.user_price };
+  } else if (editType === 'schedule') {
+    updateFields = {
+      monday: updatedData.monday,
+      tuesday: updatedData.tuesday,
+      wednesday: updatedData.wednesday,
+      thursday: updatedData.thursday,
+      friday: updatedData.friday,
+      saturday: updatedData.saturday,
+      sunday: updatedData.sunday
+    };
+  } else if (editType === 'info') {
+    updateFields = {
+      user_location: updatedData.user_location,
+      user_activity: updatedData.user_activity,
+      user_bio: updatedData.user_bio
+    };
+  }
   
   // Construct the UPDATE query
   const query = 'UPDATE user_demographics SET ? WHERE first_name = ? AND last_name = ?';
   
-  db.query(query, [updatedData, first_name, last_name], (err, result) => {
+  db.query(query, [updateFields, first_name, last_name], (err, result) => {
     if (err) {
       console.error('Error updating user information:', err);
       res.status(500).send('Internal Server Error');
@@ -126,5 +149,6 @@ router.put('/api/userdemographics/:first_name/:last_name', (req, res) => {
     }
   });
 });
+
 
 module.exports = router;

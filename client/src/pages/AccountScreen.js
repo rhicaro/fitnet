@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import MediaFeed from '../components/MediaFeed';
 import userpfp from '../assets/unknown.png';
+import DaySchedule from '../components/DaySchedule';
 import axios from 'axios';
 
 // Current account information is properly passed over to this page similar to the home page.
@@ -13,6 +14,16 @@ function AccountScreen({updateAccountInfo, accountPresent, accountFirstName, acc
     const [viewedFirst, setViewedFirst] = useState('');
     const [viewedLast, setViewedLast] = useState('');
     const [showPopup, setShowPopup] = useState(false);
+    const [showEditPopup, setShowEditPopup] = useState(false);
+    const [showRatePopup, setShowRatePopup] = useState(false);
+    const [showSchedulePopup, setShowSchedulePopup] = useState(false);
+    const [showInfoPopup, setShowInfoPopup] = useState(false);
+    const [selectedDay, setSelectedDay] = useState('');
+    const [rateValue, setRateValue] = useState('');
+    const [locationValue, setLocationValue] = useState('');
+    const [activityValue, setActivityValue] = useState('');
+    const [biographyValue, setBiographyValue] = useState('');
+
     const { first_name, last_name } = useParams();
 
     useEffect(() => {
@@ -30,7 +41,6 @@ function AccountScreen({updateAccountInfo, accountPresent, accountFirstName, acc
 
     const handlePopupClick = () => {
         setShowPopup(prevState => !prevState);
-        console.log('Popup is being shown: ', showPopup);
     }
 
     const handleClosePopup = () => {
@@ -43,8 +53,111 @@ function AccountScreen({updateAccountInfo, accountPresent, accountFirstName, acc
     }
 
     //Need this
-    const handleEdit = () => {
-        
+    const handleEditBtnClick = () => {
+        if (accountFirstName === viewedFirst && accountLastName === viewedLast) {
+            setShowEditPopup(prevState => !prevState);
+        }
+    }
+
+    const handleRateBtnClick = () => {
+        setShowRatePopup(prevState => !prevState);
+        setShowInfoPopup(false);
+        setShowSchedulePopup(false);
+    }
+
+    const handleScheduleBtnClick = () => {
+        setShowSchedulePopup(prevState => !prevState);
+        setShowInfoPopup(false);
+        setShowRatePopup(false);
+    }
+
+    const handleInfoBtnClick = () => {
+        setShowInfoPopup(prevState => !prevState);
+        setShowRatePopup(false);
+        setShowSchedulePopup(false);
+    }
+
+    const handleRateChange = (e) => {
+        const value = e.target.value;
+        if (/^\d{0,3}$/.test(value) || value === '') {
+            setRateValue(value);
+        }
+    };
+
+    //Need to change so that it rerenders the page and changes the rate value upon completion
+    const handleRateSubmit = () => {
+        axios.put(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`, {
+            editType: 'rate',
+            updatedData: {
+                user_price: rateValue
+            }
+        })
+        .then(() => {
+            console.log("Rate updated successfully");
+            // Fetch the updated user information after successful update
+            axios.get(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`)
+                .then(response => {
+                    console.log("Updated user information:", response.data);
+                    // Update the userAccountInfo state with the new data
+                    setUserAccountInfo(response.data[0]);
+                })
+                .catch(error => {
+                    console.error('Error fetching updated user information:', error);
+                });
+        })
+            .catch(error => {
+                console.error('Error updating rate:', error);
+            });
+    }
+
+    const handleLocationChange = (e) => {
+        const value = e.target.value;
+        if (/^[A-Za-z, ]+$/.test(value) || value === '') {
+            setLocationValue(value);
+        }
+    };
+
+    const handleActivityChange = (e) => {
+        const value = e.target.value;
+        if (/^[A-Za-z]+$/.test(value) || value === '') {
+            setActivityValue(value);
+        }
+    };
+
+    const handleBiographyChange = (e) => {
+        const value = e.target.value;
+        setBiographyValue(value);
+    }
+
+    const handleInfoSubmit = () => {
+        axios.put(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`, {
+            editType: 'info',
+            updatedData: {
+                user_location: locationValue,
+                user_activity: activityValue,
+                user_bio: biographyValue
+            }
+        })
+            .then(() => {
+                console.log("Information updated successfully");
+                // Fetch the updated user information after successful update
+                axios.get(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`)
+                    .then(response => {
+                        console.log("Updated user information:", response.data);
+                        // Update the userAccountInfo state with the new data
+                        setUserAccountInfo(response.data[0]);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching updated user information:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Error updating information:', error);
+            });
+    }
+
+    const handleScheduleChange = (newAccountInfo) => {
+        setUserAccountInfo(newAccountInfo);
     }
 
     return (
@@ -67,7 +180,6 @@ function AccountScreen({updateAccountInfo, accountPresent, accountFirstName, acc
                                         className='account-btn'>
                                         <Button className='account-btn' onClick={handleClosePopup}>My Account</Button>
                                     </Link>
-                                
                                 </>
                             ) : (
                                 <Button className='logout-btn' onClick={handleLogoutClick}>Logout</Button>
@@ -82,10 +194,94 @@ function AccountScreen({updateAccountInfo, accountPresent, accountFirstName, acc
     
                 <div className='main'>
                     <div className='account_head'>
-                        {userAccountInfo && (
-                            <img src={userpfp} width={200} height={200} className='account_img'></img>
-                        )}
-                    </div>
+                    <Button className={'edit-btn'} onClick={handleEditBtnClick} style={{ display: accountFirstName === viewedFirst && accountLastName === viewedLast ? 'block' : 'none' }}>
+                        Edit Information
+                    </Button>
+
+                    {/* Check if the editPopup should be shown */}
+                    {showEditPopup && (
+                        <div className='editPopup'>
+                            <Button style={{marginTop: '20px'}}>Change Profile Image</Button>
+                            <Button onClick={handleRateBtnClick}>Change Rate</Button>
+                            <Button onClick={handleScheduleBtnClick}>Change Availability</Button>
+                            <Button onClick={handleInfoBtnClick}>Change Information</Button>
+                            
+                            {showRatePopup && (
+                                <div className='ratePopup'>
+                                    <form>
+                                        <div className='inputRate'>
+                                            <label htmlFor='rateEdit'>Change Rate: </label>
+                                            <input
+                                            type='number'
+                                            id='rate'
+                                            value={rateValue}
+                                            onChange={handleRateChange}
+                                            placeholder='20'
+                                            required>
+                                            </input>
+
+                                            <Button onClick={handleRateSubmit}>
+                                                Submit
+                                            </Button>
+                                        </div>
+                                    </form>
+                                </div>
+                            )}
+                            {/* Will work on later */}
+                            {showSchedulePopup && (
+                                <div className='schedulePopup'>
+                                    <DaySchedule 
+                                    handleScheduleChange={handleScheduleChange}
+                                    first_name={first_name}
+                                    last_name={last_name}
+                                    />
+                                </div>
+                            )}
+                            {showInfoPopup && (
+                                <div className='infoPopup'>
+                                    <label htmlFor='infoEdit'>Change Location: </label>
+                                    <input
+                                    type='text'
+                                    id='location'
+                                    value={locationValue}
+                                    onChange={handleLocationChange}
+                                    placeholder='Boston, MA'
+                                    required>
+                                    </input>
+
+                                    <label htmlFor='infoEdit'>Change Activity: </label>
+                                    <input
+                                    type='text'
+                                    id='activity'
+                                    value={activityValue}
+                                    onChange={handleActivityChange}
+                                    placeholder='Basketball'
+                                    required>
+                                    </input>
+
+                                    <label htmlFor='infoEdit'>Change Biography: </label>
+                                    <input
+                                    type='text'
+                                    id='biography'
+                                    value={biographyValue}
+                                    onChange={handleBiographyChange}
+                                    placeholder='Background information'
+                                    required>
+                                    </input>
+
+                                    <Button onClick={handleInfoSubmit}>
+                                        Submit
+                                    </Button>
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    {/* Render the user image */}
+                    {userAccountInfo && (
+                        <img src={userpfp} width={200} height={200} className='account_img'></img>
+                    )}
+                </div>
     
                     <div className='account_body'>
                         <div className='section1'>

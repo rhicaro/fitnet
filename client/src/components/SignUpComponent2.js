@@ -19,37 +19,30 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
   const [mondayHour, setMondayHour] = useState('');
   const [mondayHour2, setMondayHour2] = useState('');
   const [mondayPeriod, setMondayPeriod] = useState('');
-  const [mondayNone, setMondayNone] = useState(false);
 
   const [tuesdayHour, setTuesdayHour] = useState('');
   const [tuesdayHour2, setTuesdayHour2] = useState('');
   const [tuesdayPeriod, setTuesdayPeriod] = useState('');
-  const [tuesdayNone, setTuesdayNone] = useState(false);
 
   const [wednesdayHour, setWednesdayHour] = useState('');
   const [wednesdayHour2, setWednesdayHour2] = useState('');
   const [wednesdayPeriod, setWednesdayPeriod] = useState('');
-  const [wednesdayNone, setWednesdayNone] = useState(false);
 
   const [thursdayHour, setThursdayHour] = useState('');
   const [thursdayHour2, setThursdayHour2] = useState('');
   const [thursdayPeriod, setThursdayPeriod] = useState('');
-  const [thursdayNone, setThursdayNone] = useState(false);
 
   const [fridayHour, setFridayHour] = useState('');
   const [fridayHour2, setFridayHour2] = useState('');
   const [fridayPeriod, setFridayPeriod] = useState('');
-  const [fridayNone, setFridayNone] = useState(false);
 
   const [saturdayHour, setSaturdayHour] = useState('');
   const [saturdayHour2, setSaturdayHour2] = useState('');
   const [saturdayPeriod, setSaturdayPeriod] = useState('');
-  const [saturdayNone, setSaturdayNone] = useState(false);
 
   const [sundayHour, setSundayHour] = useState('');
   const [sundayHour2, setSundayHour2] = useState('');
   const [sundayPeriod, setSundayPeriod] = useState('');
-  const [sundayNone, setSundayNone] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState('');
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
@@ -279,10 +272,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={mondayHour}
                                 onChange={(e) => {
                                     setMondayHour(e.target.value);
-                                    if (e.target.value || mondayHour2 || mondayPeriod) {
-                                        setMondayNone(false);
-                                        console.log(mondayNone);
-                                    }
                                 }}
                             >
                                 <option value="">HH</option>
@@ -298,10 +287,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={mondayHour2}
                                 onChange={(e) => {
                                     setMondayHour2(e.target.value);
-                                    if (mondayHour || e.target.value || mondayPeriod) {
-                                        setMondayNone(false);
-                                        console.log(mondayNone);
-                                    }
                                 }}
                             >
                                 <option value="">HH</option>
@@ -316,10 +301,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={mondayPeriod}
                                 onChange={(e) => {
                                     setMondayPeriod(e.target.value);
-                                    if (mondayHour || mondayHour2 || e.target.value) {
-                                        setMondayNone(false);
-                                        console.log(mondayNone);
-                                    }
                                 }}
                             >
                                 <option value="">AM/PM</option>
@@ -338,14 +319,11 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                         setMondayHour("12");
                                         setMondayHour2("12");
                                         setMondayPeriod("AM");
-                                        setMondayNone(true);
                                     } else if (mondayHour || mondayHour2 || mondayPeriod){
                                         setMondayHour("");
                                         setMondayHour2("");
                                         setMondayPeriod("");
-                                        setMondayNone(false);
                                     }
-                                    console.log('mondayNone2 value: ', mondayNone);
                                 }}
                             />
                             <label htmlFor="mondayNone">None</label>
@@ -361,10 +339,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={tuesdayHour}
                                 onChange={(e) => {
                                     setTuesdayHour(e.target.value);
-                                    if (e.target.value || tuesdayHour2 || tuesdayPeriod) {
-                                        setTuesdayNone(false);
-                                        console.log(tuesdayNone);
-                                    }
                                 }}
                             >
                                 <option value="">HH</option>
@@ -380,10 +354,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={tuesdayHour2}
                                 onChange={(e) => {
                                     setTuesdayHour2(e.target.value);
-                                    if (tuesdayHour || e.target.value || tuesdayPeriod) {
-                                        setTuesdayNone(false);
-                                        console.log(tuesdayNone);
-                                    }
                                 }}
                             >
                                 <option value="">HH</option>
@@ -398,10 +368,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={tuesdayPeriod}
                                 onChange={(e) => {
                                     setTuesdayPeriod(e.target.value);
-                                    if (tuesdayHour || tuesdayHour2 || e.target.value) {
-                                        setTuesdayNone(false);
-                                        console.log(tuesdayNone);
-                                    }
                                 }}
                             >
                                 <option value="">AM/PM</option>
@@ -420,14 +386,11 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                         setTuesdayHour("12");
                                         setTuesdayHour2("12");
                                         setTuesdayPeriod("AM");
-                                        setTuesdayNone(true);
                                     } else if (tuesdayHour || tuesdayHour2 || tuesdayPeriod){
                                         setTuesdayHour("");
                                         setTuesdayHour2("");
                                         setTuesdayPeriod("");
-                                        setTuesdayNone(false);
                                     }
-                                    console.log('tuesdayNone2 value: ', tuesdayNone);
                                 }}
                             />
                             <label htmlFor="tuesdayNone">None</label>
@@ -442,10 +405,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={wednesdayHour}
                                 onChange={(e) => {
                                     setWednesdayHour(e.target.value);
-                                    if (e.target.value || wednesdayHour2 || wednesdayPeriod) {
-                                        setWednesdayNone(false);
-                                        console.log(wednesdayNone);
-                                    }
                                 }}
                             >
                                 <option value="">HH</option>
@@ -461,10 +420,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={wednesdayHour2}
                                 onChange={(e) => {
                                     setWednesdayHour2(e.target.value);
-                                    if (wednesdayHour || e.target.value || wednesdayPeriod) {
-                                        setWednesdayNone(false);
-                                        console.log(wednesdayNone);
-                                    }
                                 }}
                             >
                                 <option value="">HH</option>
@@ -479,10 +434,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={wednesdayPeriod}
                                 onChange={(e) => {
                                     setWednesdayPeriod(e.target.value);
-                                    if (wednesdayHour || wednesdayHour2 || e.target.value) {
-                                        setWednesdayNone(false);
-                                        console.log(wednesdayNone);
-                                    }
                                 }}
                             >
                                 <option value="">AM/PM</option>
@@ -501,14 +452,11 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                         setWednesdayHour("12");
                                         setWednesdayHour2("12");
                                         setWednesdayPeriod("AM");
-                                        setWednesdayNone(true);
                                     } else if (wednesdayHour || wednesdayHour2 || wednesdayPeriod){
                                         setWednesdayHour("");
                                         setWednesdayHour2("");
                                         setWednesdayPeriod("");
-                                        setWednesdayNone(false);
                                     }
-                                    console.log('wednesdayNone2 value: ', wednesdayNone);
                                 }}
                             />
                             <label htmlFor="wednesdayNone">None</label>
@@ -523,10 +471,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={thursdayHour}
                                 onChange={(e) => {
                                     setThursdayHour(e.target.value);
-                                    if (e.target.value || thursdayHour2 || thursdayPeriod) {
-                                        setThursdayNone(false);
-                                        console.log(thursdayNone);
-                                    }
                                 }}
                             >
                                 <option value="">HH</option>
@@ -542,10 +486,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={thursdayHour2}
                                 onChange={(e) => {
                                     setThursdayHour2(e.target.value);
-                                    if (thursdayHour || e.target.value || thursdayPeriod) {
-                                        setThursdayNone(false);
-                                        console.log(thursdayNone);
-                                    }
                                 }}
                             >
                                 <option value="">HH</option>
@@ -560,10 +500,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={thursdayPeriod}
                                 onChange={(e) => {
                                     setThursdayPeriod(e.target.value);
-                                    if (thursdayHour || thursdayHour2 || e.target.value) {
-                                        setThursdayNone(false);
-                                        console.log(thursdayNone);
-                                    }
                                 }}
                             >
                                 <option value="">AM/PM</option>
@@ -582,14 +518,11 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                         setThursdayHour("12");
                                         setThursdayHour2("12");
                                         setThursdayPeriod("AM");
-                                        setThursdayNone(true);
                                     } else if (thursdayHour || thursdayHour2 || thursdayPeriod){
                                         setThursdayHour("");
                                         setThursdayHour2("");
                                         setThursdayPeriod("");
-                                        setThursdayNone(false);
                                     }
-                                    console.log('thursdayNone2 value: ', thursdayNone);
                                 }}
                             />
                             <label htmlFor="thursdayNone">None</label>
@@ -604,10 +537,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={fridayHour}
                                 onChange={(e) => {
                                     setFridayHour(e.target.value);
-                                    if (e.target.value || fridayHour2 || fridayPeriod) {
-                                        setFridayNone(false);
-                                        console.log(fridayNone);
-                                    }
                                 }}
                             >
                                 <option value="">HH</option>
@@ -623,10 +552,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={fridayHour2}
                                 onChange={(e) => {
                                     setFridayHour2(e.target.value);
-                                    if (fridayHour || e.target.value || fridayPeriod) {
-                                        setFridayNone(false);
-                                        console.log(fridayNone);
-                                    }
                                 }}
                             >
                                 <option value="">HH</option>
@@ -641,10 +566,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={fridayPeriod}
                                 onChange={(e) => {
                                     setFridayPeriod(e.target.value);
-                                    if (fridayHour || fridayHour2 || e.target.value) {
-                                        setFridayNone(false);
-                                        console.log(fridayNone);
-                                    }
                                 }}
                             >
                                 <option value="">AM/PM</option>
@@ -663,14 +584,11 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                         setFridayHour("12");
                                         setFridayHour2("12");
                                         setFridayPeriod("AM");
-                                        setFridayNone(true);
                                     } else if (fridayHour || fridayHour2 || fridayPeriod){
                                         setFridayHour("");
                                         setFridayHour2("");
                                         setFridayPeriod("");
-                                        setFridayNone(false);
                                     }
-                                    console.log('fridayNone2 value: ', fridayNone);
                                 }}
                             />
                             <label htmlFor="fridayNone">None</label>
@@ -685,10 +603,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={saturdayHour}
                                 onChange={(e) => {
                                     setSaturdayHour(e.target.value);
-                                    if (e.target.value || saturdayHour2 || saturdayPeriod) {
-                                        setSaturdayNone(false);
-                                        console.log(saturdayNone);
-                                    }
                                 }}
                             >
                                 <option value="">HH</option>
@@ -704,10 +618,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={saturdayHour2}
                                 onChange={(e) => {
                                     setSaturdayHour2(e.target.value);
-                                    if (saturdayHour || e.target.value || saturdayPeriod) {
-                                        setSaturdayNone(false);
-                                        console.log(saturdayNone);
-                                    }
                                 }}
                             >
                                 <option value="">HH</option>
@@ -722,10 +632,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={saturdayPeriod}
                                 onChange={(e) => {
                                     setSaturdayPeriod(e.target.value);
-                                    if (saturdayHour || saturdayHour2 || e.target.value) {
-                                        setSaturdayNone(false);
-                                        console.log(saturdayNone);
-                                    }
                                 }}
                             >
                                 <option value="">AM/PM</option>
@@ -744,14 +650,11 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                         setSaturdayHour("12");
                                         setSaturdayHour2("12");
                                         setSaturdayPeriod("AM");
-                                        setSaturdayNone(true);
                                     } else if (saturdayHour || saturdayHour2 || saturdayPeriod){
                                         setSaturdayHour("");
                                         setSaturdayHour2("");
                                         setSaturdayPeriod("");
-                                        setSaturdayNone(false);
                                     }
-                                    console.log('saturdayNone2 value: ', saturdayNone);
                                 }}
                             />
                             <label htmlFor="saturdayNone">None</label>
@@ -766,10 +669,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={sundayHour}
                                 onChange={(e) => {
                                     setSundayHour(e.target.value);
-                                    if (e.target.value || sundayHour2 || sundayPeriod) {
-                                        setSundayNone(false);
-                                        console.log(sundayNone);
-                                    }
                                 }}
                             >
                                 <option value="">HH</option>
@@ -785,10 +684,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={sundayHour2}
                                 onChange={(e) => {
                                     setSundayHour2(e.target.value);
-                                    if (sundayHour || e.target.value || sundayPeriod) {
-                                        setSundayNone(false);
-                                        console.log(sundayNone);
-                                    }
                                 }}
                             >
                                 <option value="">HH</option>
@@ -803,10 +698,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 value={sundayPeriod}
                                 onChange={(e) => {
                                     setSundayPeriod(e.target.value);
-                                    if (sundayHour || sundayHour2 || e.target.value) {
-                                        setSundayNone(false);
-                                        console.log(sundayNone);
-                                    }
                                 }}
                             >
                                 <option value="">AM/PM</option>
@@ -825,14 +716,11 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                         setSundayHour("12");
                                         setSundayHour2("12");
                                         setSundayPeriod("AM");
-                                        setSundayNone(true);
                                     } else if (sundayHour || sundayHour2 || sundayPeriod){
                                         setSundayHour("");
                                         setSundayHour2("");
                                         setSundayPeriod("");
-                                        setSundayNone(false);
                                     }
-                                    console.log('sundayNone2 value: ', sundayNone);
                                 }}
                             />
                             <label htmlFor="sundayNone">None</label>

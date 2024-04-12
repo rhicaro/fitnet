@@ -9,11 +9,8 @@ function MediaFeed({accountPresent, viewedAccountFirstName, viewedAccountLastNam
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    // Update sameFirst and sameLast when viewed account names change
     setSameFirst(viewedAccountFirstName === accountFirstName);
-    console.log('same first: ', sameFirst);
     setSameLast(viewedAccountLastName === accountLastName);
-    console.log('same last: ', sameLast)
   });
 
   const handleFileUpload = (e) => {
@@ -49,14 +46,7 @@ function MediaFeed({accountPresent, viewedAccountFirstName, viewedAccountLastNam
   const handleMediaClick = (index) => {
     setSelectedMedia(selectedMedia === index ? null : index);
   };
-
-  console.log(`Account present: ${accountPresent}
-    viewed First: ${viewedAccountFirstName}
-    viewed Last: ${viewedAccountLastName}
-    current First: ${accountFirstName}
-    current Last: ${accountLastName}
-    current Type: ${accountType}`)
-
+  
   return (
     <div className="media-feed">
       <div className="upload-section">

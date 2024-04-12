@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import Cookies from 'js-cookie';
 
 import {
     BrowserRouter as Router,
@@ -19,11 +20,12 @@ import SignUp from './pages/SignUp.js';
 import SignUp2 from './pages/SignUp2.js';
 
 function App(){
-    const [currentAccount, setCurrentAccount] = useState('');
-    const [accountFirstName, setAccountFirstName] = useState('');
-    const [accountLastName, setAccountLastName] = useState('');
-    const [accountType, setAccountType] = useState('');
-    const [accountPresent, setAccountPresent] = useState(false);
+    //Need to refactor code to exclude currentAccount
+    const [currentAccount, setCurrentAccount] = useState(Cookies.get('currentAccount') || '');
+    const [accountPresent, setAccountPresent] = useState(Cookies.get('accountPresent') || false);
+    const [accountFirstName, setAccountFirstName] = useState(Cookies.get('accountFirstName') || '');
+    const [accountLastName, setAccountLastName] = useState(Cookies.get('accountLastName') || '');
+    const [accountType, setAccountType] = useState(Cookies.get('accountType') || '');
     const userDemographics = [];
 
     const updateAccountInfo = (account, present, first, last, type) => {
@@ -32,6 +34,12 @@ function App(){
         setAccountFirstName(first);
         setAccountLastName(last);
         setAccountType(type);
+
+        Cookies.set('currentAccount', account);
+        Cookies.set('accountPresent', present);
+        Cookies.set('accountFirstName', first);
+        Cookies.set('accountLastName', last);
+        Cookies.set('accountType', type);
     };
 
     return (

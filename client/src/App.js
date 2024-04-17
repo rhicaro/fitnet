@@ -11,10 +11,10 @@ import {
 import Home from './pages/Home.js';
 import AccountScreen from './pages/AccountScreen.js';
 import Calendar from './pages/Calendar.js';
-import Message from './pages/Message.js';
+// import Message from './pages/Message.js';
 // import Preferences from './pages/Preference.js';
 import About from './pages/About.js';
-import Settings from './pages/Settings.js';
+// import Settings from './pages/Settings.js';
 import Login from './pages/Login.js';
 import SignUp from './pages/SignUp.js';
 import SignUp2 from './pages/SignUp2.js';
@@ -79,11 +79,11 @@ function App(){
                             accountType={accountType}/>}
                     />
                     {/* idk if I will keep might be too much */}
-                    <Route 
+                    {/* <Route 
                         exact
                         path="/Messages"
                         element={<Message />}
-                    />
+                    /> */}
 
                     <Route 
                         exact
@@ -97,11 +97,11 @@ function App(){
                         />}
                     />
 
-                    <Route 
+                    {/* <Route 
                         exact
                         path="/Settings"
                         element={<Settings />}
-                    />
+                    /> */}
 
                     <Route 
                         exact

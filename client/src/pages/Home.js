@@ -39,11 +39,6 @@ function Home({updateAccountInfo, accountPresent, accountFirstName, accountLastN
             updateAccountInfo("", false, "", "", "")
         }
 
-        console.log(`Account present: ${accountPresent}
-        current First: ${accountFirstName}
-        current Last: ${accountLastName}
-        current Type: ${accountType}`);
-
     return (
         <div className='fitnet'>
             <div className='header'>

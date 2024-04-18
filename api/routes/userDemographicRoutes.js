@@ -28,7 +28,6 @@ router.get('/api/userdemographics', (req, res) => {
       console.error('Error querying MySQL:', err);
       res.status(500).send('Internal Server Error');
     } else {
-      console.log('User accounts from the Database:', results);
       res.json(results);
     }
   });
@@ -42,7 +41,6 @@ router.get('/api/userdemographics/:first_name/:last_name', (req, res) => {
       console.error('Error querying MySQL:', err);
       res.status(500).send('Internal Server Error');
     } else {
-      console.log(first_name, last_name, 'account from the database', results);
       res.json(results);
     }
   });

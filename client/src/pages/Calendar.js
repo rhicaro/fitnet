@@ -25,7 +25,6 @@ function Calendar({updateAccountInfo, accountPresent, accountFirstName, accountL
 
     const handlePopupClick = () => {
       setShowPopup(prevState => !prevState);
-      console.log('Popup is being shown: ', showPopup);
     }
 
     const handleClosePopup = () => {
@@ -80,6 +79,10 @@ function Calendar({updateAccountInfo, accountPresent, accountFirstName, accountL
               selectedDate={selectedDate}
               onAddAppointment={handleAddAppointment}
               onDeleteAppointment={handleDeleteAppointment}
+              accountPresent={accountPresent} 
+              accountFirstName={accountFirstName}
+              accountLastName={accountLastName} 
+              accountType={accountType}
             />
           </div>
         </div>

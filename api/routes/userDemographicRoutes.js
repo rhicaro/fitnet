@@ -3,7 +3,6 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const router = express.Router();
 
-
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -144,6 +143,20 @@ router.put('/api/userdemographics/:first_name/:last_name', (req, res) => {
     } else {
       console.log('User information updated successfully');
       res.status(200).send('User information updated successfully');
+    }
+  });
+});
+
+router.get('/api/userschedule', (req, res) => {
+  // Query to retrieve all objects from user_schedule table
+  const query = 'SELECT * FROM user_schedule';
+  db.query(query, (err, scheduleResults) => {
+    if (err) {
+      console.error('Error querying MySQL:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      console.log('All schedules retrieved:', scheduleResults);
+      res.json(scheduleResults);
     }
   });
 });

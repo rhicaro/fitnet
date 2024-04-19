@@ -3,7 +3,6 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const router = express.Router();
 
-
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -21,13 +20,12 @@ db.connect((err) => {
   }
 });
 
-router.get('/api/userschedule/:firstName/:lastName', (req, res) => {
-    const { firstName, lastName } = req.params;
-    console.log('First Name:', firstName, 'Last Name:', lastName);
+router.get('/api/userschedule/:user_first/:user_last', (req, res) => {
+    const { user_first, user_last } = req.params;
 
-    // Query to get schedule information based on user's first and last names
-    const scheduleQuery = 'SELECT * FROM user_schedule WHERE user_first = ? AND user_last = ?';
-    db.query(scheduleQuery, [firstName, lastName], (err, scheduleResults) => {
+    // Query to get appointments based on user's first and last names
+    const query = 'SELECT * FROM user_schedule WHERE user_first = ? AND user_last = ?';
+    db.query(query, [user_first, user_last], (err, scheduleResults) => {
         if (err) {
             console.error('Error querying MySQL:', err);
             res.status(500).send('Internal Server Error');
@@ -35,13 +33,26 @@ router.get('/api/userschedule/:firstName/:lastName', (req, res) => {
             if (scheduleResults.length === 0) {
                 res.status(404).send('Schedule not found for the user');
             } else {
-                console.log(`Schedule for user ${firstName} ${lastName}:`, scheduleResults);
+                console.log(`Appointments for user ${user_first} ${user_last}:`, scheduleResults);
                 res.json(scheduleResults);
             }
         }
     });
 });
 
+// router.get('/api/userschedule', (req, res) => {
+//     // Query to retrieve all objects from user_schedule table
+//     const query = 'SELECT * FROM user_schedule';
+//     db.query(query, (err, scheduleResults) => {
+//       if (err) {
+//         console.error('Error querying MySQL:', err);
+//         res.status(500).send('Internal Server Error');
+//       } else {
+//         console.log('All schedules retrieved:', scheduleResults);
+//         res.json(scheduleResults);
+//       }
+//     });
+//   });
   
   module.exports = router;
 

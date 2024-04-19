@@ -9,20 +9,15 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
 
   useEffect(() => {
     // Function to fetch appointments based on user's first name and last name
-    const fetchAppointments = async () => {
-      try {
-        const response = await axios.get(`/api/userschedule/${accountFirstName}/${accountLastName}`);
-        setAppointments(response.data);
-      } catch (error) {
-        console.error('Error fetching appointments:', error);
-      }
-    };
-
-    // Check if account is present and fetch appointments if present
-    if (accountPresent && accountFirstName && accountLastName) {
-      fetchAppointments();
-    }
-  }, [selectedDate, accountPresent, accountFirstName, accountLastName]); // Dependency array to trigger effect when any of these values change
+    axios.get(`http://localhost:5001/api/userschedule/${accountFirstName}/${accountLastName}`) //This does not connect (404)
+      .then(response => {
+        console.log('Schedule found:', response.data);
+        setAppointments(response.data); // Update appointments state with fetched data
+      })
+      .catch(error => {
+        console.log('Error fetching schedule:', error);
+      });
+  }, [accountFirstName, accountLastName]); // Add accountFirstName and accountLastName to the dependency array
 
   const handleAddAppointment = () => {
     if (selectedDate && appointment.trim() !== "") {

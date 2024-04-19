@@ -10,28 +10,6 @@ import '../styles/About.css';
 function About({updateAccountInfo, accountPresent, accountFirstName, accountLastName, accountType}) {
     const [showPopup, setShowPopup] = useState(false);
 
-    console.log(accountFirstName, accountLastName);
-
-    useEffect(() => {
-        // Function to fetch appointments based on user's first name and last name
-    //     axios.get(`http://localhost:5001/api/userschedule/${accountFirstName}/${accountLastName}`)
-    //       .then(response => {
-    //         console.log('Schedule found:', response.data);
-    //       })
-    //       .catch(error => {
-    //         console.log('Error fetching schedule:', error);
-    //       });
-    //   }, [accountFirstName, accountLastName]); // Add accountFirstName and accountLastName to the dependency array
-
-        axios.get('http://localhost:5001/api/userschedule')
-        .then(response => {
-            console.log('Data found:', response)
-        })
-        .catch(error => {
-            console.log('Error fetching schedule:', error);
-        });
-    });
-
     const handlePopupClick = () => {
         setShowPopup(prevState => !prevState);
     }

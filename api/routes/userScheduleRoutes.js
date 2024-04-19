@@ -20,12 +20,12 @@ db.connect((err) => {
   }
 });
 
-router.get('/api/userschedule/:user_first/:user_last', (req, res) => {
-    const { user_first, user_last } = req.params;
+router.get('/api/userschedule/:first_name/:last_name', (req, res) => {
+    const { first_name, last_name } = req.params;
 
-    // Query to get appointments based on user's first and last names
+    // Query to get appointments based on user's first and last names (Works)
     const query = 'SELECT * FROM user_schedule WHERE user_first = ? AND user_last = ?';
-    db.query(query, [user_first, user_last], (err, scheduleResults) => {
+    db.query(query, [first_name, last_name], (err, scheduleResults) => {
         if (err) {
             console.error('Error querying MySQL:', err);
             res.status(500).send('Internal Server Error');
@@ -33,7 +33,7 @@ router.get('/api/userschedule/:user_first/:user_last', (req, res) => {
             if (scheduleResults.length === 0) {
                 res.status(404).send('Schedule not found for the user');
             } else {
-                console.log(`Appointments for user ${user_first} ${user_last}:`, scheduleResults);
+                console.log(`Appointments for user ${first_name} ${last_name}:`, scheduleResults);
                 res.json(scheduleResults);
             }
         }

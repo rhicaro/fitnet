@@ -147,6 +147,7 @@ router.put('/api/userdemographics/:first_name/:last_name', (req, res) => {
   });
 });
 
+//More of a test case route to get all schedule and see if it worked (It worked)
 router.get('/api/userschedule', (req, res) => {
   // Query to retrieve all objects from user_schedule table
   const query = 'SELECT * FROM user_schedule';
@@ -155,9 +156,30 @@ router.get('/api/userschedule', (req, res) => {
       console.error('Error querying MySQL:', err);
       res.status(500).send('Internal Server Error');
     } else {
-      console.log('All schedules retrieved:', scheduleResults);
+      // console.log('All schedules retrieved:', scheduleResults);
       res.json(scheduleResults);
     }
+  });
+});
+
+//Suppose to get all schedules that are linked to the stationed account first and last name
+router.get('/api/userschedule/:user_first/:user_last', (req, res) => {
+  const { user_first, user_last } = req.params;
+
+  // Query to get appointments based on user's first and last names
+  const query = 'SELECT * FROM user_schedule WHERE user_first = ? AND user_last = ?';
+  db.query(query, [user_first, user_last], (err, scheduleResults) => {
+      if (err) {
+          console.error('Error querying MySQL:', err);
+          res.status(500).send('Internal Server Error');
+      } else {
+          if (scheduleResults.length === 0) {
+              res.status(404).send('Schedule not found for the user');
+          } else {
+              console.log(`Appointments for user ${user_first} ${user_last}:`, scheduleResults);
+              res.json(scheduleResults);
+          }
+      }
   });
 });
 

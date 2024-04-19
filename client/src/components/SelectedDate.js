@@ -47,6 +47,7 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
             value={appointment}
             onChange={(e) => setAppointment(e.target.value)}
           />
+          {/* Add in two more input fields for the name of the traineruser wants to make an appointment with */}
           <button onClick={handleAddAppointment} className="add-button">
             Add Appointment
           </button>

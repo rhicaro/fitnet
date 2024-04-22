@@ -1,0 +1,20 @@
+.main-body {
+text-align: center;
+}
+
+.main-body img {
+    border-radius: 150px;
+    margin: 20px 0;
+}
+
+.main-body-about {
+    text-align: center;
+    border-radius: 10px; /* Add border radius */
+    background: #fff; /* Set background color */
+    padding: 10px;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1); /* Add box shadow */
+}
+
+.main-body-about p {
+    padding: 10px;
+}

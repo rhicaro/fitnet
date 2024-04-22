@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
-import '../styles/SignUpComponent2.css';
+import '../stylesV2/SignUpComponent2.css';
 
 const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
   const [firstName, setFirstName] = useState('');
@@ -15,7 +15,6 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
 
-//   Need to fix the hours inputs, show up as nothing when clicking checkbox creating the alert
   const [mondayHour, setMondayHour] = useState('');
   const [mondayHour2, setMondayHour2] = useState('');
   const [mondayPeriod, setMondayPeriod] = useState('');
@@ -153,13 +152,12 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
         <h2>Trainer Sign Up</h2>
         <form onSubmit={handleRegister}>
             <div className='inputs'>
-                {/* inputs1 and inputs2 aare suppose to seperate into two columns of user inputs. Wasn't able to get working properly */}
                 <div className='inputs1'>
                     <div className="input-group">
                         <label htmlFor="firstName">First Name:</label>
                         <input
                         type="text"
-                        id="firstName"
+                        class="signup-input2"
                         value={firstName}
                         onChange={handleFirstNameChange}
                         required
@@ -169,7 +167,7 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="lastName">Last Name:</label>
                         <input
                         type="text"
-                        id="lastName"
+                        class="signup-input2"
                         value={lastName}
                         onChange={handleLastNameChange}
                         required
@@ -179,7 +177,7 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="username">Username:</label>
                         <input
                         type="text"
-                        id="username"
+                        class="signup-input2"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
@@ -189,7 +187,7 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="password">Password:</label>
                         <input
                         type="password"
-                        id="password"
+                        class="signup-input2"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
@@ -199,10 +197,10 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="email">Email:</label>
                         <input
                         type="email"
-                        id="email"
+                        class="signup-input2"
                         value={email}
                         onChange={handleEmailChange}
-                        placeholder='example@gmail.com'
+                        placeholder='  example@gmail.com'
                         pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                         required
                         />
@@ -211,7 +209,7 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="phoneNumber">Phone Number:</label>
                         <input
                         type="tel"
-                        id="phoneNumber"
+                        class="signup-input2"
                         value={phoneNumber}
                         onChange={handlePhoneNumberChange}
                         required
@@ -221,17 +219,17 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="activity">Main Activity:</label>
                         <input
                         type="activity"
-                        id="mainActivity"
+                        class="signup-input2"
                         value={mainActivity}
                         onChange={handleMainActivityChange}
-                        placeholder='Basketball'
+                        placeholder='  Basketball'
                         required
                         />
                     </div>
 
                     <div className="input-group">
                         <label htmlFor="gender">Gender:</label>
-                        <select id="gender" value={gender} onChange={(e) => setGender(e.target.value)} required>
+                        <select value={gender} onChange={(e) => setGender(e.target.value)} required>
                         <option value="">Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -243,10 +241,10 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="location">Location:</label>
                         <input
                         type="location"
-                        id="location"
+                        class="signup-input2"
                         value={location}
                         onChange={handleLocationChange}
-                        placeholder='Boston, MA'
+                        placeholder='  Boston, MA'
                         required
                         />
                     </div>
@@ -257,7 +255,7 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="price">Price:</label>
                         <input
                         type="number"
-                        id="price"
+                        class="signup-input2"
                         value={price}
                         onChange={handlePriceChange}
                         required
@@ -307,11 +305,9 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
                             </select>
-                            {/* For some reason clicking a value and then re clicking the checkbox 
-                            turns the none value false and not true will fix later Need to update 
-                            other days as well to match monday*/}
                             <input
                                 type="checkbox"
+                                style={{marginLeft: '10px'}}
                                 id="mondayNone"
                                 checked={!mondayHour && !mondayHour2 && !mondayPeriod}
                                 onChange={(e) => {
@@ -374,11 +370,9 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
                             </select>
-                            {/* For some reason clicking a value and then re clicking the checkbox 
-                            turns the none value false and not true will fix later Need to update 
-                            other days as well to match tuesday*/}
                             <input
                                 type="checkbox"
+                                style={{marginLeft: '10px'}}
                                 id="tuesdayNone"
                                 checked={!tuesdayHour && !tuesdayHour2 && !tuesdayPeriod}
                                 onChange={(e) => {
@@ -440,11 +434,9 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
                             </select>
-                            {/* For some reason clicking a value and then re clicking the checkbox 
-                            turns the none value false and not true will fix later Need to update 
-                            other days as well to match wednesday*/}
                             <input
                                 type="checkbox"
+                                style={{marginLeft: '10px'}}
                                 id="wednesdayNone"
                                 checked={!wednesdayHour && !wednesdayHour2 && !wednesdayPeriod}
                                 onChange={(e) => {
@@ -506,11 +498,9 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
                             </select>
-                            {/* For some reason clicking a value and then re clicking the checkbox 
-                            turns the none value false and not true will fix later Need to update 
-                            other days as well to match thursday*/}
                             <input
                                 type="checkbox"
+                                style={{marginLeft: '10px'}}
                                 id="thursdayNone"
                                 checked={!thursdayHour && !thursdayHour2 && !thursdayPeriod}
                                 onChange={(e) => {
@@ -572,11 +562,9 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
                             </select>
-                            {/* For some reason clicking a value and then re clicking the checkbox 
-                            turns the none value false and not true will fix later Need to update 
-                            other days as well to match friday*/}
                             <input
                                 type="checkbox"
+                                style={{marginLeft: '10px'}}
                                 id="fridayNone"
                                 checked={!fridayHour && !fridayHour2 && !fridayPeriod}
                                 onChange={(e) => {
@@ -638,11 +626,9 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
                             </select>
-                            {/* For some reason clicking a value and then re clicking the checkbox 
-                            turns the none value false and not true will fix later Need to update 
-                            other days as well to match saturday*/}
                             <input
                                 type="checkbox"
+                                style={{marginLeft: '10px'}}
                                 id="saturdayNone"
                                 checked={!saturdayHour && !saturdayHour2 && !saturdayPeriod}
                                 onChange={(e) => {
@@ -704,11 +690,9 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
                             </select>
-                            {/* For some reason clicking a value and then re clicking the checkbox 
-                            turns the none value false and not true will fix later Need to update 
-                            other days as well to match sunday*/}
                             <input
                                 type="checkbox"
+                                style={{marginLeft: '10px'}}
                                 id="sundayNone"
                                 checked={!sundayHour && !sundayHour2 && !sundayPeriod}
                                 onChange={(e) => {
@@ -729,36 +713,32 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                 </div>
             </div>
 
-            <button type="submit" className="register-btn">
+            <button type="submit" className="signup-btn" style={{marginTop:"15px"}}>
             Register
             </button>
         </form>
 
         <div className='switch-btns'>
-            <div className='return'>
-            <p>Already have an account?</p>
+        <div className='return'>
+          <p>Already have an account?</p>
 
-            <Link to="/Login">
-                <button type='submit' className='return-btn'>
-                    <span className="switch-link" onClick={switchToLogin}>
-                        Return
-                    </span>
-                </button>
-            </Link>
-            </div>
-
-            <div className='signup'>
-                <p>Want to sign up as a client?</p>
-
-                <Link to="/SignUp">
-                    <button type='submit' className='return-btn'>
-                        <span className="switch-link" onClick={switchToLogin}>
-                            Client Sign Up
-                        </span>
-                    </button>
-                </Link>
-            </div>
+          <Link to="/Login">
+            <button type='submit' className='signup-btn'>
+                    Return
+            </button>
+          </Link>
         </div>
+
+        <div className='signup2'>
+          <p>Want to sign up as a Client?</p>
+
+          <Link to="/SignUp">
+            <button type='submit' className='signup-btn'>
+                Client Sign Up
+            </button>
+          </Link>
+        </div>
+      </div>
 
         </div>
     );

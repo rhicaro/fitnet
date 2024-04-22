@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios'; // corrected import statement
-import '../styles/LoginComponent.css';
+import '../stylesV2/LoginComponent.css';
 
 const LoginComponent = ({ updateAccountInfo }) => {
   const [username, setUsername] = useState('');
@@ -33,26 +33,26 @@ const LoginComponent = ({ updateAccountInfo }) => {
     <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
-        <div className="username_input">
-          <label htmlFor="username">Username:</label>
+        <div className="login-input">
+          <label className='login-label'>Username:</label>
           <input
             type="text"
-            className="username"
+            className="username-input"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-        </div>
-
-        <div className="password_input">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            className="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+        
+          <div className="password_input">
+            <label className='password-label'>Password:</label>
+            <input
+              type="password"
+              className="password-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
         </div>
 
         <div className='btns'>

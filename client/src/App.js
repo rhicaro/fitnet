@@ -8,16 +8,21 @@ import {
     Navigate,
 } from "react-router-dom";
 
-import Home from './pages/Home.js';
-import AccountScreen from './pages/AccountScreen.js';
-import Calendar from './pages/Calendar.js';
-// import Message from './pages/Message.js';
-// import Preferences from './pages/Preference.js';
-import About from './pages/About.js';
-// import Settings from './pages/Settings.js';
-import Login from './pages/Login.js';
-import SignUp from './pages/SignUp.js';
-import SignUp2 from './pages/SignUp2.js';
+// import Home from './pages/Home.js';
+// import AccountScreen from './pages/AccountScreen.js';
+// import Calendar from './pages/Calendar.js';
+// import About from './pages/About.js';
+// import Login from './pages/Login.js';
+// import SignUp from './pages/SignUp.js';
+// import SignUp2 from './pages/SignUp2.js';
+
+import Home2 from './pagesV2/Home2';
+import AccountScreen2 from './pagesV2/AccountScreen2';
+import Calendar2 from './pagesV2/Calendar2';
+import About2 from './pagesV2/About2';
+import Login2 from './pagesV2/Login2';
+import SignUpV2 from './pagesV2/SignUpV2';
+import SignUp2V2 from './pagesV2/SignUp2V2';
 
 function App(){
     //Need to refactor code to exclude currentAccount
@@ -46,7 +51,7 @@ function App(){
         <div className="fitnet">
             <Router>
                 <Routes>
-                    <Route
+                    {/* <Route
                         exact
                         path="/"
                         element={<Home 
@@ -85,7 +90,7 @@ function App(){
                         element={<Message />}
                     /> */}
 
-                    <Route 
+                    {/* <Route 
                         exact
                         path="/About"
                         element={<About 
@@ -97,16 +102,10 @@ function App(){
                         />}
                     />
 
-                    {/* <Route 
-                        exact
-                        path="/Settings"
-                        element={<Settings />}
-                    /> */}
-
                     <Route 
                         exact
                         path="/Login"
-                        element = {<Login updateAccountInfo={updateAccountInfo}/>}
+                        element = {<Login2 updateAccountInfo={updateAccountInfo}/>}
                     />
 
                     <Route
@@ -119,6 +118,87 @@ function App(){
                         exact
                         path="/SignUp2"
                         element={<SignUp2 updateAccountInfo={updateAccountInfo}/>}
+                    /> */}
+
+                    <Route
+                        exact
+                        path="/"
+                        element={<Home2 
+                        updateAccountInfo={updateAccountInfo} 
+                        accountPresent={accountPresent} 
+                        accountFirstName={accountFirstName} 
+                        accountLastName={accountLastName} 
+                        accountType={accountType}/>}
+                    />
+
+                    <Route 
+                        path="/AccountScreen/:first_name/:last_name" 
+                        element={<AccountScreen2 
+                        updateAccountInfo={updateAccountInfo} 
+                        accountPresent={accountPresent} 
+                        accountFirstName={accountFirstName} 
+                        accountLastName={accountLastName} 
+                        accountType={accountType}/>} 
+                        accounts={userDemographics}
+                    />
+
+                    <Route 
+                        exact
+                        path="/Calendar"
+                        element={<Calendar2 
+                            updateAccountInfo={updateAccountInfo} 
+                            accountPresent={accountPresent} 
+                            accountFirstName={accountFirstName} 
+                            accountLastName={accountLastName} 
+                            accountType={accountType}/>}
+                    />
+
+                    <Route 
+                        exact
+                        path="/About"
+                        element={<About2 
+                            updateAccountInfo={updateAccountInfo} 
+                            accountPresent={accountPresent} 
+                            accountFirstName={accountFirstName} 
+                            accountLastName={accountLastName} 
+                            accountType={accountType}
+                        />}
+                    />
+
+                    <Route 
+                        exact
+                        path="/Login"
+                        element = {<Login2
+                            updateAccountInfo={updateAccountInfo}
+                            accountPresent={accountPresent} 
+                            accountFirstName={accountFirstName} 
+                            accountLastName={accountLastName} 
+                            accountType={accountType}
+                        />}
+                    />
+
+                    <Route
+                        exact
+                        path="/SignUp"
+                        element={<SignUpV2 
+                            updateAccountInfo={updateAccountInfo}
+                            accountPresent={accountPresent} 
+                            accountFirstName={accountFirstName} 
+                            accountLastName={accountLastName} 
+                            accountType={accountType}
+                        />}
+                    />
+
+                    <Route 
+                        exact
+                        path="/SignUp2"
+                        element={<SignUp2V2 
+                            updateAccountInfo={updateAccountInfo}
+                            accountPresent={accountPresent} 
+                            accountFirstName={accountFirstName} 
+                            accountLastName={accountLastName} 
+                            accountType={accountType}
+                        />}
                     />
 
                     <Route

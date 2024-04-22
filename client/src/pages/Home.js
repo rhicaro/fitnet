@@ -4,9 +4,8 @@ import { Link, link } from 'react-router-dom';
 import LinkColumn from '../template/LinkColumn';
 import axios from 'axios';
 import HomeFeed2 from '../components/HomeFeed2';
-import userpfp from '../assets/unknown.png'
+import userpfp from '../assets/unknown.png';
 
-// import Modal from 'react-modal';
 import { Button } from 'react-bootstrap';
 
 function Home({updateAccountInfo, accountPresent, accountFirstName, accountLastName, accountType }) {
@@ -43,6 +42,7 @@ function Home({updateAccountInfo, accountPresent, accountFirstName, accountLastN
         <div className='fitnet'>
             <div className='header'>
                 <Link to="/" className='header_title'>FitNet</Link>
+                {/* Need to transfer over this  */}
                 <div className="options-container" style={{ position: 'relative' }}>
                     {accountPresent ? (
                         <button className='options-btn' onClick={handlePopupClick}> More Options </button>
@@ -67,6 +67,7 @@ function Home({updateAccountInfo, accountPresent, accountFirstName, accountLastN
                         </div>
                     )}
                 </div>
+                {/* End of first thing that I need to transfer */}
             </div>
 
             <div className='content'>

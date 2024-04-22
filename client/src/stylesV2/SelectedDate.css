@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  background: rgb(233, 233, 233);
+  font-family: "Poppins", sans-serif;
+}
+
+.appointment-body {
+  border-radius: 10px; /* Add border radius */
+  background: #fff; /* Set background color */
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  margin-top: 10px;
+  padding-bottom: 40px;
+}
+
+.appointment-body h3 {
+  padding-top: 10px;
+}
+
+/* Selected Date Container */
+.selected-date-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+/* Appointment Body */
+.selected-date-container .appointment-body {
+  width: 100%;
+  height: 100%;
+}
+
+/* Appointment Input */
+.appointment-input {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  float: left;
+  padding: 5.5% 2%;
+}
+
+.appointment-input input {
+  width: 300px;
+  height: 35px;
+  margin-bottom: 15px;
+  margin-left: 20px;
+  background-color: rgb(233, 233, 233);
+  border-radius: 10px;
+}
+
+/* Add Button */
+.add-button {
+  margin-left: 100px;
+  padding: 10px;
+  background-color: rgb(82, 22, 138); /* Match theme color */
+  color: white; /* Match theme color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.5s ease; 
+}
+
+.add-button:hover {
+  background-color: rgb(101, 33, 167);
+}
+
+/* Appointment List */
+
+.appointment-list {
+  max-width: 100%;
+  max-height: 225px;
+  overflow-y: auto;
+  padding-top: 10px;
+}
+
+.appointment-card {
+  width: 90%;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  background: #fff;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  border: 2px solid rgb(190, 190, 190);
+}
+
+/* Delete Button */
+.delete-button {
+  margin-right: 5px;
+  cursor: pointer;
+  display: inline-block; 
+  padding: 5px 10px; 
+  background-color: rgb(82, 22, 138); 
+  color: #fff; 
+  font-size: 12px; 
+  text-decoration: none; 
+  border: none; 
+  border-radius: 5px; 
+  transition: background-color 0.5s ease; 
+}
+
+.delete-button:hover {
+  background-color: rgb(101, 33, 167);
+}

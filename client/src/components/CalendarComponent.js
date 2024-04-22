@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
-import "../styles/CalendarComponent.css";
+import "../stylesV2/CalendarComponent.css";
 
 //This is a component for the React Calendar
 
@@ -19,7 +19,10 @@ function CalendarComponent({ onDateChange }) {
       </div>
 
       <div className='calendar-container'>
-        <Calendar onChange={handleDateChange} value={date} />
+        <Calendar 
+          onChange={handleDateChange} 
+          value={date} 
+        />
       </div>
 
       <div className='calendar-footer'>

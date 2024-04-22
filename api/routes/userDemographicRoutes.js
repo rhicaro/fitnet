@@ -162,7 +162,7 @@ router.get('/api/userschedule', (req, res) => {
   });
 });
 
-//Suppose to get all schedules that are linked to the stationed account first and last name
+//Suppose to get all schedules that are linked to the stationed account first and last name from app.js
 router.get('/api/userschedule/:user_first/:user_last', (req, res) => {
   const { user_first, user_last } = req.params;
 
@@ -182,6 +182,11 @@ router.get('/api/userschedule/:user_first/:user_last', (req, res) => {
       }
   });
 });
+
+//Router to add in another appointment to the database
+router.post('/api/userschedule/create/:user_first/:user_last', (req, res) =>{
+
+})
 
 
 module.exports = router;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
-import '../styles/SignUpComponent.css';
+import '../stylesV2/SignUpComponent.css';
 
 const SignUpComponent = ({ switchToLogin, updateAccountInfo }) => {
   const [firstName, setFirstName] = useState('');
@@ -114,11 +114,11 @@ const SignUpComponent = ({ switchToLogin, updateAccountInfo }) => {
       <h2>Client Sign Up</h2>
       <form onSubmit={handleRegister}>
         <div className='inputs'>
-        <div className="input-group">
+          <div className="input-group">
             <label htmlFor="firstName">First Name:</label>
             <input
               type="text"
-              id="firstName"
+              class="signup-input"
               value={firstName}
               onChange={handleFirstNameChange}
               required
@@ -128,7 +128,7 @@ const SignUpComponent = ({ switchToLogin, updateAccountInfo }) => {
             <label htmlFor="lastName">Last Name:</label>
             <input
               type="text"
-              id="lastName"
+              class="signup-input"
               value={lastName}
               onChange={handleLastNameChange}
               required
@@ -138,7 +138,7 @@ const SignUpComponent = ({ switchToLogin, updateAccountInfo }) => {
             <label htmlFor="username">Username:</label>
             <input
               type="text"
-              id="username"
+              class="signup-input"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -148,7 +148,7 @@ const SignUpComponent = ({ switchToLogin, updateAccountInfo }) => {
             <label htmlFor="password">Password:</label>
             <input
               type="password"
-              id="password"
+              class="signup-input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -159,10 +159,10 @@ const SignUpComponent = ({ switchToLogin, updateAccountInfo }) => {
             <label htmlFor="email">Email:</label>
             <input
               type="email"
-              id="email"
+              class="signup-input"
               value={email}
               onChange={handleEmailChange}
-              placeholder='example@gmail.com'
+              placeholder='  example@gmail.com'
               pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
               required
             />
@@ -172,7 +172,7 @@ const SignUpComponent = ({ switchToLogin, updateAccountInfo }) => {
             <label htmlFor="phoneNumber">Phone Number:</label>
             <input
               type="tel"
-              id="phoneNumber"
+              class="signup-input"
               value={phoneNumber}
               onChange={handlePhoneNumberChange}
               required
@@ -182,10 +182,10 @@ const SignUpComponent = ({ switchToLogin, updateAccountInfo }) => {
             <label htmlFor="activity">Main Activity:</label>
             <input
               type="activity"
-              id="mainActivity"
+              class="signup-input"
               value={mainActivity}
               onChange={handleMainActivityChange}
-              placeholder="Basketball"
+              placeholder="  Basketball"
               required
             />
           </div>
@@ -202,16 +202,16 @@ const SignUpComponent = ({ switchToLogin, updateAccountInfo }) => {
             <label htmlFor="location">Location:</label>
             <input
               type="location"
-              id="location"
+              class="signup-input"
               value={location}
               onChange={handleLocationChange}
-              placeholder="City, State"
+              placeholder="  City, State"
               required
             />
           </div>
         </div>
 
-        <button type="submit" className="register-btn">
+        <button type="submit" style={{marginTop:"15px"}}className="signup-btn">
           Register
         </button>
       </form>
@@ -221,10 +221,8 @@ const SignUpComponent = ({ switchToLogin, updateAccountInfo }) => {
           <p>Already have an account?</p>
 
           <Link to="/Login">
-            <button type='submit' className='return-btn'>
-                <span className="switch-link" onClick={switchToLogin}>
+            <button type='submit' className='signup-btn'>
                     Return
-                </span>
             </button>
           </Link>
         </div>
@@ -233,10 +231,8 @@ const SignUpComponent = ({ switchToLogin, updateAccountInfo }) => {
           <p>Want to sign up as a Trainer?</p>
 
           <Link to="/SignUp2">
-            <button type='submit' className='return-btn'>
-              <span className='switch-link'>
+            <button type='submit' className='signup-btn'>
                 Trainer Sign Up
-              </span>
             </button>
           </Link>
         </div>

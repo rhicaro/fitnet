@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
+import "../stylesV2/DaySchedule.css";
 
 const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
     const [mondayHour, setMondayHour] = useState('');
@@ -61,9 +62,9 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
     }
 
     return (
-        <div>
-            <div className="input-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <label htmlFor="monday">Monday:</label>
+        <div className='schedule-form'>
+            <div className="input-group2">
+                <label htmlFor="monday">Monday</label>
                 <div className="time-select">
                     <select
                         id="mondayHour"
@@ -108,6 +109,7 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
                     
                     <input
                         type="checkbox"
+                        style={{marginLeft: "10px"}}
                         id="mondayNone"
                         checked={!mondayHour && !mondayHour2 && !mondayPeriod}
                         onChange={(e) => {
@@ -127,8 +129,8 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
             </div>
 
 
-            <div className="input-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <label htmlFor="tuesday">Tuesday:</label>
+            <div className="input-group2">
+                <label htmlFor="tuesday">Tuesday</label>
                 <div className="time-select">
                     <select
                         id="tuesdayHour"
@@ -173,6 +175,7 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
 
                     <input
                         type="checkbox"
+                        style={{marginLeft: "10px"}}
                         id="tuesdayNone"
                         checked={!tuesdayHour && !tuesdayHour2 && !tuesdayPeriod}
                         onChange={(e) => {
@@ -191,8 +194,8 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
                 </div>
             </div>
 
-            <div className="input-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <label htmlFor="wednesday">Wednesday:</label>
+            <div className="input-group2">
+                <label htmlFor="wednesday">Wednesday</label>
                 <div className="time-select">
                     <select
                         id="wednesdayHour"
@@ -237,6 +240,7 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
 
                     <input
                         type="checkbox"
+                        style={{marginLeft: "10px"}}
                         id="wednesdayNone"
                         checked={!wednesdayHour && !wednesdayHour2 && !wednesdayPeriod}
                         onChange={(e) => {
@@ -255,8 +259,8 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
                 </div>
             </div>
 
-            <div className="input-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <label htmlFor="thursday">Thursday:</label>
+            <div className="input-group2">
+                <label htmlFor="thursday">Thursday</label>
                 <div className="time-select">
                     <select
                         id="thursdayHour"
@@ -301,6 +305,7 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
 
                     <input
                         type="checkbox"
+                        style={{marginLeft: "10px"}}
                         id="thursdayNone"
                         checked={!thursdayHour && !thursdayHour2 && !thursdayPeriod}
                         onChange={(e) => {
@@ -319,8 +324,8 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
                 </div>
             </div>
 
-            <div className="input-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <label htmlFor="friday">Friday:</label>
+            <div className="input-group2">
+                <label htmlFor="friday">Friday</label>
                 <div className="time-select">
                     <select
                         id="fridayHour"
@@ -365,6 +370,7 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
 
                     <input
                         type="checkbox"
+                        style={{marginLeft: "10px"}}
                         id="fridayNone"
                         checked={!fridayHour && !fridayHour2 && !fridayPeriod}
                         onChange={(e) => {
@@ -383,8 +389,8 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
                 </div>
             </div>
 
-            <div className="input-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <label htmlFor="saturday">Saturday:</label>
+            <div className="input-group2">
+                <label htmlFor="saturday">Saturday</label>
                 <div className="time-select">
                     <select
                         id="saturdayHour"
@@ -429,6 +435,7 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
 
                     <input
                         type="checkbox"
+                        style={{marginLeft: "10px"}}
                         id="saturdayNone"
                         checked={!saturdayHour && !saturdayHour2 && !saturdayPeriod}
                         onChange={(e) => {
@@ -447,8 +454,8 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
                 </div>
             </div>
 
-            <div className="input-group" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <label htmlFor="sunday">Sunday:</label>
+            <div className="input-group2">
+                <label htmlFor="sunday">Sunday</label>
                 <div className="time-select">
                     <select
                         id="sundayHour"
@@ -493,6 +500,7 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
 
                     <input
                         type="checkbox"
+                        style={{marginLeft: "10px"}}
                         id="sundayNone"
                         checked={!sundayHour && !sundayHour2 && !sundayPeriod}
                         onChange={(e) => {
@@ -510,7 +518,9 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
                     <label htmlFor="sundayNone">None</label>
                 </div>
             </div>
-            <Button onClick={handleScheduleEdit}>
+            <Button 
+                style={{marginTop: "10px"}}
+                onClick={handleScheduleEdit}>
                 Submit
             </Button>
         </div>

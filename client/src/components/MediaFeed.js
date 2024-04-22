@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import '../styles/MediaFeed.css';
+import '../stylesV2/MediaFeed.css';
 
 function MediaFeed({accountPresent, viewedAccountFirstName, viewedAccountLastName, accountType, accountFirstName, accountLastName}) {
   const [mediaList, setMediaList] = useState([]);
@@ -59,11 +59,11 @@ function MediaFeed({accountPresent, viewedAccountFirstName, viewedAccountLastNam
               accept=".jpg, .jpeg, .png, .gif, .mp4"
               onChange={handleFileUpload}
             />
-            <button className='add-btn' onClick={handleAddMedia}>
+            <button className='media-btn' onClick={handleAddMedia}>
               Add
             </button>
 
-            <button className='delete-btn' onClick={handleRemoveMedia}>
+            <button className='media-btn' onClick={handleRemoveMedia}>
               Delete
             </button>
           </>
@@ -79,14 +79,16 @@ function MediaFeed({accountPresent, viewedAccountFirstName, viewedAccountLastNam
           >
             {media.type.startsWith('image') ? (
               <img
+                className='media-object'
                 src={media.url}
                 alt={`Media ${index}`}
-                style={{ width: '420px', height: '210px' }}
+                style={{ width: '400px', height: '250px' }}
               />
             ) : (
               <video
+                className='media-object'
                 controls
-                style={{ maxWidth: '420px', maxHeight: '210px' }}
+                style={{ maxWidth: '400px', maxHeight: '250px' }}
               >
                 <source src={media.url} type={media.type} />
                 Your browser does not support the video tag.

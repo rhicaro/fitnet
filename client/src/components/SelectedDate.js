@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios"; // Import Axios for making HTTP requests
-import "../styles/SelectedDate.css";
+import "../stylesV2/SelectedDate.css";
 
 function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, accountPresent, accountFirstName, accountLastName, accountType }) {
   const [appointments, setAppointments] = useState([]);
@@ -43,21 +43,28 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
         <div className="appointment-input">
           <input
             type="text"
-            placeholder="Enter appointment"
+            placeholder="  Enter appointment information"
             value={appointment}
             onChange={(e) => setAppointment(e.target.value)}
           />
-          {/* Add in two more input fields for the name of the traineruser wants to make an appointment with */}
+          <input
+            type="text"
+            placeholder="  Trainer's First Name"
+          />
+          <input
+            type="text"
+            placeholder="  Trainer's Last Name"
+          />
           <button onClick={handleAddAppointment} className="add-button">
             Add Appointment
           </button>
         </div>
 
+        <h3>Appointments:</h3>
         <div className="appointment-list">
-          <h3>Appointments:</h3>
           <ul>
             {appointments.map((appointment, index) => (
-              <li key={index}>
+              <li key={index} className="appointment-card"> {/* Add the job_card class */}
                 <button
                   onClick={() => handleDeleteAppointment(index)}
                   className="delete-button"

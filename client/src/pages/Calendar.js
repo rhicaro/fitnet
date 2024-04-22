@@ -40,6 +40,8 @@ function Calendar({updateAccountInfo, accountPresent, accountFirstName, accountL
     <div className='fitnet'>
       <div className='header'>
                 <Link to="/" className='header_title'>FitNet</Link>
+
+                {/* Need to remember that this if for checking if an Account is logged in already or not */}
                 <div className="options-container" style={{ position: 'relative' }}>
                     {accountPresent ? (
                         <button className='options-btn' onClick={handlePopupClick}> More Options </button>
@@ -64,6 +66,8 @@ function Calendar({updateAccountInfo, accountPresent, accountFirstName, accountL
                         </div>
                     )}
                 </div>
+                    {/* End of Login / Logout check */}
+
             </div>
 
       <div className='content'>

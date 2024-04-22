@@ -194,6 +194,8 @@ function AccountScreen({updateAccountInfo, accountPresent, accountFirstName, acc
     
                 <div className='main'>
                     <div className='account_head'>
+                        
+                    {/* What I want to transfer over */}
                     <Button className={'edit-btn'} onClick={handleEditBtnClick} style={{ display: accountFirstName === viewedFirst && accountLastName === viewedLast ? 'block' : 'none' }}>
                         Edit Information
                     </Button>
@@ -276,6 +278,7 @@ function AccountScreen({updateAccountInfo, accountPresent, accountFirstName, acc
                             )}
                         </div>
                     )}
+                        {/* End of account editing that I want to transfer */}
 
                     {/* Render the user image */}
                     {userAccountInfo && (

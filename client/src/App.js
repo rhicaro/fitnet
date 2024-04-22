@@ -8,14 +8,6 @@ import {
     Navigate,
 } from "react-router-dom";
 
-// import Home from './pages/Home.js';
-// import AccountScreen from './pages/AccountScreen.js';
-// import Calendar from './pages/Calendar.js';
-// import About from './pages/About.js';
-// import Login from './pages/Login.js';
-// import SignUp from './pages/SignUp.js';
-// import SignUp2 from './pages/SignUp2.js';
-
 import Home2 from './pagesV2/Home2';
 import AccountScreen2 from './pagesV2/AccountScreen2';
 import Calendar2 from './pagesV2/Calendar2';
@@ -51,75 +43,6 @@ function App(){
         <div className="fitnet">
             <Router>
                 <Routes>
-                    {/* <Route
-                        exact
-                        path="/"
-                        element={<Home 
-                        updateAccountInfo={updateAccountInfo} 
-                        accountPresent={accountPresent} 
-                        accountFirstName={accountFirstName} 
-                        accountLastName={accountLastName} 
-                        accountType={accountType}/>}
-                    />
-
-                    <Route 
-                        path="/AccountScreen/:first_name/:last_name" 
-                        element={<AccountScreen 
-                            updateAccountInfo={updateAccountInfo} 
-                            accountPresent={accountPresent} 
-                            accountFirstName={accountFirstName} 
-                            accountLastName={accountLastName} 
-                            accountType={accountType}/>} 
-                            accounts={userDemographics}
-                    />
-
-                    <Route 
-                        exact
-                        path="/Calendar"
-                        element={<Calendar 
-                            updateAccountInfo={updateAccountInfo} 
-                            accountPresent={accountPresent} 
-                            accountFirstName={accountFirstName} 
-                            accountLastName={accountLastName} 
-                            accountType={accountType}/>}
-                    />
-                    {/* idk if I will keep might be too much */}
-                    {/* <Route 
-                        exact
-                        path="/Messages"
-                        element={<Message />}
-                    /> */}
-
-                    {/* <Route 
-                        exact
-                        path="/About"
-                        element={<About 
-                            updateAccountInfo={updateAccountInfo} 
-                            accountPresent={accountPresent} 
-                            accountFirstName={accountFirstName} 
-                            accountLastName={accountLastName} 
-                            accountType={accountType}
-                        />}
-                    />
-
-                    <Route 
-                        exact
-                        path="/Login"
-                        element = {<Login2 updateAccountInfo={updateAccountInfo}/>}
-                    />
-
-                    <Route
-                        exact
-                        path="/SignUp"
-                        element={<SignUp updateAccountInfo={updateAccountInfo}/>}
-                    />
-
-                    <Route 
-                        exact
-                        path="/SignUp2"
-                        element={<SignUp2 updateAccountInfo={updateAccountInfo}/>}
-                    /> */}
-
                     <Route
                         exact
                         path="/"

@@ -86,7 +86,6 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
     };
 
     const handleScheduleEdit = () => {
-        setLoading(true);
         axios.put(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`, {
             editType: 'schedule',
             updatedData: {

@@ -23,24 +23,23 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
     const [activityValue, setActivityValue] = useState('');
     const [biographyValue, setBiographyValue] = useState('');
 
-    const [scheduleData, setScheduleData] = useState(null);
+    const [scheduleResponseData, setScheduleResponseData] = useState();
 
     const { first_name, last_name } = useParams();
 
     useEffect(() => {
         axios.get(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`)
         .then(response => {
-            console.log("Response Data:", response.data);
             setUserAccountInfo(response.data[0]);
             setViewedFirst(response.data[0].first_name);
             setViewedLast(response.data[0].last_name);
 
-            // To show edit values
             setRateValue(response.data[0].user_price);
             setLocationValue(response.data[0].user_location);
             setActivityValue(response.data[0].user_activity);
             setBiographyValue(response.data[0].user_bio);
-            setScheduleData(response.data[0]);
+
+            setScheduleResponseData(response.data[0]);
         })
         .catch(error => {
             console.error('Error fetching user account:', error);
@@ -301,7 +300,6 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                                                             handleScheduleChange={handleScheduleChange}
                                                             first_name={first_name}
                                                             last_name={last_name}
-                                                            scheduleData={scheduleData}
                                                         />
                                                     </div>
                                                 )}

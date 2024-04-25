@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import "../stylesV2/DaySchedule.css";
 
-const DaySchedule = ({handleScheduleChange, first_name, last_name, scheduleData}) => {
+const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
     const [mondayHour, setMondayHour] = useState('');
     const [mondayHour2, setMondayHour2] = useState('');
     const [mondayPeriod, setMondayPeriod] = useState('');
@@ -35,14 +35,58 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name, scheduleData}
     useEffect(() => {
         axios.get(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`)
         .then(response => {
-            console.log("Response Data from component:", response.data);
+            setMondayHour(parseHour(response.data[0].monday));
+            setMondayHour2(parseHour(response.data[0].monday, 2));
+            setMondayPeriod(parsePeriod(response.data[0].monday));
+
+            setTuesdayHour(parseHour(response.data[0].tuesday));
+            setTuesdayHour2(parseHour(response.data[0].tuesday, 2));
+            setTuesdayPeriod(parsePeriod(response.data[0].tuesday));
+
+            setWednesdayHour(parseHour(response.data[0].wednesday));
+            setWednesdayHour2(parseHour(response.data[0].wednesday, 2));
+            setWednesdayPeriod(parsePeriod(response.data[0].wednesday));
+            
+            setThursdayHour(parseHour(response.data[0].thursday));
+            setThursdayHour2(parseHour(response.data[0].thursday, 2));
+            setThursdayPeriod(parsePeriod(response.data[0].thursday));
+            
+            setFridayHour(parseHour(response.data[0].friday));
+            setFridayHour2(parseHour(response.data[0].friday, 2));
+            setFridayPeriod(parsePeriod(response.data[0].friday));
+            
+            setSaturdayHour(parseHour(response.data[0].saturday));
+            setSaturdayHour2(parseHour(response.data[0].saturday, 2));
+            setSaturdayPeriod(parsePeriod(response.data[0].saturday));
+            
+            setSundayHour(parseHour(response.data[0].sunday));
+            setSundayHour2(parseHour(response.data[0].sunday, 2));
+            setSundayPeriod(parsePeriod(response.data[0].sunday));
         })
         .catch(error => {
             console.error('Error fetching user account:', error);
         });
     }, [first_name, last_name]);
 
+    const parseHour = (timeStr, part) => {
+        if (timeStr === "None") {
+            return '';
+        }
+        const [start, end] = timeStr.split(" - ");
+        const time = part === 2 ? end : start;
+        return time.split(":")[0];
+    };
+
+    const parsePeriod = (timeStr) => {
+        if (timeStr === "None") {
+            return '';
+        }
+        const [start, end] = timeStr.split(" - ");
+        return end.split(" ")[1];
+    };
+
     const handleScheduleEdit = () => {
+        setLoading(true);
         axios.put(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`, {
             editType: 'schedule',
             updatedData: {
@@ -59,7 +103,7 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name, scheduleData}
             console.log("Schedule updated successfully");
             axios.get(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`)
                 .then(response => {
-                    console.log("Updated user information:", response.data);
+                    console.log("Updated Schedule Successfully");
                     handleScheduleChange(response.data[0]);
                 })
                 .catch(error => {

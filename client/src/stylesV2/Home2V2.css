@@ -4,15 +4,27 @@
     max-height: 750px;
 }
 
+/* Keyframe animation for expanding from top to bottom */
+@keyframes expandFromTop {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /* Right column feed */
 .main-body-feed-selected {
-    width: 45%; /* Take up 45% of the width */
-    float: left; /* Float left for positioning */
-    border-radius: 10px; /* Add border radius */
-    background: #fff; /* Set background color */
-    margin-left: 25px; /* Add margin bottom */
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1); /* Add box shadow */
+    width: 45%;
+    float: left;
+    border-radius: 10px;
+    background: #fff;
+    margin-left: 25px;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
+    animation: expandFromTop 2.5s ease forwards;
 }
   
   /* Styling for the selected feed contents */

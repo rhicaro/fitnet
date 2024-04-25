@@ -3,7 +3,7 @@ import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import '../stylesV2/SignUpComponent.css';
 
-const SignUpComponent = ({ switchToLogin, updateAccountInfo }) => {
+const SignUpComponent = ({updateAccountInfo }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');

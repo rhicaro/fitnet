@@ -71,6 +71,14 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
         setShowRatePopup(prevState => !prevState);
         setShowInfoPopup(false);
         setShowSchedulePopup(false);
+
+        axios.get(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`)
+        .then(response => {
+            setRateValue(response.data[0].user_price);
+        })
+        .catch(error => {
+            console.error('Error fetching user account:', error);
+        });
     }
 
     const handleScheduleBtnClick = () => {
@@ -83,6 +91,16 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
         setShowInfoPopup(prevState => !prevState);
         setShowRatePopup(false);
         setShowSchedulePopup(false);
+
+        axios.get(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`)
+        .then(response => {
+            setLocationValue(response.data[0].user_location);
+            setActivityValue(response.data[0].user_activity);
+            setBiographyValue(response.data[0].user_bio);        
+        })
+        .catch(error => {
+            console.error('Error fetching user account:', error);
+        });
     }
 
     const handleRateChange = (e) => {
@@ -170,12 +188,12 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
 
     return (
         <span style={{fontfamily: 'verdana, geneva, sans-serif'}}>
-            <html lang="en">
-                <head>
+            {/* <html lang="en">
+                <head> */}
                     {/* Need to keep for the icons */}
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-                </head>
-                <body>
+                {/* </head> */}
+                <div className="body">
                     <div className="container">
                         <nav className="nav2">
                             <div className="navbar">
@@ -332,6 +350,7 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                                                             <textarea
                                                                 id='biography'
                                                                 value={biographyValue}
+                                                                maxLength={185}
                                                                 onChange={handleBiographyChange}
                                                                 placeholder='  Background information'
                                                                 required
@@ -404,8 +423,8 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                             </div>
                         </section>
                     </div>
-                </body>
-            </html>
+                </div>
+            {/* </html> */}
         </span>
         )
 }

@@ -177,6 +177,7 @@
 .main-body-account-info ul li {
     margin-bottom: 5px;
     padding-bottom: 10px;
+    color: black;
 }
 
 .main-body-account-bio {
@@ -184,7 +185,7 @@
     background: #fff; /* Set background color */
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1); /* Add box shadow */
     text-align: center;
-    padding-bottom: 10px;
+    padding: 0 10px 10px 10px;
 }
 
 .main-body-account-bio h1 {
@@ -217,6 +218,7 @@
 }
 
 .main-body-account-days ul li {
+    color: black;
     /* margin-bottom: 5px; */
     padding-bottom: 5px;
 }

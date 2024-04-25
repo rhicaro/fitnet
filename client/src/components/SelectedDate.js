@@ -21,7 +21,9 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
 
   const handleAddAppointment = () => {
     if (selectedDate && appointment.trim() !== "") {
+                                // user_date                  user_notes
       const newAppointment = `${selectedDate.toDateString()}: ${appointment}`;
+      console.log(newAppointment);
       onAddAppointment(selectedDate, newAppointment);
       setAppointments([...appointments, { user_date: selectedDate.toDateString(), user_notes: appointment }]);
       setAppointment("");

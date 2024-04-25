@@ -58,42 +58,32 @@ function Home2({updateAccountInfo, accountPresent, accountFirstName, accountLast
                             <ul>
                                 <Link to='/'>
                                     <li>
-                                        <a href="#">
                                             <i class="fas fa-home"></i>
                                             <span class="nav-item">Home</span>
-                                        </a>
                                     </li>
                                 </Link>
                                 <Link to='/Calendar'>
                                     <li>
-                                        <a href="#">
                                             <i class="fas fa-calendar"></i>
                                             <span class="nav-item">Calendar</span>
-                                        </a>
                                     </li>
                                 </Link>
                                 <Link to='/About'>
                                     <li>
-                                        <a href="#">
                                             <i class="fas fa-info-circle"></i>
                                             <span class="nav-item">About</span>
-                                        </a>
                                     </li>
                                 </Link>
                                     <Link to='/Login'>
                                     <li>
-                                        <a href="#">
                                             <i class="fas fa-sign-in-alt"></i>
                                             <span class="nav-item">Login</span>
-                                        </a>
                                     </li>
                                 </Link>
                                 <Link to='/Signup'>
                                     <li>
-                                        <a href="#">
                                             <i class="fas fa-share"></i>
                                             <span class="nav-item">Register</span>
-                                        </a>
                                     </li>
                                 </Link>
 

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import "../stylesV2/DaySchedule.css";
 
-const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
+const DaySchedule = ({handleScheduleChange, first_name, last_name, scheduleData}) => {
     const [mondayHour, setMondayHour] = useState('');
     const [mondayHour2, setMondayHour2] = useState('');
     const [mondayPeriod, setMondayPeriod] = useState('');
@@ -31,6 +31,16 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
     const [sundayHour, setSundayHour] = useState('');
     const [sundayHour2, setSundayHour2] = useState('');
     const [sundayPeriod, setSundayPeriod] = useState('');
+
+    useEffect(() => {
+        axios.get(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`)
+        .then(response => {
+            console.log("Response Data from component:", response.data);
+        })
+        .catch(error => {
+            console.error('Error fetching user account:', error);
+        });
+    }, [first_name, last_name]);
 
     const handleScheduleEdit = () => {
         axios.put(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`, {

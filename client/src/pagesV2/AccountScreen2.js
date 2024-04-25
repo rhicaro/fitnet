@@ -23,6 +23,8 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
     const [activityValue, setActivityValue] = useState('');
     const [biographyValue, setBiographyValue] = useState('');
 
+    const [scheduleData, setScheduleData] = useState(null);
+
     const { first_name, last_name } = useParams();
 
     useEffect(() => {
@@ -32,6 +34,13 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
             setUserAccountInfo(response.data[0]);
             setViewedFirst(response.data[0].first_name);
             setViewedLast(response.data[0].last_name);
+
+            // To show edit values
+            setRateValue(response.data[0].user_price);
+            setLocationValue(response.data[0].user_location);
+            setActivityValue(response.data[0].user_activity);
+            setBiographyValue(response.data[0].user_bio);
+            setScheduleData(response.data[0]);
         })
         .catch(error => {
             console.error('Error fetching user account:', error);
@@ -168,10 +177,10 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
                 </head>
                 <body>
-                    <div class="container">
+                    <div className="container">
                         <nav className="nav2">
-                            <div class="navbar">
-                                <div class="logo">
+                            <div className="navbar">
+                                <div className="logo">
                                     {/* Change to FitNetLogo */}
                                 {/* <img src="/pic/logo.jpg" alt=""> */}
                                     <h1>Account</h1>
@@ -179,48 +188,38 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                                 <ul>
                                     <Link to='/'>
                                         <li>
-                                            <a href="#">
-                                                <i class="fas fa-home"></i>
-                                                <span class="nav-item">Home</span>
-                                            </a>
+                                            <i className="fas fa-home"></i>
+                                            <span className="nav-item">Home</span>
                                         </li>
                                     </Link>
                                     <Link to='/Calendar'>
                                         <li>
-                                            <a href="#">
-                                                <i class="fas fa-calendar"></i>
-                                                <span class="nav-item">Calendar</span>
-                                            </a>
+                                                <i className="fas fa-calendar"></i>
+                                                <span className="nav-item">Calendar</span>
                                         </li>
                                     </Link>
                                     <Link to='/About'>
                                         <li>
-                                            <a href="#">
-                                                <i class="fas fa-info-circle"></i>
-                                                <span class="nav-item">About</span>
-                                            </a>
+                                                <i className="fas fa-info-circle"></i>
+                                                <span className="nav-item">About</span>
                                         </li>
                                     </Link>
                                         <Link to='/Login'>
                                         <li>
-                                            <a href="#">
-                                                <i class="fas fa-sign-in-alt"></i>
-                                                <span class="nav-item">Login</span>
-                                            </a>
+                                                <i className="fas fa-sign-in-alt"></i>
+                                                <span className="nav-item">Login</span>
                                         </li>
                                     </Link>
                                     <Link to='/Signup'>
                                         <li>
-                                            <a href="#">
-                                                <i class="fas fa-share"></i>
-                                                <span class="nav-item">Register</span>
-                                            </a>
+                                                <i className="fas fa-share"></i>
+                                                <span className="nav-item">Register</span>
                                         </li>
                                     </Link> 
                                     <li>
                                         {accountPresent && (
-                                            <div class='nav-item-options-container'>
-                                                <a href="#" class='options' onClick={handlePopupClick}>
+                                            <div className='nav-item-options-container'>
+                                                <a href="#" className='options' onClick={handlePopupClick}>
                                                     <i className="fas fa-cog"/>
                                                     <span className="nav-item">More Options</span>
                                                 </a>
@@ -228,18 +227,16 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                                                     <div className="popup">
                                                         {accountType === 'Trainer' ? (
                                                             <>
-                                                                <a href="#" class="style-btn" onClick={handleLogoutClick}>Logout</a>
+                                                                <a href="#" className="style-btn" onClick={handleLogoutClick}>Logout</a>
                                                                 <Link 
                                                                     to={`/AccountScreen/${accountFirstName}/${accountLastName}`} 
                                                                     className='style-btn'
                                                                     onClick={handleClosePopup}>
-                                                                    {/* <Button className='account-btn' onClick={handleClosePopup}>My Account</Button> */}
                                                                     My Account
                                                                 </Link>
                                                             </>
                                                         ) : (
-                                                            <a href="#" class="style-btn" onClick={handleLogoutClick}>Logout</a>
-                                                            // <Button className='logout-btn' onClick={handleLogoutClick}>Logout</Button>
+                                                            <a href="#" className="style-btn" onClick={handleLogoutClick}>Logout</a>
                                                         )}
                                                     </div>
                                                 )}
@@ -250,15 +247,15 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                             </div>
                         </nav>
 
-                        <section class="main">
-                            <div class="main-top">
+                        <section className="main">
+                            <div className="main-top">
                                 <Link to='/'>
                                     <p>FitNet | Find Your Trainer Today</p>
                                 </Link>
                             </div>
-                            <div class="main-body">
-                                <div class="main-body-section">
-                                    <div class="edit-container">
+                            <div className="main-body">
+                                <div className="main-body-section">
+                                    <div className="edit-container">
 
                                         <Button className={'style-btn'} 
                                             onClick={handleEditBtnClick} 
@@ -284,14 +281,14 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                                                             <div className='inputRate'>
                                                                 <input
                                                                     type='number'
-                                                                    class='edit-rate-input'
+                                                                    className='edit-rate-input'
                                                                     value={rateValue}
                                                                     onChange={handleRateChange}
                                                                     placeholder='  20'
                                                                     required>
                                                                 </input>
                                                             </div>
-                                                            <Button class='style-btn'onClick={handleRateSubmit}>
+                                                            <Button className='style-btn'onClick={handleRateSubmit}>
                                                                 Submit
                                                             </Button>
                                                         </form>
@@ -304,12 +301,13 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                                                             handleScheduleChange={handleScheduleChange}
                                                             first_name={first_name}
                                                             last_name={last_name}
+                                                            scheduleData={scheduleData}
                                                         />
                                                     </div>
                                                 )}
                                                 {showInfoPopup && (
                                                     <div className='edit-sub-popup-info'>
-                                                        <div class="input-group">
+                                                        <div className="input-group">
                                                             <label htmlFor='infoEdit'>Location</label>
                                                             <input
                                                                 type='text'
@@ -320,7 +318,7 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                                                             </input>
                                                         </div>
 
-                                                        <div class="input-group">
+                                                        <div className="input-group">
                                                             <label htmlFor='infoEdit'>Activity</label>
                                                             <input
                                                                 type='text'
@@ -331,16 +329,8 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                                                             </input>
                                                         </div>
 
-                                                        <div class="input-group3">
+                                                        <div className="input-group3">
                                                             <label htmlFor='infoEdit'>Biography</label>
-                                                            {/* <input
-                                                                type='text'
-                                                                style={{marginLeft: "15px", width: "340px", height: "100px"}}
-                                                                value={biographyValue}
-                                                                onChange={handleBiographyChange}
-                                                                placeholder='  Background information'
-                                                                required>
-                                                            </input> */}
                                                             <textarea
                                                                 id='biography'
                                                                 value={biographyValue}

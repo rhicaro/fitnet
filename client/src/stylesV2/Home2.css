@@ -54,14 +54,11 @@ ul {
 
 li {
   padding-bottom: 2rem;
-}
-
-li a {
   font-size: 16px;
   color: rgb(85, 83, 83);
 }
 
-li a:hover {
+li:hover {
   color: rgb(101, 33, 167);
   transition: 0.5s;
 }

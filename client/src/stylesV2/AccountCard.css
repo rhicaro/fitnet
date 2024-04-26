@@ -15,11 +15,10 @@
   }
   
   .profile-card img {
-    width: 75px;
-    height: 75px;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
     border-radius: 50%;
-    margin-right: 1rem;
   }
   
   .profile-card .profile-info {
@@ -27,23 +26,22 @@
     align-items: center;
   }
   
-  .profile-card .profile-info ul {
+  .profile-card .profile-info .profile-info-basics ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
   }
   
-  .profile-card .profile-info ul li {
+  .profile-card .profile-info .profile-info-basics ul li {
     margin-bottom: 10px;
-    padding: 0; /* Reset padding */
+    padding: 0;
     color: black;
-    font-weight: 300;
   }
   
   .first-name,
   .last-name,
   .info-item {
-    font-size: 1rem;
+    font-size: 90%;
     margin-right: 10px;
   }
   

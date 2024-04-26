@@ -9,15 +9,19 @@ function AccountCard({ account, handleClick, isSelected }) {
     return (
         <div className={`profile-card ${isSelected ? 'selected' : ''}`} onClick={handleClick}>
             <div className="profile-info">
-                <img src={Unknown} height={75} width={75} alt={`${first_name} ${last_name}`} />
-                <div>    
+                <img src={Unknown} 
+                    height={60} 
+                    width={60} 
+                    alt={`${first_name} ${last_name}`}
+                    style={{marginRight:'10px'}} />
+                <div className='profile-info-basics'>    
                     <ul>
-                    <li><span className="first-name">{first_name}</span>
-                    <span className="last-name">{last_name}</span></li>
-                    <li><span className="info-item">{`Location: ${user_location}`}</span>
-                    <span className="info-item">{`Activity: ${user_activity}`}</span></li>
-                    <li><span className="info-item">{`Sex: ${user_sex}`}</span>
-                    <span className="info-item">{`Price: $${user_price} /hr`}</span></li>
+                        <li><span className="first-name">{first_name}</span>
+                        <span className="last-name">{last_name}</span></li>
+                        <li><span className="info-item">{`Location: ${user_location}`}</span>
+                        <span className="info-item">{`Activity: ${user_activity}`}</span></li>
+                        <li><span className="info-item">{`Sex: ${user_sex}`}</span>
+                        <span className="info-item">{`Price: $${user_price} /hr`}</span></li>
                     </ul>
                 </div>            
             </div>

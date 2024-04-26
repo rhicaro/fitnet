@@ -147,21 +147,6 @@ router.put('/api/userdemographics/:first_name/:last_name', (req, res) => {
   });
 });
 
-//More of a test case route to get all schedule and see if it worked (It worked)
-router.get('/api/userschedule', (req, res) => {
-  // Query to retrieve all objects from user_schedule table
-  const query = 'SELECT * FROM user_schedule';
-  db.query(query, (err, scheduleResults) => {
-    if (err) {
-      console.error('Error querying MySQL:', err);
-      res.status(500).send('Internal Server Error');
-    } else {
-      // console.log('All schedules retrieved:', scheduleResults);
-      res.json(scheduleResults);
-    }
-  });
-});
-
 //Suppose to get all schedules that are linked to the stationed account first and last name from app.js
 router.get('/api/userschedule/:user_first/:user_last', (req, res) => {
   const { user_first, user_last } = req.params;
@@ -183,10 +168,37 @@ router.get('/api/userschedule/:user_first/:user_last', (req, res) => {
   });
 });
 
-//Router to add in another appointment to the database
-router.post('/api/userschedule/create/:user_first/:user_last', (req, res) =>{
+router.post('/api/userschedule/create', (req, res) =>{
+  const scheduleData = req.body
+  const {schedule_id, user_first, user_last, other_first ,other_last , user_date, user_notes} = scheduleData;
 
-})
+  const query = 'INSERT INTO user_schedule (schedule_id, user_first, user_last, other_first ,other_last , user_date, user_notes) VALUES (?,?,?,?,?,?,?)';
+
+  db.query(query, [schedule_id, user_first, user_last, other_first ,other_last , user_date, user_notes], (err, results) => {
+    if (err) {
+      console.error('Error Creating Apointment:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      console.log('Appointment created successfully');
+      res.status(200).send('Appointment created successfully');
+    }
+  });
+});
+
+router.delete('/api/userschedule/delete/:schedule_id', (req, res) => {
+  const scheduleId = req.params.schedule_id;
+
+  const query = 'DELETE FROM user_schedule WHERE schedule_id = ?';
+  db.query(query, [scheduleId], (err, results) => {
+    if (err) {
+      console.error('Error deleting appointment:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      console.log('Appointment deleted successfully');
+      res.status(200).send('Appointment deleted successfully');
+    }
+  });
+});
 
 
 module.exports = router;

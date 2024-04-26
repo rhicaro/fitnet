@@ -118,7 +118,7 @@ const SignUpComponent = ({updateAccountInfo }) => {
             <label htmlFor="firstName">First Name:</label>
             <input
               type="text"
-              class="signup-input"
+              className="signup-input"
               value={firstName}
               onChange={handleFirstNameChange}
               required
@@ -128,7 +128,7 @@ const SignUpComponent = ({updateAccountInfo }) => {
             <label htmlFor="lastName">Last Name:</label>
             <input
               type="text"
-              class="signup-input"
+              className="signup-input"
               value={lastName}
               onChange={handleLastNameChange}
               required
@@ -138,7 +138,7 @@ const SignUpComponent = ({updateAccountInfo }) => {
             <label htmlFor="username">Username:</label>
             <input
               type="text"
-              class="signup-input"
+              className="signup-input"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -148,7 +148,7 @@ const SignUpComponent = ({updateAccountInfo }) => {
             <label htmlFor="password">Password:</label>
             <input
               type="password"
-              class="signup-input"
+              className="signup-input"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -159,7 +159,7 @@ const SignUpComponent = ({updateAccountInfo }) => {
             <label htmlFor="email">Email:</label>
             <input
               type="email"
-              class="signup-input"
+              className="signup-input"
               value={email}
               onChange={handleEmailChange}
               placeholder='  example@gmail.com'
@@ -172,7 +172,7 @@ const SignUpComponent = ({updateAccountInfo }) => {
             <label htmlFor="phoneNumber">Phone Number:</label>
             <input
               type="tel"
-              class="signup-input"
+              className="signup-input"
               value={phoneNumber}
               onChange={handlePhoneNumberChange}
               required
@@ -182,7 +182,7 @@ const SignUpComponent = ({updateAccountInfo }) => {
             <label htmlFor="activity">Main Activity:</label>
             <input
               type="activity"
-              class="signup-input"
+              className="signup-input"
               value={mainActivity}
               onChange={handleMainActivityChange}
               placeholder="  Basketball"
@@ -202,7 +202,7 @@ const SignUpComponent = ({updateAccountInfo }) => {
             <label htmlFor="location">Location:</label>
             <input
               type="location"
-              class="signup-input"
+              className="signup-input"
               value={location}
               onChange={handleLocationChange}
               placeholder="  City, State"

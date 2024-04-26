@@ -36,11 +36,8 @@ function Calendar2({updateAccountInfo, accountPresent, accountFirstName, account
 
     return (
         <span style={{fontfamily: 'verdana, geneva, sans-serif'}}>
-            {/* <html lang="en">
-                <head> */}
                     {/* Need to keep for the icons */}
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-                {/* </head> */}
                 <div className="body">
                 <div className="container">
                     <nav>

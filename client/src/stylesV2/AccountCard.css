@@ -37,6 +37,7 @@
     margin-bottom: 10px;
     padding: 0; /* Reset padding */
     color: black;
+    font-weight: 300;
   }
   
   .first-name,

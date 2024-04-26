@@ -6,38 +6,88 @@ import "../stylesV2/SelectedDate.css";
 function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, accountPresent, accountFirstName, accountLastName, accountType }) {
   const [appointments, setAppointments] = useState([]);
   const [appointment, setAppointment] = useState("");
+  const [otherFirst, setOtherFirst] = useState("");
+  const [otherLast, setOtherLast] = useState("");
 
   useEffect(() => {
-    // Function to fetch appointments based on user's first name and last name
-    axios.get(`http://localhost:5001/api/userschedule/${accountFirstName}/${accountLastName}`) //This does not connect (404)
+    axios.get(`http://localhost:5001/api/userschedule/${accountFirstName}/${accountLastName}`)
       .then(response => {
-        console.log('Schedule found:', response.data);
-        setAppointments(response.data); // Update appointments state with fetched data
+        setAppointments(response.data);
       })
       .catch(error => {
         console.log('Error fetching schedule:', error);
       });
-  }, [accountFirstName, accountLastName]); // Add accountFirstName and accountLastName to the dependency array
+  }, [accountFirstName, accountLastName]);
 
   const handleAddAppointment = () => {
     if (selectedDate && appointment.trim() !== "") {
-                                // user_date                  user_notes
-      const newAppointment = `${selectedDate.toDateString()}: ${appointment}`;
-      console.log(newAppointment);
-      onAddAppointment(selectedDate, newAppointment);
-      setAppointments([...appointments, { user_date: selectedDate.toDateString(), user_notes: appointment }]);
-      setAppointment("");
+      axios.get(`http://localhost:5001/api/userdemographics/${otherFirst}/${otherLast}`)
+        .then(response => {
+          if (response.data.length === 0) {
+            alert("The specified account does not exist. Please try again.");
+          } else {
+            const newAppointment = `${selectedDate.toDateString()}: ${appointment}`;
+            const schedule_id = Math.floor(Math.random() * 1000000);
+            
+            axios.post('http://localhost:5001/api/userschedule/create', {
+              schedule_id: schedule_id,
+              user_first: accountFirstName,
+              user_last: accountLastName,
+              other_first: otherFirst,
+              other_last: otherLast,
+              user_date: selectedDate.toDateString(),
+              user_notes: appointment
+            })
+            .then(response => {
+              onAddAppointment(selectedDate, newAppointment);
+              setAppointments([...appointments, { user_date: selectedDate.toDateString(), user_notes: appointment }]);
+              setAppointment("");
+              setOtherFirst("");
+              setOtherLast("");
+            })
+            .catch(error => {
+              console.error('Error creating appointment:', error);
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Error checking account:', error);
+        });
     }
-  };
+  };  
 
   const handleDeleteAppointment = (index) => {
     if (selectedDate) {
-      const updatedAppointments = [...appointments];
-      updatedAppointments.splice(index, 1);
-      setAppointments(updatedAppointments);
-      onDeleteAppointment(selectedDate, index);
+      const deletedScheduleId = appointments[index].schedule_id;
+      axios.delete(`http://localhost:5001/api/userschedule/delete/${deletedScheduleId}`)
+        .then(response => {
+          console.log('Appointment deleted successfully:', response.data);
+          
+          const updatedAppointments = [...appointments];
+          updatedAppointments.splice(index, 1);
+          setAppointments(updatedAppointments);
+          
+          onDeleteAppointment(selectedDate, index);
+        })
+        .catch(error => {
+          console.error('Error deleting appointment:', error);
+        });
     }
   };
+
+  const handleFirstNameChange = (e) => {
+    const value = e.target.value;
+    if (/^[A-Za-z]+$/.test(value) || value === '') {
+      setOtherFirst(value);
+    }
+  }
+  
+  const handleLastNameChange = (e) => {
+    const value = e.target.value;
+    if (/^[A-Za-z]+$/.test(value) || value === '') {
+      setOtherLast(value);
+    }
+  }
 
   return (
     <div className="selected-date-container">
@@ -52,10 +102,12 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
           <input
             type="text"
             placeholder="  Trainer's First Name"
+            onChange={(e) => handleFirstNameChange(e)}
           />
           <input
             type="text"
             placeholder="  Trainer's Last Name"
+            onChange={(e) => handleLastNameChange(e)}
           />
           <button onClick={handleAddAppointment} className="add-button">
             Add Appointment
@@ -66,7 +118,7 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
         <div className="appointment-list">
           <ul>
             {appointments.map((appointment, index) => (
-              <li key={index} className="appointment-card"> {/* Add the job_card class */}
+              <li key={index} className="appointment-card">
                 <button
                   onClick={() => handleDeleteAppointment(index)}
                   className="delete-button"

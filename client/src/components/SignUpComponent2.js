@@ -157,7 +157,7 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="firstName">First Name:</label>
                         <input
                         type="text"
-                        class="signup-input2"
+                        className="signup-input2"
                         value={firstName}
                         onChange={handleFirstNameChange}
                         required
@@ -167,7 +167,7 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="lastName">Last Name:</label>
                         <input
                         type="text"
-                        class="signup-input2"
+                        className="signup-input2"
                         value={lastName}
                         onChange={handleLastNameChange}
                         required
@@ -177,7 +177,7 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="username">Username:</label>
                         <input
                         type="text"
-                        class="signup-input2"
+                        className="signup-input2"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
@@ -187,7 +187,7 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="password">Password:</label>
                         <input
                         type="password"
-                        class="signup-input2"
+                        className="signup-input2"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
@@ -197,7 +197,7 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="email">Email:</label>
                         <input
                         type="email"
-                        class="signup-input2"
+                        className="signup-input2"
                         value={email}
                         onChange={handleEmailChange}
                         placeholder='  example@gmail.com'
@@ -209,7 +209,7 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="phoneNumber">Phone Number:</label>
                         <input
                         type="tel"
-                        class="signup-input2"
+                        className="signup-input2"
                         value={phoneNumber}
                         onChange={handlePhoneNumberChange}
                         required
@@ -219,7 +219,7 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="activity">Main Activity:</label>
                         <input
                         type="activity"
-                        class="signup-input2"
+                        className="signup-input2"
                         value={mainActivity}
                         onChange={handleMainActivityChange}
                         placeholder='  Basketball'
@@ -241,7 +241,7 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="location">Location:</label>
                         <input
                         type="location"
-                        class="signup-input2"
+                        className="signup-input2"
                         value={location}
                         onChange={handleLocationChange}
                         placeholder='  Boston, MA'
@@ -255,7 +255,7 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
                         <label htmlFor="price">Price:</label>
                         <input
                         type="number"
-                        class="signup-input2"
+                        className="signup-input2"
                         value={price}
                         onChange={handlePriceChange}
                         required

@@ -20,6 +20,11 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
   }, [accountFirstName, accountLastName]);
 
   const handleAddAppointment = () => {
+    if (!accountPresent) {
+      alert("Please login to an account to use this feature");
+      return;
+    }
+  
     if (selectedDate && appointment.trim() !== "") {
       axios.get(`http://localhost:5001/api/userdemographics/${otherFirst}/${otherLast}`)
         .then(response => {
@@ -54,7 +59,8 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
           console.error('Error checking account:', error);
         });
     }
-  };  
+  };
+  
 
   const handleDeleteAppointment = (index) => {
     if (selectedDate) {

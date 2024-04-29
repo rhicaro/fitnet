@@ -30,10 +30,12 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
         .then(response => {
           if (response.data.length === 0) {
             alert("The specified account does not exist. Please try again.");
+          } else if (response.data[0].user_status === 'Client') {
+            alert("The specified account is a client not a trainer.");
           } else {
             const newAppointment = `${selectedDate.toDateString()}: ${appointment}`;
             const schedule_id = Math.floor(Math.random() * 1000000);
-            
+  
             axios.post('http://localhost:5001/api/userschedule/create', {
               schedule_id: schedule_id,
               user_first: accountFirstName,
@@ -41,14 +43,28 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
               other_first: otherFirst,
               other_last: otherLast,
               user_date: selectedDate.toDateString(),
-              user_notes: appointment
+              user_notes: appointment,
+              other_accepted: 'Pending',
             })
             .then(response => {
-              onAddAppointment(selectedDate, newAppointment);
-              setAppointments([...appointments, { user_date: selectedDate.toDateString(), user_notes: appointment }]);
+              //could probably just make another get call here to setAppointments again
+              // setAppointments(prevAppointments => [...prevAppointments, { user_date: selectedDate.toDateString(), user_notes: appointment }]);
+              console.log(response);
               setAppointment("");
               setOtherFirst("");
               setOtherLast("");
+              axios.get(`http://localhost:5001/api/userschedule/${accountFirstName}/${accountLastName}`)
+              .then(response => {
+                setAppointments(response.data);
+                onAddAppointment(selectedDate, newAppointment);
+                // setAppointment("");
+                // setOtherFirst("");
+                // setOtherLast("");
+              })
+              // onAddAppointment(selectedDate, newAppointment);
+              // setAppointment("");
+              // setOtherFirst("");
+              // setOtherLast("");
             })
             .catch(error => {
               console.error('Error creating appointment:', error);
@@ -61,10 +77,12 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
     }
   };
   
+  
 
   const handleDeleteAppointment = (index) => {
     if (selectedDate) {
       const deletedScheduleId = appointments[index].schedule_id;
+      console.log(deletedScheduleId);
       axios.delete(`http://localhost:5001/api/userschedule/delete/${deletedScheduleId}`)
         .then(response => {
           console.log('Appointment deleted successfully:', response.data);
@@ -108,11 +126,13 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
           <input
             type="text"
             placeholder="  Trainer's First Name"
+            value={otherFirst}
             onChange={(e) => handleFirstNameChange(e)}
           />
           <input
             type="text"
             placeholder="  Trainer's Last Name"
+            value={otherLast}
             onChange={(e) => handleLastNameChange(e)}
           />
           <button onClick={handleAddAppointment} className="add-button">

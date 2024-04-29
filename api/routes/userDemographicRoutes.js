@@ -170,11 +170,11 @@ router.get('/api/userschedule/:user_first/:user_last', (req, res) => {
 
 router.post('/api/userschedule/create', (req, res) =>{
   const scheduleData = req.body
-  const {schedule_id, user_first, user_last, other_first ,other_last , user_date, user_notes} = scheduleData;
+  const {schedule_id, user_first, user_last, other_first ,other_last , user_date, user_notes, other_accepted} = scheduleData;
 
-  const query = 'INSERT INTO user_schedule (schedule_id, user_first, user_last, other_first ,other_last , user_date, user_notes) VALUES (?,?,?,?,?,?,?)';
+  const query = 'INSERT INTO user_schedule (schedule_id, user_first, user_last, other_first ,other_last , user_date, user_notes, other_accepted) VALUES (?,?,?,?,?,?,?,?)';
 
-  db.query(query, [schedule_id, user_first, user_last, other_first ,other_last , user_date, user_notes], (err, results) => {
+  db.query(query, [schedule_id, user_first, user_last, other_first ,other_last , user_date, user_notes, other_accepted], (err, results) => {
     if (err) {
       console.error('Error Creating Apointment:', err);
       res.status(500).send('Internal Server Error');

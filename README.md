@@ -15,7 +15,7 @@ npm install
 ```
 
 ## Building
-To build FitNet, in two seperate tabs of your respective console inside of the api and client folder run the following command:
+To build FitNet, in two seperate tabs of your respective console inside of the api and client directory and run the following command:
 
 ```bash
 npm start

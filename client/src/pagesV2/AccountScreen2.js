@@ -46,6 +46,33 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
         });
     }, [first_name, last_name]);
 
+    const handleFileChange = (e) => {
+        e.preventDefault();
+        const file = e.target.files[0];
+        const filePath = `/images/pfp/${file.name}`;
+        console.log(filePath); // Log the file path
+        console.log(first_name, last_name);
+        axios.put(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`, {
+            editType: 'pfp',
+            updatedData: {
+                user_pfp: filePath}
+        })
+        .then(response => {
+            console.log("Profile picture updated successfully", response);
+            axios.get(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`)
+            .then(response => {
+                setUserAccountInfo(response.data[0]);
+                setShowEditPopup(false);
+            })
+            .catch(error => {
+                console.error('Error fetching user information:', error);
+            });
+        })
+        .catch(error => {
+            console.error('Error updating profile picture:', error);
+        });
+    };    
+
     const handlePopupClick = (e) => {
         e.preventDefault();
         setShowPopup(prevState => !prevState);
@@ -284,7 +311,18 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                                             <div className='edit-popup'>
 
                                                 <ul>
-                                                    <li><Button className="style-btn" style={{marginTop: '20px'}}>Change Profile Image</Button></li>
+                                                    <li>
+                                                        <label htmlFor="profileImageInput" className="style-btn" style={{ marginTop: '20px' }}>
+                                                            Change Profile Image
+                                                            <input
+                                                                id="profileImageInput"
+                                                                type="file"
+                                                                accept="image/*"
+                                                                style={{ display: 'none' }}
+                                                                onChange={(e) => handleFileChange(e)}
+                                                            />
+                                                        </label>
+                                                    </li>
                                                     <li><Button className="style-btn" onClick={handleRateBtnClick}>Change Rate</Button></li>
                                                     <li><Button className="style-btn" onClick={handleScheduleBtnClick}>Change Availability</Button></li>
                                                     <li><Button className="style-btn" onClick={handleInfoBtnClick}>Change Information</Button></li>
@@ -366,7 +404,11 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                                         )}
 
                                     {userAccountInfo && (
-                                        <img src={userpfp} width={200} height={200} className='account_img2'></img>
+                                        userAccountInfo.user_pfp ? (
+                                            <img src={userAccountInfo.user_pfp} width={200} height={200} className='account_img2' />
+                                        ) : (
+                                            <img src={userpfp} width={200} height={200} className='account_img2' />
+                                        )
                                     )}
                                 </div>
 

@@ -6,11 +6,13 @@ import axios from 'axios';
 import HomeFeed2 from "../components/HomeFeed2";
 import { Button } from 'react-bootstrap';
 import userpfp from '../assets/unknown.png';
+// import Notification from '../components/Notifications';
 
 function Home2({updateAccountInfo, accountPresent, accountFirstName, accountLastName, accountType }) {
     const [selectedAccount, setSelectedAccount] = useState(null);
     const [userDemographics, setUserDemographics] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
+    const [showNotif, setShowNotif] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:5001/api/userdemographics')
@@ -35,6 +37,11 @@ function Home2({updateAccountInfo, accountPresent, accountFirstName, accountLast
     const handleLogoutClick = () => {
         setShowPopup(false);
         updateAccountInfo("", false, "", "", "")
+    }
+
+    const handleNotifClick = (e) => {
+        e.preventDefault();
+        setShowNotif(prevState => !prevState);
     }
 
     return (
@@ -115,9 +122,15 @@ function Home2({updateAccountInfo, accountPresent, accountFirstName, accountLast
 
                     <section className="main">
                         <div className="main-top">
-                            <Link to='/'>
-                                <p>FitNet | Find Your Trainer Today</p>
-                            </Link>
+                            <div className="main-top-content">
+                                <Link to='/' className="main-top-link">
+                                    <p>FitNet | Find Your Trainer Today</p>
+                                </Link>
+                            </div>
+                            {/* <div className="main-top-notifications">
+                                <i className="fas fa-bell" onClick={handleNotifClick}></i>
+                                <Notification show={showNotif} />
+                            </div> */}
                         </div>
                             <div className="main-body">
                                 <h1>Trainers</h1>

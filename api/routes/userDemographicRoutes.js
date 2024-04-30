@@ -131,8 +131,9 @@ router.put('/api/userdemographics/:first_name/:last_name', (req, res) => {
       user_activity: updatedData.user_activity,
       user_bio: updatedData.user_bio
     };
+  } else if (editType === 'pfp') {
+    updateFields = { user_pfp: updatedData.user_pfp };
   }
-  
   // Construct the UPDATE query
   const query = 'UPDATE user_demographics SET ? WHERE first_name = ? AND last_name = ?';
   

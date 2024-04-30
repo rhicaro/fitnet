@@ -12,8 +12,6 @@ function HomeFeed2({ accounts, selectedAccount, setSelectedAccount, accountFirst
         {accounts.map((account, index) => (
           <AccountCard2 
             account={account} 
-            accountFirstName={accountFirstName}
-            accountLastname={accountLastName}
             key={index} 
             isSelected={account === selectedAccount}
             handleClick={() => handleCardClick(account)}

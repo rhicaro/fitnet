@@ -32,11 +32,11 @@ function App(){
         setAccountLastName(last);
         setAccountType(type);
 
-        Cookies.set('currentAccount', account);
-        Cookies.set('accountPresent', present);
-        Cookies.set('accountFirstName', first);
-        Cookies.set('accountLastName', last);
-        Cookies.set('accountType', type);
+        // Cookies.set('currentAccount', account);
+        // Cookies.set('accountPresent', present);
+        // Cookies.set('accountFirstName', first);
+        // Cookies.set('accountLastName', last);
+        // Cookies.set('accountType', type);
     };
 
     return (

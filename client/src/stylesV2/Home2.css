@@ -115,7 +115,7 @@ nav i{
   padding: 10px;
   position: absolute;
   bottom: 0;
-  left: 200px;
+  left: 225px;
   display: flex;
   flex-direction: column; /* Stack items vertically */
   align-items: center; /* Center items horizontally */
@@ -125,6 +125,10 @@ nav i{
 .popup .style-btn {
   margin-top: 20px;
   color: white;
+}
+
+.popup p {
+  color: black;
 }
 
 .style-btn {

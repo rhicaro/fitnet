@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios'; // Import Axios
 import '../stylesV2/MediaFeed.css';
 
-function MediaFeed({accountPresent, viewedAccountFirstName, viewedAccountLastName, accountType, accountFirstName, accountLastName}) {
+function MediaFeed({ accountPresent, viewedAccountFirstName, viewedAccountLastName, accountType, accountFirstName, accountLastName }) {
   const [mediaList, setMediaList] = useState([]);
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [sameFirst, setSameFirst] = useState(false);
@@ -11,42 +12,82 @@ function MediaFeed({accountPresent, viewedAccountFirstName, viewedAccountLastNam
   useEffect(() => {
     setSameFirst(viewedAccountFirstName === accountFirstName);
     setSameLast(viewedAccountLastName === accountLastName);
-  });
+    axios.get(`http://localhost:5001/api/usermedia/${viewedAccountFirstName}/${viewedAccountLastName}`)
+      .then(response => {
+        console.log(response);
+        const mediaObjects = response.data.map(media => ({
+          id: response.data[0].media_id,
+          type: media.media_path.endsWith('.mp4') ? 'video/mp4' : 'image/jpeg',
+          url: media.media_path
+        }));
+        setMediaList(mediaObjects);
+      })
+      .catch (error => {
+        console.log('Error fetching media: ', error);
+      });
+  }, [viewedAccountFirstName, viewedAccountLastName]);
+
+  const generateMediaId = () => {
+    return Math.floor(100000 + Math.random() * 900000);
+  };
 
   const handleFileUpload = (e) => {
-    const files = e.target.files;
+    if (sameFirst && sameLast) {
+      const files = e.target.files;
 
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const objectURL = URL.createObjectURL(file);
-      setMediaList((prevMediaList) => [...prevMediaList, { type: file.type, url: objectURL }]);
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const objectURL = URL.createObjectURL(file);
+        setMediaList((prevMediaList) => [...prevMediaList, { type: file.type, url: objectURL }]);
+
+        const mediaData = {
+          media_id: generateMediaId(),
+          user_first: accountFirstName,
+          user_last: accountLastName,
+          media_path: `/images/media/${file.name}`
+        };
+
+        axios.post(`http://localhost:5001/api/usermedia/${accountFirstName}/${accountLastName}`, mediaData)
+          .then(response => {
+            console.log('Media uploaded successfully', response);
+          })
+          .catch(error => {
+            console.error('Error uploading media:', error);
+          });
+      }
+
+      fileInputRef.current.value = '';
     }
-
-    // Clear the file input
-    fileInputRef.current.value = '';
   };
 
   const handleRemoveMedia = () => {
-    if (selectedMedia !== null) {
-      setMediaList((prevMediaList) => prevMediaList.filter((_, index) => index !== selectedMedia));
-      setSelectedMedia(null);
+    if (sameFirst && sameLast && selectedMedia !== null) {
+      const selectedMediaId = mediaList[selectedMedia].id; // Retrieve the ID of the selected media
+      axios.delete(`http://localhost:5001/api/usermedia/${selectedMediaId}`)
+        .then(response => {
+          console.log('Media deleted successfully', response);
+          // After deleting the media, remove it from the mediaList
+          const updatedMediaList = [...mediaList];
+          updatedMediaList.splice(selectedMedia, 1);
+          setMediaList(updatedMediaList);
+          setSelectedMedia(null); // Reset selectedMedia state
+        })
+        .catch(error => {
+          console.error('Error deleting media:', error);
+        });
     }
   };
 
   const handleAddMedia = () => {
-    // Trigger the file input programmatically
-    fileInputRef.current.click();
-  };
-
-  const handleDeleteAllMedia = () => {
-    setMediaList([]);
-    setSelectedMedia(null);
+    if (sameFirst && sameLast) {
+      fileInputRef.current.click();
+    }
   };
 
   const handleMediaClick = (index) => {
     setSelectedMedia(selectedMedia === index ? null : index);
   };
-  
+
   return (
     <div className="media-feed">
       <div className="upload-section">

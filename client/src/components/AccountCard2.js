@@ -3,7 +3,7 @@ import '../stylesV2/AccountCard.css';
 import Unknown from '../assets/unknown.png';
 import axios from 'axios';
 
-function AccountCard({ account, handleClick, isSelected, accountFirstName, accountLastname }) {
+function AccountCard({ account, handleClick, isSelected}) {
     const { first_name, last_name, user_location, user_activity, user_sex, user_price } = account;
     const [userAccountInfo, setUserAccountInfo] = useState(null);
 

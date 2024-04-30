@@ -201,5 +201,60 @@ router.delete('/api/userschedule/delete/:schedule_id', (req, res) => {
   });
 });
 
+//Routes for media feed
+router.post('/api/usermedia/:user_first/:user_last', (req, res) => {
+  const mediaData = req.body;
+  const { media_id ,user_first, user_last, media_path } = mediaData;
+
+  const query =
+    'INSERT INTO user_media (media_id, user_first, user_last, media_path) VALUES (? ,? , ?, ?)';
+
+  db.query(query, [media_id ,user_first, user_last, media_path], (err, results) => {
+    if (err) {
+      console.error('Error Creating Appointment:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.status(200).send('Media added successfully');
+    }
+  });
+});
+
+router.get('/api/usermedia/:user_first/:user_last', (req, res) => {
+  const { user_first, user_last } = req.params;
+
+  const query =
+    'SELECT * FROM user_media WHERE user_first = ? AND user_last = ?';
+
+  db.query(query, [user_first, user_last], (err, results) => {
+    if (err) {
+      console.error('Error fetching media:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
+router.delete('/api/usermedia/:media_id', (req, res) => {
+  const mediaId = req.params.media_id;
+
+  const query = 'DELETE FROM user_media WHERE media_id = ?';
+
+  db.query(query, [mediaId], (err, results) => {
+    if (err) {
+      console.error('Error deleting media:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      if (results.affectedRows === 0) {
+        // If no media was deleted (perhaps media with provided media_id doesn't exist)
+        res.status(404).send('Media not found');
+      } else {
+        console.log('Media deleted successfully');
+        res.status(204).send(); // No content
+      }
+    }
+  });
+});
+
 
 module.exports = router;

@@ -261,31 +261,33 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                                         </li>
                                     </Link> 
                                     <li>
-                                        {accountPresent && (
                                             <div className='nav-item-options-container'>
                                                 <a href="#" className='options' onClick={handlePopupClick}>
                                                     <i className="fas fa-cog"/>
                                                     <span className="nav-item">More Options</span>
                                                 </a>
                                                 {showPopup && (
-                                                    <div className="popup">
-                                                        {accountType === 'Trainer' ? (
-                                                            <>
-                                                                <a href="#" className="style-btn" onClick={handleLogoutClick}>Logout</a>
-                                                                <Link 
-                                                                    to={`/AccountScreen/${accountFirstName}/${accountLastName}`} 
-                                                                    className='style-btn'
-                                                                    onClick={handleClosePopup}>
-                                                                    My Account
-                                                                </Link>
-                                                            </>
-                                                        ) : (
+                                                    <div className={`popup ${showPopup ? 'show' : 'hide'}`}>
+                                                    {accountType === 'Trainer' && (
+                                                        <>
                                                             <a href="#" className="style-btn" onClick={handleLogoutClick}>Logout</a>
-                                                        )}
-                                                    </div>
+                                                            <Link 
+                                                                to={`/AccountScreen/${accountFirstName}/${accountLastName}`} 
+                                                                className='style-btn'
+                                                                onClick={handleClosePopup}>
+                                                                My Account
+                                                            </Link>
+                                                        </>
+                                                    )}
+                                                    {accountType === 'Client' && (
+                                                        <a href="#" className="style-btn" onClick={handleLogoutClick}>Logout</a>
+                                                    )}
+                                                    {!accountType && (
+                                                        <p>Please login for more options</p>
+                                                    )}
+                                                </div>                                            
                                                 )}
                                             </div>
-                                        )}
                                     </li>
                                 </ul>
                             </div>

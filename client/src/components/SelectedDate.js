@@ -34,6 +34,7 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
             alert("The specified account is a client not a trainer.");
           } else {
             const newAppointment = `${selectedDate.toDateString()}: ${appointment}`;
+            console.log(selectedDate.toDateString());
             const schedule_id = Math.floor(Math.random() * 1000000);
   
             axios.post('http://localhost:5001/api/userschedule/create', {

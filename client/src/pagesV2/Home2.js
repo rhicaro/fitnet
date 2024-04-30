@@ -136,9 +136,11 @@ function Home2({updateAccountInfo, accountPresent, accountFirstName, accountLast
                                 <h1>Trainers</h1>
                                 <div className="main-body-feed">
                                     <HomeFeed2 
-                                    accounts={userDemographics}
-                                    selectedAccount={selectedAccount} 
-                                    setSelectedAccount={setSelectedAccount}
+                                        accounts={userDemographics}
+                                        selectedAccount={selectedAccount} 
+                                        setSelectedAccount={setSelectedAccount}
+                                        accountFirstName={accountFirstName}
+                                        accountLastName={accountLastName}
                                     />
                                 </div>
                                 <div className="main-body-feed-selected">

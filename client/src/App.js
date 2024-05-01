@@ -16,6 +16,9 @@ import Login2 from './pagesV2/Login2';
 import SignUpV2 from './pagesV2/SignUpV2';
 import SignUp2V2 from './pagesV2/SignUp2V2';
 
+/**
+ * Represents the main application component.
+ */
 function App(){
     //Need to refactor code to exclude currentAccount
     const [currentAccount, setCurrentAccount] = useState(Cookies.get('currentAccount') || '');
@@ -25,6 +28,15 @@ function App(){
     const [accountType, setAccountType] = useState(Cookies.get('accountType') || '');
     const userDemographics = [];
 
+    /**
+     * Function to update account information.
+     * 
+     * @param {string} account - The username of the account.
+     * @param {boolean} present - Boolean indicating whether an account is present.
+     * @param {string} first - The first name of the account holder.
+     * @param {string} last - The last name of the account holder.
+     * @param {string} type - The type of the account.
+     */
     const updateAccountInfo = (account, present, first, last, type) => {
         setCurrentAccount(account);
         setAccountPresent(present);

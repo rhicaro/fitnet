@@ -1,8 +1,16 @@
+/**
+ * Express router configuration for handling user demographic data, schedules, and media.
+ * @module userDemographicRoutes
+ */
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const router = express.Router();
 
+/**
+ * MySQL database connection configuration.
+ * @type {Connection}
+ */
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -20,6 +28,7 @@ db.connect((err) => {
   }
 });
 
+// Route to get all user demographics.
 router.get('/api/userdemographics', (req, res) => {
   const query = 'SELECT * FROM user_demographics';
   db.query(query, (err, results) => {
@@ -32,6 +41,8 @@ router.get('/api/userdemographics', (req, res) => {
   });
 });
 
+
+// Route to get user demographics by first name and last name.
 router.get('/api/userdemographics/:first_name/:last_name', (req, res) => {
   const { first_name, last_name } = req.params;
   const query = 'SELECT * FROM user_demographics WHERE first_name = ? AND last_name = ?';
@@ -45,6 +56,7 @@ router.get('/api/userdemographics/:first_name/:last_name', (req, res) => {
   });
 });
 
+// Register a new user
 router.post('/api/userdemographics/register', (req, res) => {
   const userData = req.body;
   const {user_id ,first_name, last_name, user_username, user_password, user_email, user_phone, user_status, 
@@ -66,6 +78,7 @@ router.post('/api/userdemographics/register', (req, res) => {
   });
 });
 
+// Get user demographics by username
 router.get('/api/userdemographics/:username', (req, res) => {
   const { username } = req.params;
   const query = 'SELECT * FROM user_demographics WHERE user_username = ?';
@@ -79,6 +92,7 @@ router.get('/api/userdemographics/:username', (req, res) => {
   });
 });
 
+// Login user
 router.post('/api/userdemographics/login/:username', (req, res) => {
   const { username } = req.params;
   const { user_password } = req.body;
@@ -169,6 +183,7 @@ router.get('/api/userschedule/:user_first/:user_last', (req, res) => {
   });
 });
 
+// Create a new appointment
 router.post('/api/userschedule/create', (req, res) =>{
   const scheduleData = req.body
   const {schedule_id, user_first, user_last, other_first ,other_last , user_date, user_notes, other_accepted} = scheduleData;
@@ -186,6 +201,7 @@ router.post('/api/userschedule/create', (req, res) =>{
   });
 });
 
+// Delete existing appointment
 router.delete('/api/userschedule/delete/:schedule_id', (req, res) => {
   const scheduleId = req.params.schedule_id;
 
@@ -202,6 +218,7 @@ router.delete('/api/userschedule/delete/:schedule_id', (req, res) => {
 });
 
 //Routes for media feed
+// Creates a media object
 router.post('/api/usermedia/:user_first/:user_last', (req, res) => {
   const mediaData = req.body;
   const { media_id ,user_first, user_last, media_path } = mediaData;
@@ -219,6 +236,7 @@ router.post('/api/usermedia/:user_first/:user_last', (req, res) => {
   });
 });
 
+//Gets all media objects connected to first and last name
 router.get('/api/usermedia/:user_first/:user_last', (req, res) => {
   const { user_first, user_last } = req.params;
 
@@ -235,6 +253,7 @@ router.get('/api/usermedia/:user_first/:user_last', (req, res) => {
   });
 });
 
+//Deltes specific media object through id
 router.delete('/api/usermedia/:media_id', (req, res) => {
   const mediaId = req.params.media_id;
 

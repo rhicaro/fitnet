@@ -1,8 +1,9 @@
 // Should probably handle this on the server side instead of the client side and 
 // then have the client side get the array of accounts from the server side
+// Was used more for testing purposes
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import HomeFeed2 from './HomeFeed2';
+import HomeFeed2 from '../components/HomeFeed2';
 
 const UserList = () => {
   const [userDemographics, setUserDemographics] = useState([]);

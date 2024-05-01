@@ -2,13 +2,26 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios'; // Import Axios
 import '../stylesV2/MediaFeed.css';
 
+/**
+ * Represents a component for displaying and managing media content.
+ * @param {boolean} accountPresent - Indicates whether the current account is present.
+ * @param {string} viewedAccountFirstName - The first name of the viewed account.
+ * @param {string} viewedAccountLastName - The last name of the viewed account.
+ * @param {string} accountType - The type of the current account.
+ * @param {string} accountFirstName - The first name of the current account.
+ * @param {string} accountLastName - The last name of the current account.
+ * @returns {JSX.Element} - The rendered MediaFeed component.
+ */
 function MediaFeed({ accountPresent, viewedAccountFirstName, viewedAccountLastName, accountType, accountFirstName, accountLastName }) {
   const [mediaList, setMediaList] = useState([]);
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [sameFirst, setSameFirst] = useState(false);
   const [sameLast, setSameLast] = useState(false);
   const fileInputRef = useRef(null);
-
+  /**
+   * Allows the rendering of the add and delete buttons as well as fills the feed of any media object that is stored connected
+   * to the accounts first and last name
+   */
   useEffect(() => {
     setSameFirst(viewedAccountFirstName === accountFirstName);
     setSameLast(viewedAccountLastName === accountLastName);
@@ -27,10 +40,18 @@ function MediaFeed({ accountPresent, viewedAccountFirstName, viewedAccountLastNa
       });
   }, [viewedAccountFirstName, viewedAccountLastName]);
 
+  /**
+   * Generates a unique media ID.
+   * @returns {number} - The generated media ID.
+   */
   const generateMediaId = () => {
     return Math.floor(100000 + Math.random() * 900000);
   };
 
+  /**
+   * Handles file upload.
+   * @param {Event} e - The file input change event.
+   */
   const handleFileUpload = (e) => {
     if (sameFirst && sameLast) {
       const files = e.target.files;
@@ -60,6 +81,9 @@ function MediaFeed({ accountPresent, viewedAccountFirstName, viewedAccountLastNa
     }
   };
 
+  /**
+   * Handles removal of media.
+   */
   const handleRemoveMedia = () => {
     if (sameFirst && sameLast && selectedMedia !== null) {
       const selectedMediaId = mediaList[selectedMedia].id; // Retrieve the ID of the selected media
@@ -78,12 +102,19 @@ function MediaFeed({ accountPresent, viewedAccountFirstName, viewedAccountLastNa
     }
   };
 
+   /**
+   * Handles addition of media.
+   */
   const handleAddMedia = () => {
     if (sameFirst && sameLast) {
       fileInputRef.current.click();
     }
   };
 
+  /**
+   * Handles click on media item.
+   * @param {number} index - The index of the clicked media item.
+   */
   const handleMediaClick = (index) => {
     setSelectedMedia(selectedMedia === index ? null : index);
   };

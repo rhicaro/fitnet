@@ -1,3 +1,4 @@
+// This has not been incorporated 
 // MessagingComponent.js
 import React, { useState } from "react";
 import "../styles/MessageComponent.css";

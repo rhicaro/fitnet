@@ -3,6 +3,11 @@ import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import '../stylesV2/SignUpComponent.css';
 
+/**
+ * Represents a component for user registration.
+ * @param {Function} updateAccountInfo - Function to update account information after successful registration.
+ * @returns {JSX.Element} - The rendered SignUpComponent.
+ */
 const SignUpComponent = ({updateAccountInfo }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -17,10 +22,18 @@ const SignUpComponent = ({updateAccountInfo }) => {
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   const [userExists, setUserExists] = useState(false);
 
+   /**
+   * Generates a random user ID.
+   * @returns {number} - The generated user ID.
+   */
   const generateUserId = () => {
     return Math.floor(100000 + Math.random() * 900000);
   };
 
+   /**
+   * Handles change in the first name input.
+   * @param {Object} e - The event object.
+   */
   const handleFirstNameChange = (e) => {
     const value = e.target.value;
     if (/^[A-Za-z]+$/.test(value) || value === '') {
@@ -28,6 +41,10 @@ const SignUpComponent = ({updateAccountInfo }) => {
     }
   };
 
+  /**
+   * Handles change in the last name input.
+   * @param {Object} e - The event object.
+   */
   const handleLastNameChange = (e) => {
     const value = e.target.value;
     if (/^[A-Za-z]+$/.test(value) || value === '') {
@@ -35,6 +52,10 @@ const SignUpComponent = ({updateAccountInfo }) => {
     }
   };
 
+  /**
+   * Handles change in the phone number input.
+   * @param {Object} e - The event object.
+   */
   const handlePhoneNumberChange = (e) => {
     const value = e.target.value;
     if (/^\d{0,10}$/.test(value) || value === '') {
@@ -42,6 +63,10 @@ const SignUpComponent = ({updateAccountInfo }) => {
     }
   };
 
+  /**
+   * Handles change in the main activity input.
+   * @param {Object} e - The event object.
+   */
   const handleMainActivityChange = (e) => {
     const value = e.target.value;
     if (/^[A-Za-z]+$/.test(value) || value === '') {
@@ -49,6 +74,10 @@ const SignUpComponent = ({updateAccountInfo }) => {
     }
   };
 
+  /**
+   * Handles change in the location input.
+   * @param {Object} e - The event object.
+   */
   const handleLocationChange = (e) => {
     const value = e.target.value;
     if (/^[A-Za-z, ]+$/.test(value) || value === '') {
@@ -56,13 +85,22 @@ const SignUpComponent = ({updateAccountInfo }) => {
     }
   };
 
+  /**
+   * Handles change in the email input.
+   * @param {Object} e - The event object.
+   */
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
+  /**
+   * Handles user registration.
+   * @param {Object} e - The event object.
+   */
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
+      //Multiple checks to see wheter or not information is repeated or not
       const response = await axios.get(`http://localhost:5001/api/userdemographics/${firstName}/${lastName}`);
       const response2 = await axios.get(`http://localhost:5001/api/userdemographics/${username}`);
       if (response.data.length > 0) {

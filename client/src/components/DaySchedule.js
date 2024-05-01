@@ -3,7 +3,15 @@ import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import "../stylesV2/DaySchedule.css";
 
+
+/**
+ * Represents a component for managing and editing the daily schedule of a user.
+ * @param {function} handleScheduleChange - A function to handle schedule changes.
+ * @param {string} first_name - The first name of the user.
+ * @param {string} last_name - The last name of the user.
+ */
 const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
+    // State variables to manage schedule data for each day of the week
     const [mondayHour, setMondayHour] = useState('');
     const [mondayHour2, setMondayHour2] = useState('');
     const [mondayPeriod, setMondayPeriod] = useState('');
@@ -32,6 +40,9 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
     const [sundayHour2, setSundayHour2] = useState('');
     const [sundayPeriod, setSundayPeriod] = useState('');
 
+     /**
+     * Fetches the user's schedule data from the API endpoint and updates the state.
+     */
     useEffect(() => {
         axios.get(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`)
         .then(response => {
@@ -68,6 +79,12 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
         });
     }, [first_name, last_name]);
 
+    /**
+     * Parses the hour from the given time string.
+     * @param {string} timeStr - The time string to parse.
+     * @param {number} part - The part of the time to parse (1 or 2).
+     * @returns {string} - The parsed hour.
+     */
     const parseHour = (timeStr, part) => {
         if (timeStr === "None") {
             return '';
@@ -77,6 +94,11 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
         return time.split(":")[0];
     };
 
+    /**
+     * Parses the period (AM/PM) from the given time string.
+     * @param {string} timeStr - The time string to parse.
+     * @returns {string} - The parsed period.
+     */
     const parsePeriod = (timeStr) => {
         if (timeStr === "None") {
             return '';
@@ -85,6 +107,9 @@ const DaySchedule = ({handleScheduleChange, first_name, last_name}) => {
         return end.split(" ")[1];
     };
 
+    /**
+     * Handles the editing of the schedule and sends the updated data to the API endpoint.
+     */
     const handleScheduleEdit = () => {
         axios.put(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`, {
             editType: 'schedule',

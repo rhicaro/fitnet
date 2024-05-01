@@ -1,4 +1,4 @@
-// I did not have the time to do this
+// I did not have the time to incorporate this
 import React from 'react';
 import '../stylesV2/Notifications.css';
 

@@ -9,6 +9,15 @@ import userpfp from '../assets/unknown.png';
 import MediaFeed from "../components/MediaFeed";
 import DaySchedule from "../components/DaySchedule";
 
+/**
+ * Represents the account screen component.
+ * @param {Function} updateAccountInfo - Function to update account information.
+ * @param {boolean} accountPresent - Indicates if an account is currently logged in.
+ * @param {string} accountFirstName - The first name of the logged-in user.
+ * @param {string} accountLastName - The last name of the logged-in user.
+ * @param {string} accountType - The type of the logged-in user's account.
+ * @returns {JSX.Element} - The rendered AccountScreen2 component.
+ */
 function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, accountLastName, accountType}) {
     const [userAccountInfo, setUserAccountInfo] = useState([]);
     const [viewedFirst, setViewedFirst] = useState('');
@@ -27,6 +36,7 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
 
     const { first_name, last_name } = useParams();
 
+    //Gets the information based on the given first and last name
     useEffect(() => {
         axios.get(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`)
         .then(response => {
@@ -46,6 +56,12 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
         });
     }, [first_name, last_name]);
 
+    /**
+     * Handles the change of the profile picture file.
+     * It uploads the selected file to the server and updates the user's profile picture.
+     * 
+     * @param {Event} e - The event object representing the file change event.
+     */
     const handleFileChange = (e) => {
         e.preventDefault();
         const file = e.target.files[0];
@@ -73,27 +89,42 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
         });
     };    
 
+     /**
+     * Toggles the visibility of the account information popup.
+     * @param {Event} e - The click event.
+     */
     const handlePopupClick = (e) => {
         e.preventDefault();
         setShowPopup(prevState => !prevState);
     }
 
+    /**
+     * Closes the account information popup.
+     */
     const handleClosePopup = () => {
         setShowPopup(false);
     }
 
+    /**
+     * Logs out the user and closes the account information popup.
+     */
     const handleLogoutClick = () => {
         setShowPopup(false);
         updateAccountInfo("", false, "", "", "")
     }
 
-    //Need this
+    /**
+     * Toggles the visibility of the edit popup if the logged-in user matches the viewed user.
+     */
     const handleEditBtnClick = () => {
         if (accountFirstName === viewedFirst && accountLastName === viewedLast) {
             setShowEditPopup(prevState => !prevState);
         }
     }
 
+    /**
+     * Toggles the visibility of the rate popup and fetches the user's rate information.
+     */
     const handleRateBtnClick = () => {
         setShowRatePopup(prevState => !prevState);
         setShowInfoPopup(false);
@@ -108,12 +139,18 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
         });
     }
 
+    /**
+     * Toggles the visibility of the schedule popup and hides other popups.
+     */
     const handleScheduleBtnClick = () => {
         setShowSchedulePopup(prevState => !prevState);
         setShowInfoPopup(false);
         setShowRatePopup(false);
     }
 
+    /**
+     * Toggles the visibility of the info popup, fetches user information, and hides other popups.
+     */
     const handleInfoBtnClick = () => {
         setShowInfoPopup(prevState => !prevState);
         setShowRatePopup(false);
@@ -130,6 +167,11 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
         });
     }
 
+    /**
+     * Handles the change of the rate value.
+     * 
+     * @param {Event} e - The event object representing the change event.
+     */
     const handleRateChange = (e) => {
         const value = e.target.value;
         if (/^\d{0,3}$/.test(value) || value === '') {
@@ -137,7 +179,9 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
         }
     };
 
-    //Need to change so that it rerenders the page and changes the rate value upon completion
+    /**
+     * Submits the updated rate value to the server and updates user information.
+     */
     const handleRateSubmit = () => {
         axios.put(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`, {
             editType: 'rate',
@@ -163,6 +207,7 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
             });
     }
 
+    //Functions to handle change in input
     const handleLocationChange = (e) => {
         const value = e.target.value;
         if (/^[A-Za-z, ]+$/.test(value) || value === '') {
@@ -182,6 +227,9 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
         setBiographyValue(value);
     }
 
+    /**
+     * Submits the updated user information to the server and updates the user's profile.
+     */
     const handleInfoSubmit = () => {
         axios.put(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`, {
             editType: 'info',
@@ -209,6 +257,11 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
             });
     }
 
+    /**
+     * Handles the change of the schedule and updates the user's account information.
+     * 
+     * @param {Object} newAccountInfo - The updated account information.
+     */
     const handleScheduleChange = (newAccountInfo) => {
         setUserAccountInfo(newAccountInfo);
     }

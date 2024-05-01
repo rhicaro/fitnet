@@ -5,18 +5,37 @@ import '../stylesV2/AboutV2.css';
 import { Link, link } from 'react-router-dom';
 import axios from 'axios';
 
+/**
+ * Represents a component for displaying account information and handling logout functionality.
+ * @param {Function} updateAccountInfo - Function to update account information.
+ * @param {boolean} accountPresent - Indicates if an account is currently logged in.
+ * @param {string} accountFirstName - The first name of the logged-in user.
+ * @param {string} accountLastName - The last name of the logged-in user.
+ * @param {string} accountType - The type of the logged-in user's account.
+ * @returns {JSX.Element} - The rendered About2 component.
+ */
 function About2({updateAccountInfo, accountPresent, accountFirstName, accountLastName, accountType}) {
     const [showPopup, setShowPopup] = useState(false);
 
+    /**
+     * Toggles the visibility of the account information popup.
+     * @param {Event} e - The click event.
+     */
     const handlePopupClick = (e) => {
         e.preventDefault();
         setShowPopup(prevState => !prevState);
     }
 
+    /**
+     * Closes the account information popup.
+     */
     const handleClosePopup = () => {
         setShowPopup(false);
     }
 
+    /**
+     * Logs out the user and closes the account information popup.
+     */
     const handleLogoutClick = () => {
         setShowPopup(false);
         updateAccountInfo("", false, "", "", "")

@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import axios from 'axios'; // corrected import statement
+import axios from 'axios';
 import '../stylesV2/LoginComponent.css';
 
+/**
+ * Represents a component for user login.
+ * @param {function} updateAccountInfo - A function to update the account information after successful login.
+ * @returns {JSX.Element} - The rendered LoginComponent.
+ */
 const LoginComponent = ({ updateAccountInfo }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginSuccess, setLoginSucces] = useState(false);
 
+  /**
+   * Handles the login form submission.
+   * @param {Event} e - The form submit event.
+   */
   const handleLogin = async (e) => {
     e.preventDefault();
     try {

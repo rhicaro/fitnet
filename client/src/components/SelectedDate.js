@@ -3,6 +3,17 @@ import PropTypes from "prop-types";
 import axios from "axios"; // Import Axios for making HTTP requests
 import "../stylesV2/SelectedDate.css";
 
+/**
+ * Represents a component for managing appointments for a selected date.
+ * @param {Date} selectedDate - The selected date.
+ * @param {Function} onAddAppointment - Function to handle addition of an appointment.
+ * @param {Function} onDeleteAppointment - Function to handle deletion of an appointment.
+ * @param {string} accountPresent - Indicates whether the account is present.
+ * @param {string} accountFirstName - The first name of the account.
+ * @param {string} accountLastName - The last name of the account.
+ * @param {string} accountType - The type of the account.
+ * @returns {JSX.Element} - The rendered SelectedDate component.
+ */
 function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, accountPresent, accountFirstName, accountLastName, accountType }) {
   const [appointments, setAppointments] = useState([]);
   const [appointment, setAppointment] = useState("");
@@ -19,6 +30,9 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
       });
   }, [accountFirstName, accountLastName]);
 
+  /**
+   * Handles addition of an appointment.
+   */
   const handleAddAppointment = () => {
     if (!accountPresent) {
       alert("Please login to an account to use this feature");
@@ -78,8 +92,10 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
     }
   };
   
-  
-
+  /**
+   * Handles deletion of an appointment.
+   * @param {number} index - The index of the appointment to delete.
+   */
   const handleDeleteAppointment = (index) => {
     if (selectedDate) {
       const deletedScheduleId = appointments[index].schedule_id;
@@ -100,6 +116,10 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
     }
   };
 
+  /**
+   * Handles change in the trainer's first name input.
+   * @param {Object} e - The event object.
+   */
   const handleFirstNameChange = (e) => {
     const value = e.target.value;
     if (/^[A-Za-z]+$/.test(value) || value === '') {
@@ -107,6 +127,10 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
     }
   }
   
+   /**
+   * Handles change in the trainer's last name input.
+   * @param {Object} e - The event object.
+   */
   const handleLastNameChange = (e) => {
     const value = e.target.value;
     if (/^[A-Za-z]+$/.test(value) || value === '') {

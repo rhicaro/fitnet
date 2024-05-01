@@ -3,54 +3,65 @@ import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import '../stylesV2/SignUpComponent2.css';
 
+/**
+ * Represents a component for trainer registration.
+ * @param {Function} switchToLogin - Function to switch to the login component.
+ * @param {Function} updateAccountInfo - Function to update account information after successful registration.
+ * @returns {JSX.Element} - The rendered SignUpComponent2.
+ */
 const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [mainActivity, setMainActivity] = useState('');
-  const [gender, setGender] = useState('');
-  const [location, setLocation] = useState('');
-  const [price, setPrice] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [mainActivity, setMainActivity] = useState('');
+    const [gender, setGender] = useState('');
+    const [location, setLocation] = useState('');
+    const [price, setPrice] = useState('');
 
-  const [mondayHour, setMondayHour] = useState('');
-  const [mondayHour2, setMondayHour2] = useState('');
-  const [mondayPeriod, setMondayPeriod] = useState('');
+    const [mondayHour, setMondayHour] = useState('');
+    const [mondayHour2, setMondayHour2] = useState('');
+    const [mondayPeriod, setMondayPeriod] = useState('');
 
-  const [tuesdayHour, setTuesdayHour] = useState('');
-  const [tuesdayHour2, setTuesdayHour2] = useState('');
-  const [tuesdayPeriod, setTuesdayPeriod] = useState('');
+    const [tuesdayHour, setTuesdayHour] = useState('');
+    const [tuesdayHour2, setTuesdayHour2] = useState('');
+    const [tuesdayPeriod, setTuesdayPeriod] = useState('');
 
-  const [wednesdayHour, setWednesdayHour] = useState('');
-  const [wednesdayHour2, setWednesdayHour2] = useState('');
-  const [wednesdayPeriod, setWednesdayPeriod] = useState('');
+    const [wednesdayHour, setWednesdayHour] = useState('');
+    const [wednesdayHour2, setWednesdayHour2] = useState('');
+    const [wednesdayPeriod, setWednesdayPeriod] = useState('');
 
-  const [thursdayHour, setThursdayHour] = useState('');
-  const [thursdayHour2, setThursdayHour2] = useState('');
-  const [thursdayPeriod, setThursdayPeriod] = useState('');
+    const [thursdayHour, setThursdayHour] = useState('');
+    const [thursdayHour2, setThursdayHour2] = useState('');
+    const [thursdayPeriod, setThursdayPeriod] = useState('');
 
-  const [fridayHour, setFridayHour] = useState('');
-  const [fridayHour2, setFridayHour2] = useState('');
-  const [fridayPeriod, setFridayPeriod] = useState('');
+    const [fridayHour, setFridayHour] = useState('');
+    const [fridayHour2, setFridayHour2] = useState('');
+    const [fridayPeriod, setFridayPeriod] = useState('');
 
-  const [saturdayHour, setSaturdayHour] = useState('');
-  const [saturdayHour2, setSaturdayHour2] = useState('');
-  const [saturdayPeriod, setSaturdayPeriod] = useState('');
+    const [saturdayHour, setSaturdayHour] = useState('');
+    const [saturdayHour2, setSaturdayHour2] = useState('');
+    const [saturdayPeriod, setSaturdayPeriod] = useState('');
 
-  const [sundayHour, setSundayHour] = useState('');
-  const [sundayHour2, setSundayHour2] = useState('');
-  const [sundayPeriod, setSundayPeriod] = useState('');
+    const [sundayHour, setSundayHour] = useState('');
+    const [sundayHour2, setSundayHour2] = useState('');
+    const [sundayPeriod, setSundayPeriod] = useState('');
 
-  const [errorMessage, setErrorMessage] = useState('');
-  const [registrationSuccess, setRegistrationSuccess] = useState(false);
-  const [userExists, setUserExists] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [registrationSuccess, setRegistrationSuccess] = useState(false);
+    const [userExists, setUserExists] = useState(false);
 
+    /**
+     * Generates a random user ID.
+     * @returns {number} - The generated user ID.
+    */
     const generateUserId = () => {
         return Math.floor(100000 + Math.random() * 900000);
     };
 
+    // Functions to handle input changes
     const handleFirstNameChange = (e) => {
         const value = e.target.value;
         if (/^[A-Za-z]+$/.test(value) || value === '') {
@@ -97,6 +108,10 @@ const SignUpComponent2 = ({ switchToLogin, updateAccountInfo }) => {
         setEmail(e.target.value);
     };
 
+    /**
+   * Handles user registration.
+   * @param {Object} e - The event object.
+   */
     const handleRegister = async (e) => {
         e.preventDefault();
 

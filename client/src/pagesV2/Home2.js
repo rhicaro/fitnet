@@ -8,12 +8,24 @@ import { Button } from 'react-bootstrap';
 import userpfp from '../assets/unknown.png';
 // import Notification from '../components/Notifications';
 
+/**
+ * Represents a home component.
+ * 
+ * @param {Function} updateAccountInfo - Function to update the account information.
+ * @param {boolean} accountPresent - Boolean indicating whether an account is present.
+ * @param {string} accountFirstName - The first name of the account holder.
+ * @param {string} accountLastName - The last name of the account holder.
+ * @param {string} accountType - The type of the account.
+ */
 function Home2({updateAccountInfo, accountPresent, accountFirstName, accountLastName, accountType }) {
     const [selectedAccount, setSelectedAccount] = useState(null);
     const [userDemographics, setUserDemographics] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
     const [showNotif, setShowNotif] = useState(false);
 
+    /**
+     * Fetches user demographics when the component mounts.
+     */
     useEffect(() => {
         axios.get('http://localhost:5001/api/userdemographics')
         .then(response => {
@@ -25,6 +37,7 @@ function Home2({updateAccountInfo, accountPresent, accountFirstName, accountLast
         });
         }, []);
 
+    //Functions to handle popups and account credentials
     const handlePopupClick = (e) => {
         e.preventDefault();
         setShowPopup(prevState => !prevState);

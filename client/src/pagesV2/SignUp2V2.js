@@ -4,9 +4,19 @@ import { Link, link } from 'react-router-dom';
 import axios from 'axios';
 import SignUpComponent2 from '../components/SignUpComponent2';
 
+/**
+ * Represents a sign-up component.
+ * 
+ * @param {Function} updateAccountInfo - Function to update the account information.
+ * @param {boolean} accountPresent - Boolean indicating whether an account is present.
+ * @param {string} accountFirstName - The first name of the account holder.
+ * @param {string} accountLastName - The last name of the account holder.
+ * @param {string} accountType - The type of the account.
+ */
 function SignUp2V2({updateAccountInfo, accountPresent, accountFirstName, accountLastName, accountType }) {
     const [showPopup, setShowPopup] = useState(false);
 
+    // Functions to handle popups and account credentials
     const handlePopupClick = (e) => {
         e.preventDefault();
         setShowPopup(prevState => !prevState);

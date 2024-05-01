@@ -3,9 +3,19 @@ import '../stylesV2/Home2.css';
 import { Link, link } from 'react-router-dom';
 import LoginComponent from "../components/LoginComponent";
 
+/**
+ * Represents a login component.
+ * 
+ * @param {Function} updateAccountInfo - Function to update the account information.
+ * @param {boolean} accountPresent - Boolean indicating whether an account is present.
+ * @param {string} accountFirstName - The first name of the account holder.
+ * @param {string} accountLastName - The last name of the account holder.
+ * @param {string} accountType - The type of the account.
+ */
 function Login2({updateAccountInfo, accountPresent, accountFirstName, accountLastName, accountType }) {
     const [showPopup, setShowPopup] = useState(false);
 
+    // Functions to handle popup and account credientials
     const handlePopupClick = (e) => {
         e.preventDefault();
         setShowPopup(prevState => !prevState);

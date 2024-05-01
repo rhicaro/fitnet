@@ -5,21 +5,43 @@ import { Link, link } from 'react-router-dom';
 import CalendarComponent from "../components/CalendarComponent";
 import SelectedDate from "../components/SelectedDate";
 
+/**
+ * Represents a calendar component.
+ * 
+ * @param {Function} updateAccountInfo - Function to update the account information.
+ * @param {boolean} accountPresent - Boolean indicating whether an account is present.
+ * @param {string} accountFirstName - The first name of the account holder.
+ * @param {string} accountLastName - The last name of the account holder.
+ * @param {string} accountType - The type of the account.
+ */
 function Calendar2({updateAccountInfo, accountPresent, accountFirstName, accountLastName, accountType}) {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [appointments, setAppointments] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
   
+    /**
+     * Adds an appointment for the specified date.
+     * 
+     * @param {Date} date - The date of the appointment.
+     * @param {Object} appointment - The appointment object to add.
+     */
     const handleAddAppointment = (date, appointment) => {
       setAppointments([...appointments, appointment]);
     };
   
+    /**
+     * Deletes an appointment for the specified date and index.
+     * 
+     * @param {Date} date - The date of the appointment.
+     * @param {number} index - The index of the appointment to delete.
+     */
     const handleDeleteAppointment = (date, index) => {
       const updatedAppointments = [...appointments];
       updatedAppointments.splice(index, 1);
       setAppointments(updatedAppointments);
     };
 
+    //Functions to handle popups and login credientials
     const handlePopupClick = (e) => {
       e.preventDefault();
       setShowPopup(prevState => !prevState);

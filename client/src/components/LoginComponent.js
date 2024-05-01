@@ -23,8 +23,7 @@ const LoginComponent = ({ updateAccountInfo }) => {
       const response = await axios.post('http://localhost:5001/api/userdemographics/login/' + username, {
         user_password: password
       });
-      console.log('Logged in successfully:', response.data);
-      console.log('First name: ', response.data.user.first_name);
+      console.log('Logged in successfully');
       setLoginSucces(true);
       updateAccountInfo(username, true, response.data.user.first_name, response.data.user.last_name, response.data.user.user_status);
   

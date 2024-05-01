@@ -119,6 +119,7 @@ nav i{
   display: flex;
   flex-direction: column; /* Stack items vertically */
   align-items: center; /* Center items horizontally */
+  z-index: 1;
   /* animation: expandFromLeft 1s ease forwards; */
 }
 

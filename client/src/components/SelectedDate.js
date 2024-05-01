@@ -48,7 +48,6 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
             alert("The specified account is a client not a trainer.");
           } else {
             const newAppointment = `${selectedDate.toDateString()}: ${appointment}`;
-            console.log(selectedDate.toDateString());
             const schedule_id = Math.floor(Math.random() * 1000000);
   
             axios.post('http://localhost:5001/api/userschedule/create', {
@@ -64,7 +63,6 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
             .then(response => {
               //could probably just make another get call here to setAppointments again
               // setAppointments(prevAppointments => [...prevAppointments, { user_date: selectedDate.toDateString(), user_notes: appointment }]);
-              console.log(response);
               setAppointment("");
               setOtherFirst("");
               setOtherLast("");
@@ -99,10 +97,9 @@ function SelectedDate({ selectedDate, onAddAppointment, onDeleteAppointment, acc
   const handleDeleteAppointment = (index) => {
     if (selectedDate) {
       const deletedScheduleId = appointments[index].schedule_id;
-      console.log(deletedScheduleId);
       axios.delete(`http://localhost:5001/api/userschedule/delete/${deletedScheduleId}`)
         .then(response => {
-          console.log('Appointment deleted successfully:', response.data);
+          console.log('Appointment deleted successfully');
           
           const updatedAppointments = [...appointments];
           updatedAppointments.splice(index, 1);

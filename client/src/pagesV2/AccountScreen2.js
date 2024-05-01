@@ -66,15 +66,13 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
         e.preventDefault();
         const file = e.target.files[0];
         const filePath = `/images/pfp/${file.name}`;
-        console.log(filePath); // Log the file path
-        console.log(first_name, last_name);
         axios.put(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`, {
             editType: 'pfp',
             updatedData: {
                 user_pfp: filePath}
         })
         .then(response => {
-            console.log("Profile picture updated successfully", response);
+            console.log("Profile picture updated successfully");
             axios.get(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`)
             .then(response => {
                 setUserAccountInfo(response.data[0]);
@@ -244,7 +242,6 @@ function AccountScreen2({updateAccountInfo, accountPresent, accountFirstName, ac
                 // Fetch the updated user information after successful update
                 axios.get(`http://localhost:5001/api/userdemographics/${first_name}/${last_name}`)
                     .then(response => {
-                        console.log("Updated user information:", response.data);
                         // Update the userAccountInfo state with the new data
                         setUserAccountInfo(response.data[0]);
                     })

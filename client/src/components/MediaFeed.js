@@ -27,7 +27,6 @@ function MediaFeed({ accountPresent, viewedAccountFirstName, viewedAccountLastNa
     setSameLast(viewedAccountLastName === accountLastName);
     axios.get(`http://localhost:5001/api/usermedia/${viewedAccountFirstName}/${viewedAccountLastName}`)
       .then(response => {
-        console.log(response);
         const mediaObjects = response.data.map(media => ({
           id: response.data[0].media_id,
           type: media.media_path.endsWith('.mp4') ? 'video/mp4' : 'image/jpeg',
@@ -70,7 +69,7 @@ function MediaFeed({ accountPresent, viewedAccountFirstName, viewedAccountLastNa
 
         axios.post(`http://localhost:5001/api/usermedia/${accountFirstName}/${accountLastName}`, mediaData)
           .then(response => {
-            console.log('Media uploaded successfully', response);
+            console.log('Media uploaded successfully');
           })
           .catch(error => {
             console.error('Error uploading media:', error);
@@ -89,7 +88,7 @@ function MediaFeed({ accountPresent, viewedAccountFirstName, viewedAccountLastNa
       const selectedMediaId = mediaList[selectedMedia].id; // Retrieve the ID of the selected media
       axios.delete(`http://localhost:5001/api/usermedia/${selectedMediaId}`)
         .then(response => {
-          console.log('Media deleted successfully', response);
+          console.log('Media deleted successfully');
           // After deleting the media, remove it from the mediaList
           const updatedMediaList = [...mediaList];
           updatedMediaList.splice(selectedMedia, 1);

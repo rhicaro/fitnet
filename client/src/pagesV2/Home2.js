@@ -159,7 +159,11 @@ function Home2({updateAccountInfo, accountPresent, accountFirstName, accountLast
                                 <div className="main-body-feed-selected">
                                     {selectedAccount && (
                                         <>
-                                            <img src={selectedAccount.user_pfp} width={100} height={100} className='account_img'></img>
+                                            {selectedAccount.user_pfp ? (
+                                                <img src={selectedAccount.user_pfp} width={100} height={100} className='account_img' />
+                                            ) : (
+                                                <img src={userpfp} width={100} height={100} className='account_img' />
+                                            )}
                                             <h3 className='account_info_name'>Name: {selectedAccount.first_name} {selectedAccount.last_name}</h3>
                                             <h3 className='account_info'>Location: {selectedAccount.user_location}</h3>
                                             <h3 className='account_info'>Activity: {selectedAccount.user_activity}</h3>
